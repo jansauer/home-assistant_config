@@ -1,0 +1,18 @@
+device_tracker.hassio:
+  hidden: true
+device_tracker.alexa:
+  hidden: true
+device_tracker.alderaan:
+  hidden: true
+device_tracker.appletv:
+  hidden: true
+device_tracker.blink:
+  hidden: true
+device_tracker.byss:
+  hidden: true
+device_tracker.pc192168552:
+  hidden: true
+device_tracker.tadfri:
+  hidden: true
+light.tradfri_bulb_e27_opal_1000lm:
+  friendly_name: Bedroom Ceiling Light
