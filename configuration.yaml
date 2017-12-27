@@ -1,0 +1,225 @@
+# https://home-assistant.io/docs/configuration/basic/
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 55
+  unit_system: metric
+  time_zone: Europe/Berlin
+  customize: !include customize.yaml
+
+# https://home-assistant.io/components/http/
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  base_url: !secret http_url
+  server_port: 443
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+# https://home-assistant.io/components/updater/
+updater:
+  include_used_components: true
+
+# https://home-assistant.io/components/config/
+config:
+
+# https://home-assistant.io/components/frontend/
+frontend:
+
+# https://home-assistant.io/components/history/
+history:
+
+# https://home-assistant.io/components/map/
+map:
+
+# https://home-assistant.io/hassio/
+hassio:
+
+# https://home-assistant.io/components/device_tracker/
+device_tracker:
+  # https://home-assistant.io/components/device_tracker.fritz/
+  - platform: fritz
+    host: 192.168.5.1
+    username: !secret fritz_username
+    password: !secret fritz_password
+    #track_new_devices: false
+
+# https://home-assistant.io/components/sensor/
+sensor:
+  # https://home-assistant.io/components/sensor.moon/
+  - platform: moon
+
+  # https://home-assistant.io/components/sensor.miflora/
+  - platform: miflora
+    mac: "C4:7C:8D:65:B0:5A"
+    name: Helix
+    timeout: 12
+  
+  - platform: miflora
+    mac: "C4:7C:8D:65:AF:DD"
+    name: Backup
+    timeout: 12
+
+  # https://home-assistant.io/components/sensor.plex/
+  - platform: plex
+    host: 192.168.5.5
+    port: 32400
+    token: !secret plex_token
+
+  # https://home-assistant.io/components/sensor.systemmonitor/
+  - platform: systemmonitor
+    resources:
+      - type: disk_free
+        arg: /
+      - type: memory_free
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+
+  # https://home-assistant.io/components/sensor.yr/
+  - platform: yr
+
+# https://home-assistant.io/components/light.limitlessled/
+light:
+  platform: limitlessled
+  bridges:
+    - host: 192.168.5.58
+      version: 2
+      port: 8899
+      groups:
+        - number: 1
+          name: Shelf
+        - number: 2
+          name: TV
+
+# https://home-assistant.io/components/switch/
+switch:
+  # https://home-assistant.io/components/switch.template/
+  - platform: template
+    switches:
+      blink:
+        friendly_name: "Blink"
+        value_template: "{{ is_state('binary_sensor.blink_armed_status', 'on') }}"
+        turn_on:
+          service: blink.arm_system
+          data:
+            device_armed: true
+        turn_off:
+          service: blink.arm_system
+          data:
+            device_armed: false
+
+  # https://home-assistant.io/components/switch.wake_on_lan/
+  - platform: wake_on_lan
+    name: Byss
+    mac_address: "C8:60:00:84:F9:02"
+    host: 192.168.5.5
+    turn_off:
+      service: shell_command.turn_off_byss
+
+shell_command:
+  turn_off_byss: 'ssh -i /config/hassio_ed25519 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null hassio@192.168.5.5 date'
+
+# https://home-assistant.io/components/apple_tv/
+apple_tv:
+  - host: 192.168.5.51
+    login_id: !secret appletv_token
+    start_off: true
+
+# https://home-assistant.io/components/media_player/
+media_player:
+  # https://home-assistant.io/components/media_player.plex/
+  - platform: plex
+
+  # https://home-assistant.io/components/media_player.spotify/
+  - platform: spotify
+    client_id: !secret spotify_client_id
+    client_secret: !secret spotify_client_secret
+
+# https://home-assistant.io/components/hdmi_cec/
+#hdmi_cec:
+
+# https://home-assistant.io/components/blink/
+blink:
+  username: !secret blink_username
+  password: !secret blink_password
+
+# https://home-assistant.io/components/weather/
+weather:
+  # https://home-assistant.io/components/weather.yweather/
+  - platform: yweather
+    woeid: 657169
+
+# https://home-assistant.io/components/sun/
+sun:
+
+# https://home-assistant.io/components/tts/
+tts:
+  # https://home-assistant.io/components/tts.google/
+  - platform: google
+
+# https://home-assistant.io/components/notify/
+notify:
+  # https://home-assistant.io/components/notify.pushover/
+  - platform: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key
+
+scene:
+  - name: Romantic
+    entities:
+      light.shelf:
+        state: on
+        rgb_color: 246,255,2
+
+# https://home-assistant.io/components/tradfri/
+tradfri:
+  host: 192.168.5.57
+
+# https://home-assistant.io/components/alexa/
+alexa:
+  flash_briefings:
+    whoishome:
+      - title: Who's at home?
+        text: >
+          You are home, you silly
+
+intent_script:
+  amzn1.ask.skill.c86aacc5-2381-40b5-8151-460ddbc1b19e:
+    action:
+      service: script.1508878187697
+    speech:
+      type: plain
+      text: OK
+
+# https://home-assistant.io/components/emulated_hue/
+emulated_hue:
+  off_maps_to_on_domains:
+    - script
+    - scene
+  expose_by_default: true
+  exposed_domains:
+    - light
+    - switch
+    - script
+
+# https://home-assistant.io/docs/ecosystem/ios/
+ios:
+
+# https://home-assistant.io/components/zeroconf/
+zeroconf:
+
+# https://home-assistant.io/components/prometheus/
+prometheus:
+
+# https://home-assistant.io/components/logger/
+logger:
+  default: warning
+  logs:
+    homeassistant.components.sensor.miflora: debug
+
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
