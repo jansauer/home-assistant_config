@@ -45,11 +45,13 @@ device_tracker:
     password: !secret fritz_password
     #track_new_devices: false
 
+# https://home-assistant.io/components/tradfri/
+tradfri:
+  host: 192.168.5.57
+  allow_tradfri_groups: false
+
 # https://home-assistant.io/components/sensor/
 sensor:
-  # https://home-assistant.io/components/sensor.moon/
-  - platform: moon
-
   # https://home-assistant.io/components/sensor.miflora/
   - platform: miflora
     mac: "C4:7C:8D:65:B0:5A"
@@ -70,6 +72,9 @@ sensor:
       - type: load_1m
       - type: load_5m
       - type: load_15m
+
+  # https://home-assistant.io/components/sensor.moon/
+  - platform: moon
 
   # https://home-assistant.io/components/sensor.yr/
   - platform: yr
@@ -166,11 +171,6 @@ scene:
       light.shelf:
         state: on
         rgb_color: 246,255,2
-
-# https://home-assistant.io/components/tradfri/
-tradfri:
-  host: 192.168.5.57
-  allow_tradfri_groups: false
 
 # https://home-assistant.io/components/alexa/
 alexa:
