@@ -170,6 +170,7 @@ scene:
 # https://home-assistant.io/components/tradfri/
 tradfri:
   host: 192.168.5.57
+  allow_tradfri_groups: false
 
 # https://home-assistant.io/components/alexa/
 alexa:
