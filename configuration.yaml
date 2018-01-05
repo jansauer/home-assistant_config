@@ -61,12 +61,6 @@ sensor:
     name: Backup
     timeout: 12
 
-  # https://home-assistant.io/components/sensor.plex/
-  - platform: plex
-    host: 192.168.5.5
-    port: 32400
-    token: !secret plex_token
-
   # https://home-assistant.io/components/sensor.systemmonitor/
   - platform: systemmonitor
     resources:
