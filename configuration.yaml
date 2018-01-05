@@ -211,7 +211,7 @@ ios:
 zeroconf:
 
 # https://home-assistant.io/components/prometheus/
-prometheus:
+#prometheus:
 
 # https://home-assistant.io/components/logger/
 logger:
