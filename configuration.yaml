@@ -211,9 +211,8 @@ zeroconf:
 # https://home-assistant.io/components/logger/
 logger:
   default: warning
-  logs:
-    homeassistant.components.sensor.miflora: debug
-
+  #logs:
+  #  homeassistant.components.sensor.miflora: debug
 
 group: !include groups.yaml
 automation: !include automations.yaml
