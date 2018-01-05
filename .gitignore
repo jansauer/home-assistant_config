@@ -1,1 +1,21 @@
+# Home Assistant
+.HA_VERSION
+.ios.conf
+.spotify-token-cache
+.tradfri_psk.conf
+.uuid
+emulated_hue_ids.json
+home-assistant_v2.db
+known_devices.yaml
+plex.conf
 secrets.yaml
+
+# Homebridge
+homebridge/*
+!homebridge/config.json
+
+# Logs
+*.log
+
+# Python cache
+__pycache__
