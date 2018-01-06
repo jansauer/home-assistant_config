@@ -77,11 +77,12 @@ sensor:
   # https://home-assistant.io/components/sensor.yr/
   - platform: yr
 
-# https://home-assistant.io/components/light.limitlessled/
+# https://home-assistant.io/components/light/
 light:
+  # https://home-assistant.io/components/light.limitlessled/
   platform: limitlessled
   bridges:
-    - host: 192.168.5.58
+    - host: 192.168.5.56
       version: 2
       port: 8899
       groups:
