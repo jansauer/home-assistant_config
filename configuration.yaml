@@ -53,15 +53,13 @@ tradfri:
 # https://home-assistant.io/components/sensor/
 sensor:
   # https://home-assistant.io/components/sensor.miflora/
-  - platform: miflora
-    mac: "C4:7C:8D:65:B0:5A"
-    name: Helix
-    timeout: 12
-  
-  - platform: miflora
-    mac: "C4:7C:8D:65:AF:DD"
-    name: Backup
-    timeout: 12
+  #- platform: miflora
+  #  mac: "C4:7C:8D:65:B0:5A"
+  #  name: Helix
+  #- platform: miflora
+  #  mac: "C4:7C:8D:65:AF:DD"
+  #  name: Backup
+  #  timeout: 12
 
   # https://home-assistant.io/components/sensor.systemmonitor/
   - platform: systemmonitor
