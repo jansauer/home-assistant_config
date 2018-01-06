@@ -137,7 +137,7 @@ media_player:
     client_secret: !secret spotify_client_secret
 
 # https://home-assistant.io/components/hdmi_cec/
-#hdmi_cec:
+hdmi_cec:
 
 # https://home-assistant.io/components/blink/
 blink:
