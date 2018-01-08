@@ -207,6 +207,14 @@ zeroconf:
 # https://home-assistant.io/components/prometheus/
 #prometheus:
 
+# https://github.com/pkozul/ha-floorplan
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+
 # https://home-assistant.io/components/logger/
 logger:
   default: warning
