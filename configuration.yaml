@@ -195,6 +195,9 @@ emulated_hue:
     - switch
     - script
 
+# https://www.home-assistant.io/components/homekit/
+homekit:
+
 # https://home-assistant.io/docs/ecosystem/ios/
 ios:
 
