@@ -10,10 +10,6 @@ known_devices.yaml
 plex.conf
 secrets.yaml
 
-# Homebridge
-homebridge/*
-!homebridge/config.json
-
 # Logs
 *.log
 
