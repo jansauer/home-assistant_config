@@ -164,13 +164,6 @@ notify:
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
 
-scene:
-  - name: Romantic
-    entities:
-      light.shelf:
-        state: on
-        rgb_color: 246,255,2
-
 # https://home-assistant.io/components/alexa/
 alexa:
   flash_briefings:
@@ -222,5 +215,6 @@ logger:
   #  homeassistant.components.sensor.miflora: debug
 
 group: !include groups.yaml
-automation: !include automations.yaml
+scene: !include scenes.yaml
 script: !include scripts.yaml
+automation: !include automations.yaml

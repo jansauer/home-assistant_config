@@ -1,0 +1,24 @@
+- name: Cold
+  entities:
+    group.livingroom_ceiling:
+      state: on
+      color_temp: 250
+
+- name: Normal
+  entities:
+    group.livingroom_ceiling:
+      state: on
+      color_temp: 300
+
+- name: Warm
+  entities:
+    group.livingroom_ceiling:
+      state: on
+      color_temp: 450
+
+- name: Warm10
+  entities:
+    group.livingroom_ceiling:
+      state: on
+      color_temp: 450
+      transition: 10

@@ -1,0 +1,9 @@
+livingroom_ceiling:
+  name: Livingroom Ceiling
+  view: yes
+  icon: mdi:weather-cloudy
+  entities:
+    - light.livingroom_ceiling_bulb_1
+    - light.livingroom_ceiling_bulb_2
+    - light.livingroom_ceiling_bulb_3
+    - light.livingroom_ceiling_bulb_4
