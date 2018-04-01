@@ -2,3 +2,9 @@ device_tracker.byss:
   hidden: true
 light.tradfri_bulb_e27_opal_1000lm:
   friendly_name: Bedroom Ceiling Light
+sensor.tradfri_motion_sensor:
+  hidden: true
+sensor.tradfri_remote_control:
+  hidden: true
+sensor.tradfri_wireless_dimmer:
+  hidden: true
