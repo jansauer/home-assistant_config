@@ -27,6 +27,10 @@ config:
 # https://home-assistant.io/components/frontend/
 frontend:
 
+# https://www.home-assistant.io/components/recorder/
+recorder:
+  purge_keep_days: 2
+
 # https://home-assistant.io/components/history/
 history:
 
