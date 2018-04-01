@@ -43,7 +43,7 @@ device_tracker:
     host: 192.168.5.1
     username: !secret fritz_username
     password: !secret fritz_password
-    #track_new_devices: false
+    track_new_devices: false
 
 # https://home-assistant.io/components/tradfri/
 tradfri:
