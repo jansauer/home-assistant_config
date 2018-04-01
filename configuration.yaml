@@ -49,11 +49,6 @@ device_tracker:
     password: !secret fritz_password
     track_new_devices: false
 
-# https://home-assistant.io/components/tradfri/
-tradfri:
-  host: 192.168.5.57
-  allow_tradfri_groups: false
-
 # https://home-assistant.io/components/sensor/
 sensor:
   # https://home-assistant.io/components/sensor.miflora/
@@ -80,6 +75,11 @@ sensor:
 
   # https://home-assistant.io/components/sensor.yr/
   - platform: yr
+
+# https://home-assistant.io/components/tradfri/
+tradfri:
+  host: 192.168.5.57
+  allow_tradfri_groups: false
 
 # https://home-assistant.io/components/light/
 light:
