@@ -105,16 +105,30 @@ tradfri:
 # https://home-assistant.io/components/light/
 light:
   # https://home-assistant.io/components/light.limitlessled/
-  platform: limitlessled
-  bridges:
-    - host: 192.168.5.56
-      version: 2
-      port: 8899
-      groups:
-        - number: 1
-          name: Shelf
-        - number: 2
-          name: TV
+  - platform: limitlessled
+    bridges:
+      - host: 192.168.5.56
+        version: 2
+        port: 8899
+        groups:
+          - number: 1
+            name: Shelf
+          - number: 2
+            name: TV
+
+  # https://www.home-assistant.io/components/light.group/
+  - platform: group
+    name: Livingroom Ceiling Lights
+    entities:
+      - light.livingroom_ceiling_bulb_1
+      - light.livingroom_ceiling_bulb_2
+      - light.livingroom_ceiling_bulb_3
+      - light.livingroom_ceiling_bulb_4
+  - platform: group
+    name: Livingroom Accent Lights
+    entities:
+      - light.shelf
+      - light.tv
 
 # https://home-assistant.io/components/switch/
 switch:
