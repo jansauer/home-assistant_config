@@ -77,6 +77,8 @@ sensor:
   - platform: yr
 
 
+  # https://www.home-assistant.io/components/binary_sensor.iss/
+  - platform: iss
 
 # https://home-assistant.io/components/tradfri/
 tradfri:
