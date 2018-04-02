@@ -245,7 +245,6 @@ websocket_api:
 zeroconf:
 
 # https://home-assistant.io/components/prometheus/
-#prometheus:
 
 # https://github.com/pkozul/ha-floorplan
 panel_custom:
@@ -254,6 +253,7 @@ panel_custom:
     sidebar_icon: mdi:home
     url_path: floorplan
     config: !include floorplan.yaml
+prometheus:
 
 # https://home-assistant.io/components/logger/
 logger:
