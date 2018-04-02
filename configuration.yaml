@@ -238,6 +238,9 @@ homekit:
 # https://home-assistant.io/docs/ecosystem/ios/
 ios:
 
+# https://www.home-assistant.io/components/websocket_api/
+websocket_api:
+
 # https://home-assistant.io/components/zeroconf/
 zeroconf:
 
