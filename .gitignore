@@ -1,5 +1,5 @@
 # HA Backups
-.backups/
+backups/
 
 # HA Credentials
 .spotify-token-cache

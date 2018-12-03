@@ -24,3 +24,7 @@ open http://hassio.local:8123/
 
 - https://github.com/Danielhiversen/home-assistant_config
 - https://github.com/arsaboo/homeassistant-config
+- https://github.com/JamesMcCarthy79/Home-Assistant-Config
+- https://github.com/stanvx/Home-Assistant-Configuration
+- https://github.com/brianjking/homeassistant-config
+- https://github.com/nickmomrik/home-assistant-config

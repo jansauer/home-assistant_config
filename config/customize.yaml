@@ -16,6 +16,18 @@ sensor.tradfri_remote_control:
 sensor.tradfri_wireless_dimmer:
   hidden: true
 
+# Hide plan informations
+sensor.poinsettia_moisture:
+  hidden: true
+sensor.poinsettia_conductivity:
+  hidden: true
+sensor.poinsettia_light_intensity:
+  hidden: true
+sensor.poinsettia_temperature:
+  hidden: true
+sensor.poinsettia_battery:
+  hidden: true
+
 # Friendly light names
 light.livingroom_ceiling_lights:
   friendly_name: Ceiling
@@ -27,5 +39,7 @@ light.livingroom_ceiling_bulb_3:
   friendly_name: Bulb 3
 light.livingroom_ceiling_bulb_4:
   friendly_name: Bulb 4
+light.livingroom_accent_lights:
+  friendly_name: Accent
 light.bedroom_ceiling_bulb:
   friendly_name: Ceiling

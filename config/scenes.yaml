@@ -1,0 +1,20 @@
+- name: Cold
+  entities:
+    light.livingroom_ceiling_lights:
+      state: on
+      color_temp: 250
+      transition: 2
+
+- name: Normal
+  entities:
+    light.livingroom_ceiling_lights:
+      state: on
+      color_temp: 350
+      transition: 2
+
+- name: Warm
+  entities:
+    light.livingroom_ceiling_lights:
+      state: on
+      color_temp: 450
+      transition: 2
