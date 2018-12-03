@@ -1,9 +1,14 @@
+# Hide byss device
 device_tracker.byss:
   hidden: true
 
-light.tradfri_bulb_e27_opal_1000lm:
-  friendly_name: Bedroom Ceiling Light
+# Hide blink battery and wifi information
+sensor.blink_home_battery:
+  hidden: true
+sensor.blink_home_wifi_signal:
+  hidden: true
 
+# Hide tradfri battery informations
 sensor.tradfri_motion_sensor:
   hidden: true
 sensor.tradfri_remote_control:
@@ -11,11 +16,16 @@ sensor.tradfri_remote_control:
 sensor.tradfri_wireless_dimmer:
   hidden: true
 
-sensor.ipad_pro_battery_level:
-  hidden: true
-sensor.ipad_pro_battery_state:
-  hidden: true
-sensor.iphone_x_battery_level:
-  hidden: true
-sensor.iphone_x_battery_state:
-  hidden: true
+# Friendly light names
+light.livingroom_ceiling_lights:
+  friendly_name: Ceiling
+light.livingroom_ceiling_bulb_1:
+  friendly_name: Bulb 1
+light.livingroom_ceiling_bulb_2:
+  friendly_name: Bulb 2
+light.livingroom_ceiling_bulb_3:
+  friendly_name: Bulb 3
+light.livingroom_ceiling_bulb_4:
+  friendly_name: Bulb 4
+light.bedroom_ceiling_bulb:
+  friendly_name: Ceiling

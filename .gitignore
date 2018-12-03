@@ -1,17 +1,12 @@
-# Home Assistant
-.HA_VERSION
-.ios.conf
+# HA Backups
+.backups/
+
+# HA Credentials
 .spotify-token-cache
 .tradfri_psk.conf
-.uuid
-emulated_hue_ids.json
-home-assistant_v2.db
 known_devices.yaml
 plex.conf
 secrets.yaml
-
-# Logs
-*.log
 
 # Python cache
 __pycache__

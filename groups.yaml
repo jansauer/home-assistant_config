@@ -1,4 +1,3 @@
-  entities:
 bedroom:
   name: Bedroom
   entities:
@@ -8,10 +7,13 @@ livingroom:
   name: Livingroom
   entities:
     - light.livingroom_ceiling_lights
+    - light.shelf
+    - light.tv
+
+livingroom_ceiling:
+  name: Livingroom Ceiling
+  entities:
     - light.livingroom_ceiling_bulb_1
     - light.livingroom_ceiling_bulb_2
     - light.livingroom_ceiling_bulb_3
     - light.livingroom_ceiling_bulb_4
-    - light.livingroom_accent_lights
-    - light.shelf
-    - light.tv

@@ -1,0 +1,38 @@
+title: My Awesome Home
+views:
+  - title: Overview
+    cards:
+      - type: light
+        entity: light.bedroom_ceiling_bulb
+        name: Bedroom Ceiling
+      
+      - type: light
+        entity: light.livingroom_ceiling_lights
+        name: Livingroom Ceiling    
+
+      - type: light
+        entity: light.shelf
+        name: Shelf Accent 
+
+      - type: light
+        entity: light.tv
+        name: TV Accent
+
+      - type: media-control
+        entity: media_player.apple_tv
+  
+  - icon: mdi:home-assistant
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Second view
+    cards:
+        # Entities card will take a list of entities and show their state.
+      - type: entities
+        # Title of the entities card
+        title: Example
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - light.livingroom_ceiling_bulb_1
+          - light.livingroom_ceiling_bulb_2
+          - light.livingroom_ceiling_bulb_3
+          - light.livingroom_ceiling_bulb_4
