@@ -1,6 +1,6 @@
 # 🏡 My Home Assistant Config
 
-My [Home Assistant](https://www.home-assistant.io/) Configs.
+My [Home Assistant](https://www.home-assistant.io/) Config.
 
 ## Getting started
 
@@ -13,6 +13,9 @@ $ diskutil eject /dev/disk2
 
 # insert and take an nap until it is started up 💤
 open http://hassio.local:8123/
+
+# flash my config
+$ scp -r config/* hassio:/config
 ```
 
 ## Addons
