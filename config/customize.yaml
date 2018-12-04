@@ -43,3 +43,10 @@ light.livingroom_accent_lights:
   friendly_name: Accent
 light.bedroom_ceiling_bulb:
   friendly_name: Ceiling
+
+# toggle switches for limitlessled lights
+# @See https://www.home-assistant.io/components/light.limitlessled/#initialization--synchronization
+light.tv:
+  assumed_state: false
+light.shelf:
+  assumed_state: false
