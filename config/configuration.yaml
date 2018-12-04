@@ -205,7 +205,7 @@ sun:
 
 # https://www.home-assistant.io/components/plant/
 plant:
-  Helix:
+  Poinsettia:
     sensors:
       moisture: sensor.poinsettia_moisture
       conductivity: sensor.poinsettia_conductivity
