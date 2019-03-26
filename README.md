@@ -14,7 +14,7 @@ $ diskutil eject /dev/disk2
 # insert and take an nap until it is started up 💤
 open http://hassio.local:8123/
 
-# flash my config
+# flush my config
 $ scp -r config/* hassio:/config
 ```
 
