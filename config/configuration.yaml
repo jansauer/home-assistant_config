@@ -196,9 +196,9 @@ media_player:
 
 # https://home-assistant.io/components/weather/
 weather:
-  # https://home-assistant.io/components/weather.yweather/
-  - platform: yweather
-    woeid: 657169
+  # https://www.home-assistant.io/components/weather.darksky/
+  - platform: darksky
+    api_key: 3fb79a76d52d60923d78d8a6e48b6802
 
 # https://home-assistant.io/components/sun/
 sun:
