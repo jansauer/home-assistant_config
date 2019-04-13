@@ -35,6 +35,9 @@ history:
 # https://www.home-assistant.io/components/logbook/
 # logbook:
 
+# https://www.home-assistant.io/components/system_health/
+system_health:
+
 # https://www.home-assistant.io/components/map/
 map:
 
