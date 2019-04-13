@@ -237,13 +237,6 @@ blink:
   username: !secret blink_username
   password: !secret blink_password
 
-# https://www.home-assistant.io/components/notify/
-notify:
-  # https://www.home-assistant.io/components/notify.pushover/
-  - platform: pushover
-    api_key: !secret pushover_api_key
-    user_key: !secret pushover_user_key
-
 # https://www.home-assistant.io/components/homekit/
 homekit:
   filter:
@@ -252,6 +245,13 @@ homekit:
       - light.tv
       - sensor.airco2ntrol_carbon_dioxide
       - sensor.airco2ntrol_temperature
+
+# https://www.home-assistant.io/components/notify/
+notify:
+  # https://www.home-assistant.io/components/notify.pushover/
+  - platform: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key
 
 # https://www.home-assistant.io/components/logger/
 logger:
