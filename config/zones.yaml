@@ -1,0 +1,11 @@
+- name: Office
+  latitude: !secret work_latitude
+  longitude: !secret work_longitude
+  radius: 100
+  icon: mdi:briefcase
+
+- name: Hafven
+  latitude: !secret hafven_latitude
+  longitude: !secret hafven_longitude
+  radius: 100
+  icon: mdi:clipboard-account

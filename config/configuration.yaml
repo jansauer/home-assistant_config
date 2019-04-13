@@ -1,8 +1,8 @@
 # https://www.home-assistant.io/docs/configuration/basic/
 homeassistant:
   name: Home
-  latitude: !secret latitude
-  longitude: !secret longitude
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
   elevation: 55
   unit_system: metric
   time_zone: Europe/Berlin
@@ -262,6 +262,7 @@ logger:
     homeassistant.components.sensor.miflora: debug
 
 group: !include groups.yaml
+zone: !include zones.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
 automation: !include automations.yaml
