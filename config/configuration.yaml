@@ -1,4 +1,4 @@
-# https://home-assistant.io/docs/configuration/basic/
+# https://www.home-assistant.io/docs/configuration/basic/
 homeassistant:
   name: Home
   latitude: !secret latitude
@@ -8,7 +8,7 @@ homeassistant:
   time_zone: Europe/Berlin
   customize: !include customize.yaml
 
-# https://home-assistant.io/components/http/
+# https://www.home-assistant.io/components/http/
 http:
   base_url: !secret http_url
   ssl_certificate: /ssl/fullchain.pem
@@ -16,26 +16,26 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
-# https://home-assistant.io/components/updater/
+# https://www.home-assistant.io/components/updater/
 updater:
   include_used_components: true
 
-# https://home-assistant.io/components/config/
+# https://www.home-assistant.io/components/config/
 config:
 
-# https://home-assistant.io/components/frontend/
+# https://www.home-assistant.io/components/frontend/
 frontend:
 
 # https://www.home-assistant.io/components/recorder/
 recorder:
 
-# https://home-assistant.io/components/history/
+# https://www.home-assistant.io/components/history/
 history:
 
 # https://www.home-assistant.io/components/logbook/
 # logbook:
 
-# https://home-assistant.io/components/map/
+# https://www.home-assistant.io/components/map/
 map:
 
 # https://www.home-assistant.io/components/discovery/
@@ -73,9 +73,9 @@ discovery:
 #    # https://www.home-assistant.io/components/homekit_controller/
 #    - homekit
 
-# https://home-assistant.io/components/device_tracker/
+# https://www.home-assistant.io/components/device_tracker/
 device_tracker:
-  # https://home-assistant.io/components/device_tracker.fritz/
+  # https://www.home-assistant.io/components/device_tracker.fritz/
   - platform: fritz
     host: 192.168.5.1
     username: !secret fritz_username
@@ -83,11 +83,11 @@ device_tracker:
     new_device_defaults:
       track_new_devices: false
 
-# https://home-assistant.io/components/sensor/
+# https://www.home-assistant.io/components/sensor/
 sensor:
   - platform: airco2ntrol
 
-  # https://home-assistant.io/components/sensor.miflora/
+  # https://www.home-assistant.io/components/sensor.miflora/
   # - platform: miflora
   #   mac: "C4:7C:8D:65:B0:5A"
   #   name: Poinsettia
@@ -96,7 +96,7 @@ sensor:
   #  name: Helix
   #  timeout: 12
 
-  # https://home-assistant.io/components/sensor.systemmonitor/
+  # https://www.home-assistant.io/components/sensor.systemmonitor/
   - platform: systemmonitor
     resources:
       - type: disk_free
@@ -106,10 +106,10 @@ sensor:
       - type: load_5m
       - type: load_15m
 
-  # https://home-assistant.io/components/sensor.moon/
+  # https://www.home-assistant.io/components/sensor.moon/
   - platform: moon
 
-  # https://home-assistant.io/components/sensor.yr/
+  # https://www.home-assistant.io/components/sensor.yr/
   - platform: yr
 
 # https://www.home-assistant.io/components/binary_sensor.trend/
@@ -122,9 +122,9 @@ tradfri:
   host: 192.168.5.57
   allow_tradfri_groups: false
 
-# https://home-assistant.io/components/light/
+# https://www.home-assistant.io/components/light/
 light:
-  # https://home-assistant.io/components/light.limitlessled/
+  # https://www.home-assistant.io/components/light.limitlessled/
   - platform: limitlessled
     bridges:
       - host: 192.168.5.56
@@ -150,9 +150,9 @@ light:
       - light.shelf
       - light.tv
 
-# https://home-assistant.io/components/switch/
+# https://www.home-assistant.io/components/switch/
 switch:
-  # https://home-assistant.io/components/switch.template/
+  # https://www.home-assistant.io/components/switch.template/
   - platform: template
     switches:
       blink:
@@ -167,7 +167,7 @@ switch:
           data:
             device_armed: false
 
-  # https://home-assistant.io/components/switch.wake_on_lan/
+  # https://www.home-assistant.io/components/switch.wake_on_lan/
   - platform: wake_on_lan
     name: Byss
     mac_address: "C8:60:00:84:F9:02"
@@ -175,32 +175,32 @@ switch:
     turn_off:
       service: shell_command.turn_off_byss
 
-# https://home-assistant.io/components/apple_tv/
+# https://www.home-assistant.io/components/apple_tv/
 apple_tv:
   - host: 192.168.5.51
     login_id: !secret appletv_token
     start_off: true
 
-# https://home-assistant.io/components/media_player/
+# https://www.home-assistant.io/components/media_player/
 media_player:
-  # https://home-assistant.io/components/media_player.plex/
+  # https://www.home-assistant.io/components/media_player.plex/
   - platform: plex
 
-  # https://home-assistant.io/components/media_player.spotify/
+  # https://www.home-assistant.io/components/media_player.spotify/
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
 
-# https://home-assistant.io/components/hdmi_cec/
+# https://www.home-assistant.io/components/hdmi_cec/
 # hdmi_cec:
 
-# https://home-assistant.io/components/weather/
+# https://www.home-assistant.io/components/weather/
 weather:
   # https://www.home-assistant.io/components/weather.darksky/
   - platform: darksky
     api_key: 3fb79a76d52d60923d78d8a6e48b6802
 
-# https://home-assistant.io/components/sun/
+# https://www.home-assistant.io/components/sun/
 sun:
 
 # https://www.home-assistant.io/components/plant/
@@ -222,14 +222,14 @@ sun:
 #     max_temperature: 35
 #     min_battery: 10
 
-# https://home-assistant.io/components/blink/
+# https://www.home-assistant.io/components/blink/
 blink:
   username: !secret blink_username
   password: !secret blink_password
 
-# https://home-assistant.io/components/notify/
+# https://www.home-assistant.io/components/notify/
 notify:
-  # https://home-assistant.io/components/notify.pushover/
+  # https://www.home-assistant.io/components/notify.pushover/
   - platform: pushover
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
@@ -243,7 +243,7 @@ homekit:
       - sensor.airco2ntrol_carbon_dioxide
       - sensor.airco2ntrol_temperature
 
-# https://home-assistant.io/components/logger/
+# https://www.home-assistant.io/components/logger/
 logger:
   default: warning
   # default: debug
