@@ -86,6 +86,14 @@ device_tracker:
     new_device_defaults:
       track_new_devices: false
 
+# https://www.home-assistant.io/components/person/
+person:
+  - name: Jan
+    id: jansauer
+    user_id: 6395d05423fd468d8b8b4bb0358e8e4c
+    device_trackers:
+      - device_tracker.iphonex
+
 # https://www.home-assistant.io/components/sensor/
 sensor:
   - platform: airco2ntrol
