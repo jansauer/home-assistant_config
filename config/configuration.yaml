@@ -181,8 +181,10 @@ switch:
 
 # https://www.home-assistant.io/components/apple_tv/
 apple_tv:
-  - host: 192.168.5.51
-    login_id: !secret appletv_token
+  - host: 192.168.5.58
+    name: Living Room
+    login_id: !secret appletv_loginid
+    credentials: !secret appletv_credentials
     start_off: true
 
 # https://www.home-assistant.io/components/media_player/
