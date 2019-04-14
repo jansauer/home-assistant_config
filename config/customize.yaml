@@ -2,14 +2,6 @@
 device_tracker.byss:
   hidden: true
 
-# hide tradfri battery badges
-sensor.tradfri_motion_sensor:
-  hidden: true
-sensor.tradfri_remote_control:
-  hidden: true
-sensor.tradfri_wireless_dimmer:
-  hidden: true
-
 # hide plant badges
 sensor.poinsettia_moisture:
   hidden: true
@@ -29,8 +21,15 @@ sensor.blink_home_wifi_signal:
   hidden: true
 
 # friendly light names
+light.gateway_light_7811dcfaea5b:
+  friendly_name: Gateway Light
+  icon: mdi:album
+switch.wall_switch_158d000161469d:
+  friendly_name: Ceiling
+  icon: mdi:ceiling-light
 light.livingroom_ceiling_lights:
   friendly_name: Ceiling
+  icon: mdi:ceiling-light
 light.livingroom_ceiling_bulb_1:
   friendly_name: Bulb 1
 light.livingroom_ceiling_bulb_2:
@@ -43,10 +42,13 @@ light.livingroom_accent_lights:
   friendly_name: Accent
 light.bedroom_ceiling_bulb:
   friendly_name: Ceiling
+  icon: mdi:ceiling-light
 
 # toggle switches for limitlessled lights
 # @See https://www.home-assistant.io/components/light.limitlessled/#initialization--synchronization
 light.tv:
   assumed_state: false
+  icon: mdi:lamp
 light.shelf:
   assumed_state: false
+  icon: mdi:lamp

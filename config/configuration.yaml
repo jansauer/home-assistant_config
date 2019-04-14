@@ -127,10 +127,11 @@ binary_sensor:
   # https://www.home-assistant.io/components/binary_sensor.iss/
   - platform: iss
 
-# https://home-assistant.io/components/tradfri/
-tradfri:
-  host: 192.168.5.57
-  allow_tradfri_groups: false
+# https://www.home-assistant.io/components/xiaomi_aqara/
+xiaomi_aqara:
+  gateways:
+    - mac: 78:11:DC:FA:EA:5B
+      key: !secret xiaomi_gateway_kex
 
 # https://www.home-assistant.io/components/light/
 light:
@@ -147,13 +148,6 @@ light:
             name: TV
 
   # https://www.home-assistant.io/components/light.group/
-  - platform: group
-    name: Livingroom Ceiling Lights
-    entities:
-      - light.livingroom_ceiling_bulb_1
-      - light.livingroom_ceiling_bulb_2
-      - light.livingroom_ceiling_bulb_3
-      - light.livingroom_ceiling_bulb_4
   - platform: group
     name: Livingroom Accent Lights
     entities:
