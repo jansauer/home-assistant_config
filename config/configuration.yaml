@@ -41,41 +41,6 @@ system_health:
 # https://www.home-assistant.io/components/map/
 map:
 
-# https://www.home-assistant.io/components/discovery/
-discovery:
-  ignore:
-    - apple_tv
-    - axis
-    - belkin_wemo
-    - bluesound
-    - bose_soundtouch
-    - denonavr
-    - directv
-    - frontier_silicon
-    - google_cast
-    - harmony
-    - ikea_tradfri
-    - logitech_mediaserver
-    - netgear_router
-    - openhome
-    - panasonic_viera
-    - philips_hue
-    #- plex_mediaserver
-    - roku
-    - sabnzbd
-    - samsung_printer
-    - samsung_tv
-    - sonos
-    - songpal
-    - tellstick
-    - wink
-    - yamaha
-    - yeelight
-    - xiaomi_gw
-#  enable:
-#    # https://www.home-assistant.io/components/homekit_controller/
-#    - homekit
-
 # https://www.home-assistant.io/components/device_tracker/
 device_tracker:
   # https://www.home-assistant.io/components/device_tracker.fritz/
