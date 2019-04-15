@@ -25,6 +25,11 @@ config:
 
 # https://www.home-assistant.io/components/frontend/
 frontend:
+  themes: !include themes.yaml
+
+# https://www.home-assistant.io/lovelace/
+lovelace:
+  mode: yaml
 
 # https://www.home-assistant.io/components/recorder/
 recorder:

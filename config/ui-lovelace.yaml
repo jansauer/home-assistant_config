@@ -1,38 +1,203 @@
-title: My Awesome Home
+title: Home
+resources:
+  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
+    type: module
+  - url: /local/mini-graph-card-bundle.js?v=0.3.3
+    type: module
+  - url: /local/clock-card.js?v=0.0.2
+    type: js
+background: var(--background-image)
 views:
+
   - title: Overview
+    path: overview
     cards:
-      - type: light
-        entity: light.bedroom_ceiling_bulb
-        name: Bedroom Ceiling
-      
-      - type: light
-        entity: light.livingroom_ceiling_lights
-        name: Livingroom Ceiling    
-
-      - type: light
-        entity: light.shelf
-        name: Shelf Accent 
-
-      - type: light
-        entity: light.tv
-        name: TV Accent
-
-      - type: media-control
-        entity: media_player.apple_tv
-  
-  - icon: mdi:home-assistant
-    # Title of the view. Will be used as the tooltip for tab icon
-    title: Second view
-    cards:
-        # Entities card will take a list of entities and show their state.
+      - type: custom:compact-custom-header
+        main_config: true
+      - card:
+        type: 'custom:clock-card'
+      - entity: weather.dark_sky
+        type: weather-forecast
+      - type: horizontal-stack
+        cards:
+          - type: entities
+            title: Entryway
+            show_header_toggle: true
+            entities:
+              - switch.wall_switch_158d000161469d
+      - type: horizontal-stack
+        cards:
+          - type: entities
+            title: Livingroom
+            show_header_toggle: true
+            entities:
+              - light.livingroom_accent_lights
+              - light.shelf
+              - light.tv
+          - type: vertical-stack
+            cards:
+              - type: custom:mini-graph-card
+                name: Temperature
+                entities:
+                  - sensor.airco2ntrol_temperature
+              - type: custom:mini-graph-card
+                name: Carbon Dioxide
+                entities:
+                  - sensor.airco2ntrol_carbon_dioxide
       - type: entities
-        # Title of the entities card
-        title: Example
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
+        title: Bedroom
+        show_header_toggle: true
         entities:
-          - light.livingroom_ceiling_bulb_1
-          - light.livingroom_ceiling_bulb_2
-          - light.livingroom_ceiling_bulb_3
-          - light.livingroom_ceiling_bulb_4
+          - light.gateway_light_7811dcfaea5b
+      - type: media-control
+        entity: media_player.spotify
+      - type: media-control
+        entity: media_player.living_room
+
+  - title: Floor plan
+    path: floorplan
+    icon: mdi:map
+    panel: true
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: custom:compact-custom-header
+          - type: picture-elements
+            image: /local/floorplan.png
+            elements:
+              - type: state-icon
+                tap_action:
+                  action: toggle
+                entity: light.shelf
+                style:
+                  top: 47%
+                  left: 42%
+              - type: state-icon
+                tap_action:
+                  action: toggle
+                entity: light.gateway_light_7811dcfaea5b
+                style:
+                  top: 50%
+                  left: 4%
+
+  - title: Plants
+    path: plants
+    icon: mdi:leaf
+    cards:
+      - type: custom:compact-custom-header
+      - type: plant-status
+        entity: plant.snowflower
+
+  - title: Insides
+    path: insides
+    icon: mdi:stethoscope
+    panel: true
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: glance
+                title: System
+                entities:
+                  - sensor.load_1m
+                  - sensor.load_5m
+                  - sensor.load_15m
+                  - sensor.disk_free
+                  - sensor.memory_free
+              - type: glance
+                title: Devices
+                entities:
+                  - device_tracker.ipadpro
+                  - device_tracker.iphonex
+                  - device_tracker.macbookpro
+                  - device_tracker.byss
+              - type: horizontal-stack
+                cards:
+                  - type: glance
+                    title: iPhone X
+                    entities:
+                      - entity: sensor.iphone_x_battery_level
+                        name: Level
+                      - entity: sensor.iphone_x_battery_state
+                        name: State
+                  - type: glance
+                    title: iPad
+                    entities:
+                      - entity: sensor.ipad_pro_battery_level
+                        name: Level
+                      - entity: sensor.ipad_pro_battery_state
+                        name: State
+              - type: glance
+                title: Xiaomi
+                entities:
+                  - binary_sensor.motion_sensor_158d0002e2edae
+                  - sensor.illumination_158d0002e2edae
+                  - binary_sensor.door_window_sensor_158d00027b010e
+                  - binary_sensor.wall_switch_158d000183b73b
+                  - binary_sensor.door_window_sensor_158d00027b01eb
+                  - sensor.illumination_7811dcfaea5b
+          - type: vertical-stack
+            cards:
+              - type: glance
+                title: AirCO2ntrol
+                entities:
+                  - entity: sensor.airco2ntrol_temperature
+                    name: Temperature
+                  - entity: sensor.airco2ntrol_carbon_dioxide
+                    name: Carbon Dioxide
+              - type: glance
+                title: Environment
+                entities:
+                  - sun.sun
+                  - sensor.moon
+                  - entity: sensor.yr_symbol
+                    name: YR
+                  - binary_sensor.iss
+              - type: glance
+                title: Snow Flower
+                entities:
+                  - entity: sensor.snowflower_moisture
+                    name: Moisture
+                  - entity: sensor.snowflower_conductivity
+                    name: Conductivity
+                  - entity: sensor.snowflower_light_intensity
+                    name: Light Intensity
+                  - entity: sensor.snowflower_temperature
+                    name: Temperature
+                  - entity: sensor.snowflower_battery
+                    name: Battery
+          - type: vertical-stack
+            cards:
+              - entity: camera.blink_home
+                type: picture-entity
+              - type: glance
+                title: Blink
+                entities:
+                  - entity: binary_sensor.blink_home_motion_detected
+                    name: Motion Detected
+                  - entity: binary_sensor.blink_home_camera_armed
+                    name: Camera Armed
+                  - entity: sensor.blink_home_temperature
+                    name: Temperature
+                  - entity: sensor.blink_home_wifi_signal
+                    name: Wifi Signal
+                  - entity: sensor.blink_home_battery
+                    name: Battery
+              - type: entities
+                title: Automations
+                entities:
+                  - automation.set_theme_for_day_and_night
+              - type: custom:compact-custom-header
+
+  - title: Nitpicking
+    path: nitpicking
+    icon: mdi:one-up
+    cards:
+      - type: custom:compact-custom-header
+
+  # - title: Test
+  #   path: test
+  #   icon: mdi:test-tube
+  #   cards:
+  #     - type: custom:compact-custom-header

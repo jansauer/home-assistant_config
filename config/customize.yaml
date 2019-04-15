@@ -1,24 +1,5 @@
-# hide byss device badge
-device_tracker.byss:
-  hidden: true
-
-# hide plant badges
-sensor.poinsettia_moisture:
-  hidden: true
-sensor.poinsettia_conductivity:
-  hidden: true
-sensor.poinsettia_light_intensity:
-  hidden: true
-sensor.poinsettia_temperature:
-  hidden: true
-sensor.poinsettia_battery:
-  hidden: true
-
-# hide blink battery and wifi badges
-sensor.blink_home_battery:
-  hidden: true
-sensor.blink_home_wifi_signal:
-  hidden: true
+person.jan:
+  entity_picture: /local/jansauer.jpg
 
 # friendly light names
 light.gateway_light_7811dcfaea5b:
@@ -40,6 +21,7 @@ light.livingroom_ceiling_bulb_4:
   friendly_name: Bulb 4
 light.livingroom_accent_lights:
   friendly_name: Accent
+  icon: mdi:numeric-2-box-multiple-outline
 light.bedroom_ceiling_bulb:
   friendly_name: Ceiling
   icon: mdi:ceiling-light
