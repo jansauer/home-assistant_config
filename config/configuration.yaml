@@ -222,6 +222,10 @@ homekit:
       - sensor.airco2ntrol_carbon_dioxide
       - sensor.airco2ntrol_temperature
 
+# https://www.home-assistant.io/components/ios/
+# https://www.home-assistant.io/docs/ecosystem/ios/
+ios:
+
 # https://www.home-assistant.io/components/notify/
 notify:
   # https://www.home-assistant.io/components/notify.pushover/
