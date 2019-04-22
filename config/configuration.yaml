@@ -6,6 +6,8 @@ homeassistant:
   elevation: 55
   unit_system: metric
   time_zone: Europe/Berlin
+  whitelist_external_dirs:
+    - /config
   customize: !include customize.yaml
 
 # https://www.home-assistant.io/components/http/
@@ -85,6 +87,14 @@ sensor:
       - type: load_1m
       - type: load_5m
       - type: load_15m
+
+  # https://www.home-assistant.io/components/uptime/
+  - platform: uptime
+
+  # https://www.home-assistant.io/components/filesize/
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant_v2.db
 
   # https://www.home-assistant.io/components/sensor.moon/
   - platform: moon
