@@ -1,67 +1,103 @@
 title: Home
 resources:
+  - url: /local/moment.js?v=0.0.8
+    type: js
   - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
     type: module
+  - url: /local/lovelace-card-tools/card-tools.js?v=c885db9
+    type: js
+  - url: /local/lovelace-layout-card/layout-card.js?v=4d34085
+    type: js
   - url: /local/mini-graph-card-bundle.js?v=0.3.3
     type: module
-  - url: /local/clock-card.js?v=0.0.2
+  - url: /local/clock-card.js?v=0.0.7
+    type: js
+  - url: /local/daytime-card.js?v=0.0.212
     type: js
 background: var(--background-image)
 views:
 
   - title: Overview
     path: overview
+    icon: mdi:one-up
+    panel: true
     cards:
-      - type: custom:compact-custom-header
-        main_config: true
-      - card:
-        type: 'custom:clock-card'
-      - entity: weather.dark_sky
-        type: weather-forecast
-      - type: horizontal-stack
+      - type: custom:layout-card
+        layout: vertical
+        max_columns: 3
         cards:
           - type: entities
             title: Entryway
-            show_header_toggle: true
             entities:
-              - switch.wall_switch_158d000161469d
-      - type: horizontal-stack
-        cards:
-          - type: entities
-            title: Livingroom
-            show_header_toggle: true
-            entities:
-              - light.livingroom_accent_lights
-              - light.shelf
-              - light.tv
-          - type: vertical-stack
+              - updater.updater
+          - type: custom:compact-custom-header
+            main_config: true
+            tab_color:
+              0: rgb(214, 110, 19)
+            conditional_styles:
+              - entity: group.all_plants
+                condition:                     
+                  state: problem
+                tab:
+                  2:
+                    color: rgb(244, 179, 170)
+          - type: custom:clock-card
+            entity: person.jan
+          - type: custom:daytime-card
+            entity: sun.sun
+          - type: weather-forecast
+            entity: weather.dark_sky
+          - break
+          - type: horizontal-stack
             cards:
-              - type: custom:mini-graph-card
-                name: Temperature
+              - type: entities
+                title: Entryway
+                show_header_toggle: true
                 entities:
-                  - sensor.airco2ntrol_temperature
-              - type: custom:mini-graph-card
-                name: Carbon Dioxide
+                  - switch.wall_switch_158d000161469d
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                title: Livingroom
+                show_header_toggle: true
                 entities:
-                  - sensor.airco2ntrol_carbon_dioxide
-      - type: entities
-        title: Bedroom
-        show_header_toggle: true
-        entities:
-          - light.gateway_light_7811dcfaea5b
-      - type: media-control
-        entity: media_player.spotify
-      - type: media-control
-        entity: media_player.living_room
+                  - light.livingroom_accent_lights
+                  - light.shelf
+                  - light.tv
+              - type: vertical-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    name: Temperature
+                    entities:
+                      - sensor.airco2ntrol_temperature
+                  - type: custom:mini-graph-card
+                    name: Carbon Dioxide
+                    entities:
+                      - sensor.airco2ntrol_carbon_dioxide
+          - type: entities
+            title: Bedroom
+            show_header_toggle: true
+            entities:
+              - light.gateway_light_7811dcfaea5b
+          - break
+          - type: media-control
+            entity: media_player.spotify
+          - type: media-control
+            entity: media_player.living_room
 
   - title: Floor plan
     path: floorplan
     icon: mdi:map
     panel: true
     cards:
-      - type: vertical-stack
+      - type: custom:layout-card
+        layout: horizontal
+        max_width:
+          - 27%
+          - 73%
         cards:
           - type: custom:compact-custom-header
+          - break
           - type: picture-elements
             image: /local/floorplan.png
             elements:
@@ -93,7 +129,9 @@ views:
     icon: mdi:stethoscope
     panel: true
     cards:
-      - type: horizontal-stack
+      - type: custom:layout-card
+        layout: vertical
+        max_columns: 3
         cards:
           - type: vertical-stack
             cards:
@@ -137,6 +175,7 @@ views:
                   - binary_sensor.wall_switch_158d000183b73b
                   - binary_sensor.door_window_sensor_158d00027b01eb
                   - sensor.illumination_7811dcfaea5b
+          - break
           - type: vertical-stack
             cards:
               - type: glance
@@ -167,6 +206,7 @@ views:
                     name: Temperature
                   - entity: sensor.snowflower_battery
                     name: Battery
+          - break
           - type: vertical-stack
             cards:
               - entity: camera.blink_home
@@ -189,12 +229,6 @@ views:
                 entities:
                   - automation.set_theme_for_day_and_night
               - type: custom:compact-custom-header
-
-  - title: Nitpicking
-    path: nitpicking
-    icon: mdi:one-up
-    cards:
-      - type: custom:compact-custom-header
 
   # - title: Test
   #   path: test
