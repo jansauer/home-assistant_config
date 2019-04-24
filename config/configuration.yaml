@@ -66,6 +66,11 @@ person:
     device_trackers:
       - device_tracker.iphonex
 
+# https://www.home-assistant.io/components/zha/
+zha:
+  usb_path: /dev/ttyUSB0
+  database_path: /config/zigbee.db
+
 # https://www.home-assistant.io/components/sensor/
 sensor:
   - platform: airco2ntrol

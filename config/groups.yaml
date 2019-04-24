@@ -3,14 +3,22 @@ entryway:
   entities:
     - switch.wall_switch_158d000161469d
 
-livingroom:
-  name: Livingroom
+livingroom-ceiling:
+  name: Livingroom Ceiling Lights
   entities:
-    - light.livingroom_accent_lights
+    - light.ikea_tradfri_bulb_gu10_ws_400lm_1
+    - light.ikea_tradfri_bulb_gu10_ws_400lm_2
+    - light.ikea_tradfri_bulb_gu10_ws_400lm_4
+    - light.ikea_tradfri_bulb_gu10_ws_400lm_3
+
+livingroom-accent:
+  name: Livingroom Accent Lights
+  entities:
     - light.shelf
     - light.tv
 
 bedroom:
   name: Bedroom
   entities:
-    -  light.gateway_light_7811dcfaea5b
+    - light.ikea_tradfri_bulb_e27_opal_1000lm_1
+    - light.gateway_light_7811dcfaea5b

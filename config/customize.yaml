@@ -2,28 +2,29 @@ person.jan:
   entity_picture: /local/jansauer.jpg
 
 # friendly light names
+sensor.home_assistant_v2_db:
+  friendly_name: Database size
 light.gateway_light_7811dcfaea5b:
-  friendly_name: Gateway Light
+  friendly_name: Xiaomi Gateway Light
   icon: mdi:album
 switch.wall_switch_158d000161469d:
-  friendly_name: Ceiling
+  friendly_name: Entryway Ceiling Light
   icon: mdi:ceiling-light
 light.livingroom_ceiling_lights:
-  friendly_name: Ceiling
+  friendly_name: Livingroom Ceiling Lights
   icon: mdi:ceiling-light
-light.livingroom_ceiling_bulb_1:
-  friendly_name: Bulb 1
-light.livingroom_ceiling_bulb_2:
-  friendly_name: Bulb 2
-light.livingroom_ceiling_bulb_3:
-  friendly_name: Bulb 3
-light.livingroom_ceiling_bulb_4:
-  friendly_name: Bulb 4
+light.ikea_tradfri_bulb_gu10_ws_400lm_1:
+  friendly_name: Livingroom Ceiling Bulb 1
+light.ikea_tradfri_bulb_gu10_ws_400lm_2:
+  friendly_name: Livingroom Ceiling Bulb 2
+light.ikea_tradfri_bulb_gu10_ws_400lm_3:
+  friendly_name: Livingroom Ceiling Bulb 3
+light.ikea_tradfri_bulb_gu10_ws_400lm_4:
+  friendly_name: Livingroom Ceiling Bulb 4
 light.livingroom_accent_lights:
-  friendly_name: Accent
-  icon: mdi:numeric-2-box-multiple-outline
-light.bedroom_ceiling_bulb:
-  friendly_name: Ceiling
+  icon: mdi:group-work
+light.ikea_tradfri_bulb_e27_opal_1000lm_1:
+  friendly_name: Bedroom Ceiling Light
   icon: mdi:ceiling-light
 
 # toggle switches for limitlessled lights

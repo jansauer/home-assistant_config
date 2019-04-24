@@ -1,7 +1,5 @@
 title: Home
 resources:
-  - url: /local/moment.js?v=0.0.8
-    type: js
   - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
     type: module
   - url: /local/lovelace-card-tools/card-tools.js?v=c885db9
@@ -26,21 +24,16 @@ views:
         layout: vertical
         max_columns: 3
         cards:
-          - type: entities
-            title: Entryway
-            entities:
-              - updater.updater
-          - type: custom:compact-custom-header
-            main_config: true
-            tab_color:
-              0: rgb(214, 110, 19)
-            conditional_styles:
-              - entity: group.all_plants
-                condition:                     
-                  state: problem
-                tab:
-                  2:
-                    color: rgb(244, 179, 170)
+          # - type: conditional
+          #   conditions:
+          #     - entity: automation.update_available_notifications
+          #       state: "on"
+          #   card:
+          #     - type: entities
+          #       title: Update Available
+          #       show_header_toggle: false
+          #       entities:
+          #         - updater.updater
           - type: custom:clock-card
             entity: person.jan
           - type: custom:daytime-card
@@ -61,9 +54,12 @@ views:
                 title: Livingroom
                 show_header_toggle: true
                 entities:
-                  - light.livingroom_accent_lights
-                  - light.shelf
+                  - entity: group.livingroom_ceiling
+                    name: Ceiling
+                  - entity: group.livingroom_accent
+                    name: Accent
                   - light.tv
+                  - light.shelf
               - type: vertical-stack
                 cards:
                   - type: custom:mini-graph-card
@@ -78,12 +74,23 @@ views:
             title: Bedroom
             show_header_toggle: true
             entities:
+              - entity: light.ikea_tradfri_bulb_e27_opal_1000lm_1
+                name: Ceiling
               - light.gateway_light_7811dcfaea5b
           - break
           - type: media-control
             entity: media_player.spotify
           - type: media-control
             entity: media_player.living_room
+          - type: custom:compact-custom-header
+            main_config: true
+            conditional_styles:
+              - entity: group.all_plants
+                condition:                     
+                  state: problem
+                tab:
+                  2:
+                    color: rgb(244, 179, 170)
 
   - title: Floor plan
     path: floorplan
@@ -133,102 +140,112 @@ views:
         layout: vertical
         max_columns: 3
         cards:
-          - type: vertical-stack
+          - type: glance
+            title: System
+            entities:
+              - sensor.load_1m
+              - sensor.load_5m
+              - sensor.load_15m
+              - sensor.disk_free
+              - sensor.memory_free
+              - sensor.home_assistant_v2_db
+              - sensor.uptime
+          - type: glance
+            title: Devices
+            entities:
+              - device_tracker.ipadpro
+              - device_tracker.iphonex
+              - device_tracker.macbookpro
+              - device_tracker.byss
+          - type: horizontal-stack
             cards:
               - type: glance
-                title: System
+                title: iPhone X
                 entities:
-                  - sensor.load_1m
-                  - sensor.load_5m
-                  - sensor.load_15m
-                  - sensor.disk_free
-                  - sensor.memory_free
+                  - entity: sensor.iphone_x_battery_level
+                    name: Level
+                  - entity: sensor.iphone_x_battery_state
+                    name: State
               - type: glance
-                title: Devices
+                title: iPad
                 entities:
-                  - device_tracker.ipadpro
-                  - device_tracker.iphonex
-                  - device_tracker.macbookpro
-                  - device_tracker.byss
-              - type: horizontal-stack
-                cards:
-                  - type: glance
-                    title: iPhone X
-                    entities:
-                      - entity: sensor.iphone_x_battery_level
-                        name: Level
-                      - entity: sensor.iphone_x_battery_state
-                        name: State
-                  - type: glance
-                    title: iPad
-                    entities:
-                      - entity: sensor.ipad_pro_battery_level
-                        name: Level
-                      - entity: sensor.ipad_pro_battery_state
-                        name: State
-              - type: glance
-                title: Xiaomi
-                entities:
-                  - binary_sensor.motion_sensor_158d0002e2edae
-                  - sensor.illumination_158d0002e2edae
-                  - binary_sensor.door_window_sensor_158d00027b010e
-                  - binary_sensor.wall_switch_158d000183b73b
-                  - binary_sensor.door_window_sensor_158d00027b01eb
-                  - sensor.illumination_7811dcfaea5b
+                  - entity: sensor.ipad_pro_battery_level
+                    name: Level
+                  - entity: sensor.ipad_pro_battery_state
+                    name: State
+          - type: glance
+            title: Environment
+            entities:
+              - sun.sun
+              - sensor.moon
+              - entity: sensor.yr_symbol
+                name: YR
+              - binary_sensor.iss
+          - type: glance
+            title: AirCO2ntrol
+            entities:
+              - entity: sensor.airco2ntrol_temperature
+                name: Temperature
+              - entity: sensor.airco2ntrol_carbon_dioxide
+                name: Carbon Dioxide
           - break
-          - type: vertical-stack
-            cards:
-              - type: glance
-                title: AirCO2ntrol
-                entities:
-                  - entity: sensor.airco2ntrol_temperature
-                    name: Temperature
-                  - entity: sensor.airco2ntrol_carbon_dioxide
-                    name: Carbon Dioxide
-              - type: glance
-                title: Environment
-                entities:
-                  - sun.sun
-                  - sensor.moon
-                  - entity: sensor.yr_symbol
-                    name: YR
-                  - binary_sensor.iss
-              - type: glance
-                title: Snow Flower
-                entities:
-                  - entity: sensor.snowflower_moisture
-                    name: Moisture
-                  - entity: sensor.snowflower_conductivity
-                    name: Conductivity
-                  - entity: sensor.snowflower_light_intensity
-                    name: Light Intensity
-                  - entity: sensor.snowflower_temperature
-                    name: Temperature
-                  - entity: sensor.snowflower_battery
-                    name: Battery
+          - type: glance
+            title: ZigBee (ZHA)
+            entities:
+              - zha.ikea_tradfri_bulb_gu10_ws_400lm_1
+              - zha.ikea_tradfri_bulb_gu10_ws_400lm_2
+              - zha.ikea_tradfri_bulb_gu10_ws_400lm_3
+              - zha.ikea_tradfri_bulb_gu10_ws_400lm_4
+              - zha.ikea_tradfri_bulb_e27_opal_1000lm_1
+              - light.ikea_tradfri_bulb_gu10_ws_400lm_1
+              - light.ikea_tradfri_bulb_gu10_ws_400lm_2
+              - light.ikea_tradfri_bulb_gu10_ws_400lm_3
+              - light.ikea_tradfri_bulb_gu10_ws_400lm_4
+              - light.ikea_tradfri_bulb_e27_opal_1000lm_1
+          - type: glance
+            title: Xiaomi
+            entities:
+              - binary_sensor.motion_sensor_158d0002e2edae
+              - sensor.illumination_158d0002e2edae
+              - binary_sensor.door_window_sensor_158d00027b010e
+              - sensor.illumination_7811dcfaea5b
+          - type: glance
+            title: Snow Flower
+            entities:
+              - entity: sensor.snowflower_moisture
+                name: Moisture
+              - entity: sensor.snowflower_conductivity
+                name: Conductivity
+              - entity: sensor.snowflower_light_intensity
+                name: Light Intensity
+              - entity: sensor.snowflower_temperature
+                name: Temperature
+              - entity: sensor.snowflower_battery
+                name: Battery
           - break
-          - type: vertical-stack
-            cards:
-              - entity: camera.blink_home
-                type: picture-entity
-              - type: glance
-                title: Blink
-                entities:
-                  - entity: binary_sensor.blink_home_motion_detected
-                    name: Motion Detected
-                  - entity: binary_sensor.blink_home_camera_armed
-                    name: Camera Armed
-                  - entity: sensor.blink_home_temperature
-                    name: Temperature
-                  - entity: sensor.blink_home_wifi_signal
-                    name: Wifi Signal
-                  - entity: sensor.blink_home_battery
-                    name: Battery
-              - type: entities
-                title: Automations
-                entities:
-                  - automation.set_theme_for_day_and_night
-              - type: custom:compact-custom-header
+          - entity: camera.blink_home
+            type: picture-entity
+          - type: glance
+            title: Blink
+            entities:
+              - alarm_control_panel.blink_sync
+              - entity: binary_sensor.blink_home_motion_detected
+                name: Motion Detected
+              - entity: binary_sensor.blink_home_camera_armed
+                name: Camera Armed
+              - entity: sensor.blink_home_temperature
+                name: Temperature
+              - entity: sensor.blink_home_wifi_signal
+                name: Wifi Signal
+              - entity: sensor.blink_home_battery
+                name: Battery
+          - type: entities
+            title: Automations
+            entities:
+              - automation.set_theme_for_day_and_night
+              - automation.update_available_notifications
+              - automation.plant_problem_notifications
+          - type: custom:compact-custom-header
 
   # - title: Test
   #   path: test
