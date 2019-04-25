@@ -232,6 +232,7 @@ ios:
 notify:
   # https://www.home-assistant.io/components/notify.pushover/
   - platform: pushover
+    name: pushover
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
 
