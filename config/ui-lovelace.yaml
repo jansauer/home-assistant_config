@@ -56,6 +56,9 @@ views:
                 entities:
                   - entity: group.livingroom_ceiling
                     name: Ceiling
+                  - entity: switch.osram_plug_1
+                    name: Floor Lamp
+                    icon: mdi:floor-lamp
                   - entity: group.livingroom_accent
                     name: Accent
                   - light.tv
@@ -202,6 +205,12 @@ views:
               - light.ikea_tradfri_bulb_gu10_ws_400lm_3
               - light.ikea_tradfri_bulb_gu10_ws_400lm_4
               - light.ikea_tradfri_bulb_e27_opal_1000lm_1
+          - type: glance
+            title: Osram (ZHA)
+            entities:
+              - zha.osram_plug_1
+              - switch.osram_plug_1
+              - sensor.osram_plug_1
           - type: glance
             title: Xiaomi
             entities:
