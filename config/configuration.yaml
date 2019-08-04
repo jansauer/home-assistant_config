@@ -112,6 +112,21 @@ binary_sensor:
   # https://www.home-assistant.io/components/binary_sensor.iss/
   - platform: iss
 
+# https://www.home-assistant.io/components/input_boolean/
+# input_boolean:
+#   mode_do_not_disturb:
+#     icon: mdi:bell-off
+#     initial: false
+#     name: Do Not Disturb
+#   mode_guest_mode:
+#     icon: mdi:hotel
+#     initial: false
+#     name: Guest Mode
+#   mode_vacation_mode:
+#     icon: mdi:beach
+#     initial: false
+#     name: Vacation Mode
+
 # https://www.home-assistant.io/components/xiaomi_aqara/
 xiaomi_aqara:
   gateways:
