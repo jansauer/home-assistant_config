@@ -177,7 +177,7 @@ media_player:
 weather:
   # https://www.home-assistant.io/components/weather.darksky/
   - platform: darksky
-    api_key: 3fb79a76d52d60923d78d8a6e48b6802
+    api_key: !secret darksky_api_key 
 
 # https://www.home-assistant.io/components/sun/
 sun:

@@ -23,6 +23,10 @@ $ scp -r config/* hassio:/config
 * [SSH server](https://www.home-assistant.io/addons/ssh/)
 * [Duck DNS page](https://www.home-assistant.io/addons/duckdns/)
 
+## Third Party Account
+
+* [Dark Sky API](https://darksky.net/dev)
+
 ## Other good examples
 
 - https://github.com/Danielhiversen/home-assistant_config
