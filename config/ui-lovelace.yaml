@@ -1,6 +1,7 @@
 title: Home
 resources:
-  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
+  # https://github.com/maykar/compact-custom-header
+  - url: /local/compact-custom-header/compact-custom-header.js?v=1.4.3
     type: module
   - url: /local/lovelace-card-tools/card-tools.js?v=c885db9
     type: js
@@ -12,6 +13,14 @@ resources:
     type: js
   - url: /local/daytime-card.js?v=0.0.212
     type: js
+cch:
+  conditional_styles:
+    - entity: group.all_plants
+      condition:                     
+        state: problem
+      tab:
+        2:
+          color: rgb(244, 179, 170)
 background: var(--background-image)
 views:
 
@@ -85,15 +94,6 @@ views:
             entity: media_player.spotify
           - type: media-control
             entity: media_player.living_room
-          - type: custom:compact-custom-header
-            main_config: true
-            conditional_styles:
-              - entity: group.all_plants
-                condition:                     
-                  state: problem
-                tab:
-                  2:
-                    color: rgb(244, 179, 170)
 
   - title: Floor plan
     path: floorplan
