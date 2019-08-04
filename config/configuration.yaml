@@ -132,7 +132,13 @@ light:
           - number: 2
             name: TV
 
-  # https://www.home-assistant.io/components/light.group/
+  - platform: group
+    name: Livingroom Ceiling Lights
+    entities:
+      - light.ikea_tradfri_bulb_gu10_ws_400lm_1
+      - light.ikea_tradfri_bulb_gu10_ws_400lm_2
+      - light.ikea_tradfri_bulb_gu10_ws_400lm_4
+      - light.ikea_tradfri_bulb_gu10_ws_400lm_3
   - platform: group
     name: Livingroom Accent Lights
     entities:
@@ -229,7 +235,6 @@ logger:
     custom_components.sensor.airco2ntrol: debug
     homeassistant.components.sensor.miflora: debug
 
-group: !include groups.yaml
 zone: !include zones.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
