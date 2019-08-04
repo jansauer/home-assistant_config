@@ -263,7 +263,7 @@ logger:
   default: warning
   # default: debug
   logs:
-    custom_components.sensor.airco2ntrol: debug
+    custom_components.airco2ntrol: debug
     homeassistant.components.sensor.miflora: debug
 
 zone: !include zones.yaml

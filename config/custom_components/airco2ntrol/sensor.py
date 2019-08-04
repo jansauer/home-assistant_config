@@ -2,7 +2,7 @@
 Home Assistant support for the TFA Dostmann: CO2 Monitor AIRCO2NTROL MINI sensor.
 
 Date:     2018-12-04
-Homepage: https://github.com/jansauer/home-assistant_config/tree/master/config/custom_components/sensor
+Homepage: https://github.com/jansauer/home-assistant_config/tree/master/config/custom_components/airco2ntrol
 Author:   Jan Sauer
 
 """
@@ -11,22 +11,20 @@ import logging
 import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.const import (CONF_DEVICE, DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS)
+from homeassistant.const import (DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS)
 from homeassistant.helpers.entity import Entity
-import homeassistant.helpers.config_validation as cv
 
 _LOGGER = logging.getLogger(__name__)
 
 DEFAULT_DEVICE = '/dev/hidraw0'
 
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
-    vol.Optional(CONF_DEVICE, default=DEFAULT_DEVICE): cv.string
-})
-
-def setup_platform(hass, config, add_devices, discovery_info=None):
+def setup_platform(hass, config, add_entities, discovery_info=None):
     """Set up the AirCO2ntrol component."""
-    state = AirCO2ntrolReader(config[CONF_DEVICE])
-    add_devices([AirCO2ntrolCarbonDioxideSensor(state), AirCO2ntrolTemperatureSensor(state)])
+    state = AirCO2ntrolReader(DEFAULT_DEVICE)
+    add_entities([
+      AirCO2ntrolCarbonDioxideSensor(state),
+      AirCO2ntrolTemperatureSensor(state)
+    ])
     return True
 
 class AirCO2ntrolReader():
