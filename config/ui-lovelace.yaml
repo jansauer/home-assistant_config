@@ -133,6 +133,8 @@ views:
       - type: custom:compact-custom-header
       - type: plant-status
         entity: plant.snowflower
+      - type: plant-status
+        entity: plant.balcony
 
   - title: Insides
     path: insides
@@ -230,6 +232,19 @@ views:
               - entity: sensor.snowflower_temperature
                 name: Temperature
               - entity: sensor.snowflower_battery
+                name: Battery
+          - type: glance
+            title: Balcony Flowers
+            entities:
+              - entity: sensor.balcony_moisture
+                name: Moisture
+              - entity: sensor.balcony_conductivity
+                name: Conductivity
+              - entity: sensor.balcony_light_intensity
+                name: Light Intensity
+              - entity: sensor.balcony_temperature
+                name: Temperature
+              - entity: sensor.balcony_battery
                 name: Battery
           - break
           - entity: camera.blink_home
