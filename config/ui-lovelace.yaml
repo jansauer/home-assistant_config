@@ -1,13 +1,19 @@
 title: Home
 resources:
+  # https://momentjs.com/
+  - url: /local/moment.js?v=2.24.0
+    type: js
   # https://github.com/maykar/compact-custom-header
   - url: /local/compact-custom-header/compact-custom-header.js?v=1.4.3
     type: module
-  - url: /local/lovelace-card-tools/card-tools.js?v=c885db9
+  # https://github.com/thomasloven/lovelace-card-tools
+  - url: /local/lovelace-card-tools/card-tools.js?v=bff8a65
     type: js
-  - url: /local/lovelace-layout-card/layout-card.js?v=4d34085
+  # https://github.com/thomasloven/lovelace-layout-card
+  - url: /local/lovelace-layout-card/layout-card.js?v=83e2b16
     type: js
-  - url: /local/mini-graph-card-bundle.js?v=0.3.3
+  # https://github.com/kalkih/mini-graph-card
+  - url: /local/mini-graph-card/mini-graph-card-bundle.js?v=0.5.0
     type: module
   - url: /local/clock-card.js?v=0.0.7
     type: js
