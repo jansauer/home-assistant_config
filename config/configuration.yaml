@@ -237,18 +237,31 @@ blink:
   username: !secret blink_username
   password: !secret blink_password
 
+# https://www.home-assistant.io/components/ios/
+# https://www.home-assistant.io/docs/ecosystem/ios/
+ios:
+
 # https://www.home-assistant.io/components/homekit/
 homekit:
   filter:
     include_entities:
+      # Entryway
+      - switch.wall_switch_158d000161469d
+      # Livingroom
+      - light.ikea_tradfri_bulb_gu10_ws_400lm_1
+      - light.ikea_tradfri_bulb_gu10_ws_400lm_2
+      - light.ikea_tradfri_bulb_gu10_ws_400lm_4
+      - light.ikea_tradfri_bulb_gu10_ws_400lm_3
+      - switch.osram_plug_1
       - light.shelf
       - light.tv
       - sensor.airco2ntrol_carbon_dioxide
       - sensor.airco2ntrol_temperature
-
-# https://www.home-assistant.io/components/ios/
-# https://www.home-assistant.io/docs/ecosystem/ios/
-ios:
+      # Bedroom
+      - light.ikea_tradfri_bulb_e27_opal_1000lm_1
+      - light.gateway_light_7811dcfaea5b
+      - sensor.sleepy_temperature
+      - sensor.sleepy_humidity
 
 # https://www.home-assistant.io/components/notify/
 notify:
