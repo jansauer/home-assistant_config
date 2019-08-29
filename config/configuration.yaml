@@ -263,6 +263,23 @@ homekit:
       - sensor.sleepy_temperature
       - sensor.sleepy_humidity
 
+# https://home-assistant.io/components/emulated_hue/
+emulated_hue:
+  host_ip: 192.168.5.2
+  listen_port: 80
+  expose_by_default: false
+  entities:
+    light.livingroom_ceiling_lights:
+      name: Ceiling Lights
+      hidden: false
+    switch.osram_plug_1:
+      name: Floor Lamp
+      hidden: false
+    light.tv:
+      hidden: false
+    light.shelf:
+      hidden: false
+
 # https://www.home-assistant.io/components/notify/
 notify:
   # https://www.home-assistant.io/components/notify.pushover/
