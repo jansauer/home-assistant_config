@@ -17,7 +17,7 @@ resources:
     type: module
   - url: /local/clock-card.js?v=0.0.7
     type: js
-  - url: /local/daytime-card.js?v=0.0.212
+  - url: /local/daytime-card/daytime-card.js?v=0.0.217
     type: js
 cch:
   conditional_styles:

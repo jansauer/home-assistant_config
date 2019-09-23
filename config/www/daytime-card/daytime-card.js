@@ -27,7 +27,7 @@ class DayTimeCard extends Polymer.Element {
           flex-shrink: 0;
           background: url(/local/sun.jpg);
           background-size: cover;
-          animation: planetRotate 1200s linear infinite;
+          animation: planetRotate 800s linear infinite;
           box-shadow:  0px 0px 10px 0px #cc9f4c, 0px 0px 1000px -2px #cc9f4c;
           border-radius: 100%;
           overflow: hidden;
@@ -53,6 +53,18 @@ class DayTimeCard extends Polymer.Element {
           font-size: 14px;
           color: var(--secondary-text-color);
         }
+        .header {
+          font-family: var(--paper-font-headline_-_font-family);
+          -webkit-font-smoothing: var( --paper-font-headline_-_-webkit-font-smoothing );
+          font-size: var(--paper-font-headline_-_font-size);
+          font-weight: var(--paper-font-headline_-_font-weight);
+          letter-spacing: var(--paper-font-headline_-_letter-spacing);
+          line-height: var(--paper-font-headline_-_line-height);
+          text-rendering: var( --paper-font-common-expensive-kerning_-_text-rendering );
+          opacity: var(--dark-primary-opacity);
+          padding: 24px 16px 16px;
+          display: flex;
+          align-items: baseline;
       </style>
       <ha-card>
         <div class="content">
@@ -62,14 +74,15 @@ class DayTimeCard extends Polymer.Element {
           <div class="moon" id="moon">
             <div class="phase"></div>
           </div>
-          <div class="text">
+          <div class="text" id="text">
             <div class="header">
               Sunset in <span id="sunset"></span>
             </div>
             <br />
             <div class="header">
-              Dusk in <span id="sunset"></span>
+              Dusk in <span id="dusk"></span>
             </div>
+
             <br />
             Azimuth: <span id="azimuth"></span>° Elevation: <span id="elevation"></span>°
           </div>
@@ -101,25 +114,37 @@ class DayTimeCard extends Polymer.Element {
   _updateTime(force = false) {
     const sun = this._hass.states['sun.sun'];
 
+    console.log(sun.attributes.next_dawn)
+    console.log(moment(sun.attributes.next_dawn).fromNow())
+
     // switch between displaying sun and moon
     const sun_elevation = sun.attributes.elevation
     if (sun_elevation > 0) {
       this.$.moon.style.display = 'none';
+      this.$.sun.style.display = null;
 
       if (sun_elevation < this.getDecentStartAt()) {
-        console.log((this.getDecentStartAt() - sun_elevation) * this.getPixelPerDegree() + 'px');
         this.$.sun.style.marginTop = (this.getDecentStartAt() - sun_elevation) * this.getPixelPerDegree() + 'px';
       } else {
-        console.log('noo');
         console.log( this.getDecentStartAt());
       }   
     } else {
       this.$.sun.style.display = 'none';
+      this.$.moon.style.display = null;
       this.$.moon.classList.add(this._hass.states['sensor.moon'].state);
+
+      this.$.text.innerHTML = `
+        <div class="header">
+          Dawn in <time datetime="${sun.attributes.next_dawn}">${moment(sun.attributes.next_dawn).fromNow()}</time>
+        </div>
+        <div class="header">
+          Sunrise in <time datetime="${sun.attributes.next_rising}">${moment(sun.attributes.next_rising).fromNow()}</time>
+        </div>
+      `;
     }
 
-    //this.$.sunset.innerHTML = moment(state.attributes.next_setting).fromNow();
-    //this.$.dusk.innerHTML = moment(state.attributes.next_dusk).fromNow();
+    this.$.sunset.innerHTML = moment(this._hass.states['sun.sun'].attributes.next_setting).fromNow();
+    this.$.dusk.innerHTML = moment(this._hass.states['sun.sun'].attributes.next_dusk).fromNow();
 
     // azimuth
     this.$.azimuth.innerHTML = Math.abs(sun.attributes.azimuth);
