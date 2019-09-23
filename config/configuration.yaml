@@ -107,13 +107,30 @@ sensor:
   # https://www.home-assistant.io/components/sensor.yr/
   - platform: yr
 
+  # https://www.home-assistant.io/components/time_date/
+  - platform: time_date
+    display_options:
+      - 'time'
+
+# https://www.home-assistant.io/components/input_datetime/
+input_datetime:
+  wakeup_time:
+    name: "Start lights at"
+    has_time: true
+    has_date: false
+    initial: "06:30"
+
 # https://www.home-assistant.io/components/binary_sensor.trend/
 binary_sensor:
   # https://www.home-assistant.io/components/binary_sensor.iss/
   - platform: iss
 
 # https://www.home-assistant.io/components/input_boolean/
-# input_boolean:
+input_boolean:
+  wakeup_weekend:
+    name: "Enable Wake-up on weekends"
+    initial: off
+    icon: mdi:calendar-blank
 #   mode_do_not_disturb:
 #     icon: mdi:bell-off
 #     initial: false

@@ -273,10 +273,17 @@ views:
               - automation.set_theme_for_day_and_night
               - automation.update_available_notifications
               - automation.plant_problem_notifications
-          - type: custom:compact-custom-header
 
-  # - title: Test
-  #   path: test
-  #   icon: mdi:test-tube
-  #   cards:
-  #     - type: custom:compact-custom-header
+  - title: Test
+    path: test
+    icon: mdi:test-tube
+    cards:
+      - type: entities
+        title: Wake-up Lights
+        show_header_toggle: false
+        entities:
+          - input_datetime.wakeup_time
+          - entity: automation.wake_me_up_using_bedroom_lights
+            name: "Wake-up lights"
+            icon: mdi:theme-light-dark
+          - input_boolean.wakeup_weekend
