@@ -254,6 +254,14 @@ blink:
   username: !secret blink_username
   password: !secret blink_password
 
+# https://www.home-assistant.io/components/withings/
+withings:
+  client_id: !secret withings_client_id
+  client_secret: !secret withings_client_secret
+  profiles:
+    - jansauer
+  base_url: https://jansauer.de
+
 # https://www.home-assistant.io/components/ios/
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
