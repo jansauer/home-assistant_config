@@ -8,13 +8,17 @@ class ClockCard extends Polymer.Element {
         }
         .content {
           padding: 24px 16px;
-          display:flex;
+          display: flex;
+          align-items: flex-end;
+        }
+        .clock {
+          flex-grow: 1;
         }
         #myself{
-          width: 92px;
-          margin-right: 16px;
-          background-size: contain;
-          background-repeat: no-repeat;
+          width: 60px;
+          height: 60px;
+          border-radius: 5px;
+          background-size: cover;
         }
         .time {
           font-family: var(--paper-font-headline_-_font-family);
@@ -38,11 +42,11 @@ class ClockCard extends Polymer.Element {
       </style>
       <ha-card>
         <div class="content">
-          <div id="myself"></div>
           <div class="clock">
             <div class="time" id="time">3:45 PM</div>
             <div class="date" id="date">Wednesday, December 3</div>
           </div>
+          <div id="myself"></div>
         </div>
       </ha-card>
      `
@@ -59,9 +63,11 @@ class ClockCard extends Polymer.Element {
     this.myself = this.$.myself;
     this.time = this.$.time;
     this.date = this.$.date;
-      
+    
+    this.$.myself.style.backgroundImage = `url("${this._hass.states[this.config.entity].attributes.entity_picture}")`;
+
     this._updateTime();
-    setInterval(() => this._updateTime(), 500);
+    setInterval(() => this._updateTime(), 2000);  // accurate enough for me
   }
     
   setConfig(config) {
@@ -75,8 +81,7 @@ class ClockCard extends Polymer.Element {
   _updateTime(force = false) {
     const entityId = this.config.entity;
     const state = this._hass.states[entityId];
-    this.myself.style.backgroundImage = `url("${state.attributes.entity_picture}")`;
-    this.myself.innerHTML = state.state;
+    // this.myself.innerHTML = state.state;
 
     this.time.innerHTML = new Intl.DateTimeFormat('default', {
       hour: 'numeric',

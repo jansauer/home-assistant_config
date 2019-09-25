@@ -208,6 +208,7 @@ media_player:
 # https://www.home-assistant.io/components/weather/
 weather:
   # https://www.home-assistant.io/components/weather.darksky/
+  # https://darksky.net/dev/docs#response-format
   - platform: darksky
     api_key: !secret darksky_api_key 
 
@@ -273,10 +274,10 @@ homekit:
       # Entryway
       - switch.wall_switch_158d000161469d
       # Livingroom
-      - light.ikea_tradfri_bulb_gu10_ws_400lm_1
-      - light.ikea_tradfri_bulb_gu10_ws_400lm_2
-      - light.ikea_tradfri_bulb_gu10_ws_400lm_4
-      - light.ikea_tradfri_bulb_gu10_ws_400lm_3
+      # - light.ikea_tradfri_bulb_gu10_ws_400lm_1
+      # - light.ikea_tradfri_bulb_gu10_ws_400lm_2
+      # - light.ikea_tradfri_bulb_gu10_ws_400lm_4
+      # - light.ikea_tradfri_bulb_gu10_ws_400lm_3
       - switch.osram_plug_1
       - light.shelf
       - light.tv
@@ -285,8 +286,8 @@ homekit:
       # Bedroom
       - light.ikea_tradfri_bulb_e27_opal_1000lm_1
       - light.gateway_light_7811dcfaea5b
-      - sensor.sleepy_temperature
-      - sensor.sleepy_humidity
+      # - sensor.sleepy_temperature
+      # - sensor.sleepy_humidity
 
 # https://home-assistant.io/components/emulated_hue/
 emulated_hue:
@@ -306,6 +307,7 @@ emulated_hue:
       hidden: false
 
 # https://www.home-assistant.io/components/notify/
+# https://www.home-assistant.io/components/#notifications
 notify:
   # https://www.home-assistant.io/components/notify.pushover/
   - platform: pushover

@@ -15,7 +15,7 @@ resources:
   # https://github.com/kalkih/mini-graph-card
   - url: /local/mini-graph-card/mini-graph-card-bundle.js?v=0.5.0
     type: module
-  - url: /local/clock-card.js?v=0.0.7
+  - url: /local/clock-card.js?v=0.0.8
     type: js
   - url: /local/daytime-card/daytime-card.js?v=0.0.217
     type: js
@@ -39,16 +39,6 @@ views:
         layout: vertical
         max_columns: 3
         cards:
-          # - type: conditional
-          #   conditions:
-          #     - entity: automation.update_available_notifications
-          #       state: "on"
-          #   card:
-          #     - type: entities
-          #       title: Update Available
-          #       show_header_toggle: false
-          #       entities:
-          #         - updater.updater
           - type: custom:clock-card
             entity: person.jan
           - type: custom:daytime-card
@@ -62,19 +52,20 @@ views:
                 title: Entryway
                 show_header_toggle: true
                 entities:
-                  - switch.wall_switch_158d000161469d
+                  - entity: switch.wall_switch_158d000161469d
+                    name: Ceiling
           - type: horizontal-stack
             cards:
               - type: entities
                 title: Livingroom
                 show_header_toggle: true
                 entities:
-                  - entity: group.livingroom_ceiling
+                  - entity: light.livingroom_ceiling_lights
                     name: Ceiling
                   - entity: switch.osram_plug_1
                     name: Floor Lamp
                     icon: mdi:floor-lamp
-                  - entity: group.livingroom_accent
+                  - entity: light.livingroom_accent_lights
                     name: Accent
                   - light.tv
                   - light.shelf
@@ -82,19 +73,52 @@ views:
                 cards:
                   - type: custom:mini-graph-card
                     name: Temperature
+                    hours_to_show: 6
+                    points_per_hour: 4
+                    hour24: true
+                    lower_bound: 15
+                    line_color: '#FFC107'
                     entities:
                       - sensor.airco2ntrol_temperature
                   - type: custom:mini-graph-card
                     name: Carbon Dioxide
+                    hours_to_show: 6
+                    points_per_hour: 4
+                    hour24: true
+                    line_color: '#9C27B0'
                     entities:
                       - sensor.airco2ntrol_carbon_dioxide
-          - type: entities
-            title: Bedroom
-            show_header_toggle: true
-            entities:
-              - entity: light.ikea_tradfri_bulb_e27_opal_1000lm_1
-                name: Ceiling
-              - light.gateway_light_7811dcfaea5b
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                title: Bedroom
+                show_header_toggle: true
+                entities:
+                  - entity: light.ikea_tradfri_bulb_e27_opal_1000lm_1
+                    name: Ceiling
+                  - entity: light.gateway_light_7811dcfaea5b
+                    name: Gateway
+              - type: vertical-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    name: Temperature
+                    hours_to_show: 6
+                    points_per_hour: 4
+                    hour24: true
+                    lower_bound: 12
+                    line_color: '#FFC107'
+                    entities:
+                      - entity: sensor.sleepy_temperature
+                        name: Temperature
+                  - type: custom:mini-graph-card
+                    name: Humidity
+                    hours_to_show: 6
+                    points_per_hour: 4
+                    hour24: true
+                    line_color: '#03A9F4'
+                    entities:
+                      - entity: sensor.sleepy_humidity
+                        name: Humidity
           - break
           - type: media-control
             entity: media_player.spotify
@@ -135,10 +159,19 @@ views:
     icon: mdi:leaf
     panel: true
     cards:
-      - type: plant-status
-        entity: plant.snowflower
-      - type: plant-status
-        entity: plant.balcony
+      - type: custom:layout-card
+        layout: vertical
+        max_columns: 3
+        cards:
+          - type: custom:daytime-card
+            entity: sun.sun
+          - type: weather-forecast
+            entity: weather.dark_sky
+          - break
+          - type: plant-status
+            entity: plant.snowflower
+          - type: plant-status
+            entity: plant.balcony
 
   - title: Insides
     path: insides
@@ -159,6 +192,8 @@ views:
               - sensor.memory_free
               - sensor.home_assistant_v2_db
               - sensor.uptime
+              - sensor.time
+              - binary_sensor.updater
           - type: glance
             title: Devices
             entities:
@@ -199,13 +234,8 @@ views:
                 name: Carbon Dioxide
           - break
           - type: glance
-            title: ZigBee (ZHA)
+            title: Trådfri (ZHA)
             entities:
-              - zha.ikea_tradfri_bulb_gu10_ws_400lm_1
-              - zha.ikea_tradfri_bulb_gu10_ws_400lm_2
-              - zha.ikea_tradfri_bulb_gu10_ws_400lm_3
-              - zha.ikea_tradfri_bulb_gu10_ws_400lm_4
-              - zha.ikea_tradfri_bulb_e27_opal_1000lm_1
               - light.ikea_tradfri_bulb_gu10_ws_400lm_1
               - light.ikea_tradfri_bulb_gu10_ws_400lm_2
               - light.ikea_tradfri_bulb_gu10_ws_400lm_3
@@ -214,9 +244,16 @@ views:
           - type: glance
             title: Osram (ZHA)
             entities:
-              - zha.osram_plug_1
               - switch.osram_plug_1
               - sensor.osram_plug_1
+          - type: glance
+            title: Sleepy (ESPHome)
+            entities:
+              - binary_sensor.sleepy_status
+              - sensor.sleepy_uptime
+              - sensor.sleepy_temperature
+              - sensor.sleepy_humidity
+              - sensor.sleepy_wifi_signal
           - type: glance
             title: Xiaomi
             entities:
@@ -251,12 +288,9 @@ views:
               - entity: sensor.balcony_battery
                 name: Battery
           - break
-          - entity: camera.blink_home
-            type: picture-entity
           - type: glance
             title: Blink
             entities:
-              - alarm_control_panel.blink_sync
               - entity: binary_sensor.blink_home_motion_detected
                 name: Motion Detected
               - entity: binary_sensor.blink_home_camera_armed
@@ -267,8 +301,13 @@ views:
                 name: Wifi Signal
               - entity: sensor.blink_home_battery
                 name: Battery
+          - entity: camera.blink_home
+            type: picture-entity
+          - type: alarm-panel
+            entity: alarm_control_panel.blink_sync
           - type: entities
             title: Automations
+            show_header_toggle: false
             entities:
               - automation.set_theme_for_day_and_night
               - automation.update_available_notifications
@@ -287,3 +326,12 @@ views:
             name: "Wake-up lights"
             icon: mdi:theme-light-dark
           - input_boolean.wakeup_weekend
+      - type: entities
+        title: Entryway Light Automation
+        show_header_toggle: false
+        entities:
+          - entity: automation.turn_on_entryway_light_when_there_is_movement
+            name: On Automation
+          - entity: automation.turn_off_entryway_lights_after_movement
+            name: Off Automation
+          - timer.entryway
