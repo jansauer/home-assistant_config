@@ -126,6 +126,11 @@ input_datetime:
     has_date: false
     initial: "06:30"
 
+# https://www.home-assistant.io/components/timer/
+timer:
+  entryway:
+    duration: '00:00:10'
+
 # https://www.home-assistant.io/components/binary_sensor.trend/
 binary_sensor:
   # https://www.home-assistant.io/components/binary_sensor.iss/

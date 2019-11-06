@@ -1,5 +1,33 @@
 # https://www.home-assistant.io/docs/automation/
 
+# Turn on entryway ligth based on motion
+# https://www.home-assistant.io/cookbook/turn_on_light_for_10_minutes_when_motion_detected/
+- alias: Turn on entryway light when there is movement
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0002e2edae
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: switch.wall_switch_158d000161469d
+    state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.wall_switch_158d000161469d
+    - service: timer.start
+      data:
+        entity_id: timer.entryway
+- alias: Turn off entryway lights after movement
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.entryway
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.wall_switch_158d000161469d
+
 # Wake-me up using bedroom lights
 # https://www.wouterbulten.nl/blog/tech/custom-wake-up-light-with-home-assistant/
 - alias: 'Wake-me up using bedroom lights'
@@ -45,3 +73,24 @@
           {% else %}
             dark
           {% endif %}
+
+- alias: 'Update Available Notifications'
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.notify
+    data_template:
+      title: 'Update Available'
+      message: 'Home Assistant {{ states.updater.updater.state }}'
+
+- alias: 'Plant Problem Notifications'
+  trigger:
+    - platform: state
+      entity_id: plant.snowflower
+      to: problem
+  action:
+    service: notify.notify
+    data_template:
+      title: 'Plant !!! has a problem'
+      message: 'Home Assistant {{ trigger.to_state }}'
