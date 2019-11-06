@@ -42,11 +42,11 @@ history:
 # https://www.home-assistant.io/components/logbook/
 # logbook:
 
-# https://www.home-assistant.io/components/system_health/
-system_health:
-
 # https://www.home-assistant.io/components/map/
 map:
+
+# https://www.home-assistant.io/components/system_health/
+system_health:
 
 # https://www.home-assistant.io/components/device_tracker/
 device_tracker:
@@ -70,6 +70,12 @@ person:
 zha:
   usb_path: /dev/ttyUSB0
   database_path: /config/zigbee.db
+
+# https://www.home-assistant.io/components/xiaomi_aqara/
+xiaomi_aqara:
+  gateways:
+    - mac: 78:11:DC:FA:EA:5B
+      key: !secret xiaomi_gateway_kex
 
 # https://www.home-assistant.io/components/sensor/
 sensor:
@@ -144,12 +150,6 @@ input_boolean:
 #     initial: false
 #     name: Vacation Mode
 
-# https://www.home-assistant.io/components/xiaomi_aqara/
-xiaomi_aqara:
-  gateways:
-    - mac: 78:11:DC:FA:EA:5B
-      key: !secret xiaomi_gateway_kex
-
 # https://www.home-assistant.io/components/light/
 light:
   # https://www.home-assistant.io/components/light.limitlessled/
@@ -164,6 +164,7 @@ light:
           - number: 2
             name: TV
 
+  # https://www.home-assistant.io/integrations/light.group/
   - platform: group
     name: Livingroom Ceiling Lights
     entities:
@@ -205,15 +206,15 @@ media_player:
 # https://www.home-assistant.io/components/hdmi_cec/
 # hdmi_cec:
 
+# https://www.home-assistant.io/components/sun/
+sun:
+
 # https://www.home-assistant.io/components/weather/
 weather:
   # https://www.home-assistant.io/components/weather.darksky/
   # https://darksky.net/dev/docs#response-format
   - platform: darksky
     api_key: !secret darksky_api_key 
-
-# https://www.home-assistant.io/components/sun/
-sun:
 
 # https://www.home-assistant.io/components/plant/
 plant:
