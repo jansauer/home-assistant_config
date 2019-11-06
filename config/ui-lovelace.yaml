@@ -4,16 +4,16 @@ resources:
   - url: /local/moment.js?v=2.24.0
     type: js
   # https://github.com/maykar/compact-custom-header
-  - url: /local/compact-custom-header/compact-custom-header.js?v=1.4.3
+  - url: /local/compact-custom-header.js?v=68a6e202
     type: module
   # https://github.com/thomasloven/lovelace-card-tools
-  - url: /local/card-tools/card-tools.js?v=bff8a65
+  - url: /local/card-tools.js?v=d6b209b4
     type: js
   # https://github.com/thomasloven/lovelace-layout-card
-  - url: /local/layout-card/layout-card.js?v=83e2b16
+  - url: /local/layout-card.js?v=3364e158
     type: js
   # https://github.com/kalkih/mini-graph-card
-  - url: /local/mini-graph-card/mini-graph-card-bundle.js?v=0.5.0
+  - url: /local/mini-graph-card-bundle.js?v=0.8.2
     type: module
   - url: /local/clock-card.js?v=0.0.8
     type: js
