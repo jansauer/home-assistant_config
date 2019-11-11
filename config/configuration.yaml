@@ -256,6 +256,13 @@ plant:
     min_brightness: 3000
     max_brightness: 35000
 
+# https://www.home-assistant.io/integrations/netatmo/
+netatmo:
+  api_key: !secret netatmo_client_id
+  secret_key: !secret netatmo_client_secret
+  username: !secret netatmo_username
+  password: !secret netatmo_password
+
 # https://www.home-assistant.io/components/blink/
 blink:
   username: !secret blink_username

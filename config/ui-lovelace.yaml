@@ -9,9 +9,15 @@ resources:
   # https://github.com/thomasloven/lovelace-card-tools
   - url: /local/card-tools.js?v=d6b209b4
     type: js
+  # https://github.com/thomasloven/lovelace-card-mod
+  - url: /local/card-mod.js?v=ebc779f
+    type: module
   # https://github.com/thomasloven/lovelace-layout-card
   - url: /local/layout-card.js?v=3364e158
     type: js
+  # https://github.com/nervetattoo/simple-thermostat
+  - url: /local/simple-thermostat.js?v=0.29.0
+    type: module
   # https://github.com/kalkih/mini-graph-card
   - url: /local/mini-graph-card-bundle.js?v=0.8.2
     type: module
@@ -54,11 +60,26 @@ views:
                 entities:
                   - entity: switch.wall_switch_158d000161469d
                     name: Ceiling
+          - type: custom:simple-thermostat
+            entity: climate.netatmo_living_room
+            name: Livingroom
+            icon: false
+            control: false
+            sensors:
+              - entity: climate.netatmo_living_room
+                attribute: preset_mode
+                name: Mode
+            style:
+            style: |
+              ha-card {
+                --st-font-size-xl: 30px;
+                --st-font-size-m: 20px;
+                --st-font-size-sensors: 14px;
+                --st-spacing: 2px;
+              }
           - type: horizontal-stack
             cards:
               - type: entities
-                title: Livingroom
-                show_header_toggle: true
                 entities:
                   - entity: light.livingroom_ceiling_lights
                     name: Ceiling
