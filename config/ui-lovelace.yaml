@@ -90,6 +90,13 @@ views:
                     name: Accent
                   - light.tv
                   - light.shelf
+                  - type: divider
+                  - entity: scene.livingroom_night_light
+                    icon: mdi:weather-night
+                    name: Night Light
+                  - entity: scene.livingroom_off
+                    icon: mdi:circle-off-outline
+                    name: 'Off'
               - type: vertical-stack
                 cards:
                   - type: custom:mini-graph-card

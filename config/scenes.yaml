@@ -1,3 +1,12 @@
+- name: Livingroom Off
+  entities:
+    light.livingroom_ceiling_lights:
+      state: off
+    switch.osram_plug_1:
+      state: off
+    light.livingroom_accent_lights:
+      state: off
+
 - name: Livingroom Night Light
   entities:
     light.tv:
