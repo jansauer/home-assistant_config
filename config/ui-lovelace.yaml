@@ -145,6 +145,15 @@ views:
             entity: media_player.spotify
           - type: media-control
             entity: media_player.living_room
+          - type: entities
+            title: Wake-up Lights
+            show_header_toggle: false
+            entities:
+              - input_datetime.wakeup_time
+              - entity: automation.wake_me_up_using_bedroom_lights
+                name: "Wake-up lights"
+                icon: mdi:theme-light-dark
+              - input_boolean.wakeup_weekend
 
   - title: Floor plan
     path: floorplan
@@ -338,15 +347,6 @@ views:
     path: test
     icon: mdi:test-tube
     cards:
-      - type: entities
-        title: Wake-up Lights
-        show_header_toggle: false
-        entities:
-          - input_datetime.wakeup_time
-          - entity: automation.wake_me_up_using_bedroom_lights
-            name: "Wake-up lights"
-            icon: mdi:theme-light-dark
-          - input_boolean.wakeup_weekend
       - type: entities
         title: Entryway Light Automation
         show_header_toggle: false
