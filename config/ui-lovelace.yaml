@@ -213,6 +213,14 @@ views:
         max_columns: 3
         cards:
           - type: glance
+            title: Groups
+            entities:
+              - group.all_devices
+              - group.all_lights
+              - group.all_switches
+              - group.all_plants
+              - group.all_remotes
+          - type: glance
             title: System
             entities:
               - sensor.load_1m
@@ -227,10 +235,16 @@ views:
           - type: glance
             title: Devices
             entities:
-              - device_tracker.ipadpro
+              - person.jan
               - device_tracker.iphonex
+              - device_tracker.watch
+              - device_tracker.ipadpro
               - device_tracker.macbookpro
               - device_tracker.byss
+              - device_tracker.netatmo
+              - device_tracker.xiaomi
+              - device_tracker.limitlessled
+              - device_tracker.blink
           - type: horizontal-stack
             cards:
               - type: glance
@@ -277,6 +291,17 @@ views:
               - switch.osram_plug_1
               - sensor.osram_plug_1
           - type: glance
+            title: Xiaomi
+            entities:
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_1_1
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_1_18
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_2_18
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_3_18
+              - binary_sensor.motion_sensor_158d0002e2edae
+              - sensor.illumination_158d0002e2edae
+              - binary_sensor.door_window_sensor_158d00027b010e
+              - sensor.illumination_7811dcfaea5b
+          - type: glance
             title: Sleepy (ESPHome)
             entities:
               - binary_sensor.sleepy_status
@@ -284,13 +309,6 @@ views:
               - sensor.sleepy_temperature
               - sensor.sleepy_humidity
               - sensor.sleepy_wifi_signal
-          - type: glance
-            title: Xiaomi
-            entities:
-              - binary_sensor.motion_sensor_158d0002e2edae
-              - sensor.illumination_158d0002e2edae
-              - binary_sensor.door_window_sensor_158d00027b010e
-              - sensor.illumination_7811dcfaea5b
           - type: glance
             title: Snow Flower
             entities:

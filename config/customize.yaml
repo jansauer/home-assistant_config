@@ -27,6 +27,15 @@ light.ikea_tradfri_bulb_e27_opal_1000lm_1:
   friendly_name: Bedroom Ceiling Light
   icon: mdi:ceiling-light
 
+sensor.lumi_lumi_remote_b286acn01_2c87f302_1_1:
+  friendly_name: Livingroom Switch
+sensor.lumi_lumi_remote_b286acn01_2c87f302_1_18:
+  friendly_name: Livingroom Switch Left Single
+sensor.lumi_lumi_remote_b286acn01_2c87f302_2_18:
+  friendly_name: Livingroom Switch Right Single
+sensor.lumi_lumi_remote_b286acn01_2c87f302_3_18:
+  friendly_name: Livingroom Switch Both Single
+
 # toggle switches for limitlessled lights
 # @See https://www.home-assistant.io/components/light.limitlessled/#initialization--synchronization
 light.tv:
