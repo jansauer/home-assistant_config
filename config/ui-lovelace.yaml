@@ -3,29 +3,27 @@ resources:
   # https://momentjs.com/
   - url: /local/moment.js?v=2.24.0
     type: js
-  # https://github.com/maykar/compact-custom-header
-  - url: /local/compact-custom-header.js?v=68a6e202
+  # https://github.com/maykar/custom-header
+  - url: /community_plugin/custom-header/custom-header.js
     type: module
-  # https://github.com/thomasloven/lovelace-card-tools
-  - url: /local/card-tools.js?v=d6b209b4
-    type: js
   # https://github.com/thomasloven/lovelace-card-mod
-  - url: /local/card-mod.js?v=ebc779f
+  - url: /community_plugin/lovelace-card-mod/card-mod.js
     type: module
   # https://github.com/thomasloven/lovelace-layout-card
-  - url: /local/layout-card.js?v=3364e158
-    type: js
+  - url: /community_plugin/lovelace-layout-card/layout-card.js
+    type: module
   # https://github.com/nervetattoo/simple-thermostat
-  - url: /local/simple-thermostat.js?v=0.29.0
+  - url: /community_plugin/simple-thermostat/simple-thermostat.js
     type: module
   # https://github.com/kalkih/mini-graph-card
-  - url: /local/mini-graph-card-bundle.js?v=0.8.2
+  - url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
     type: module
   - url: /local/clock-card.js?v=0.0.8
     type: js
   - url: /local/daytime-card/daytime-card.js?v=0.0.217
     type: js
-cch:
+custom_header:
+  compact_mode: true
   conditional_styles:
     - entity: group.all_plants
       condition:                     
