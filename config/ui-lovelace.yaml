@@ -342,6 +342,21 @@ views:
                 name: Battery
           - break
           - type: glance
+            title: Withings
+            entities:
+              - entity: sensor.withings_weight_kg_jansauer
+                name: Weight
+              - entity: sensor.withings_fat_ratio_pct_jansauer
+                name: Fat Ratio
+              - entity: sensor.withings_heart_pulse_bpm_jansauer
+                name: Heart Rate
+              - entity: sensor.withings_fat_mass_kg_jansauer
+                name: Fat Mass
+              - entity: sensor.withings_fat_free_mass_kg_jansauer
+                name: Fat Free Mass
+              - entity: sensor.withings_height_m_jansauer
+                name: Height
+          - type: glance
             title: Blink
             entities:
               - entity: binary_sensor.blink_home_motion_detected

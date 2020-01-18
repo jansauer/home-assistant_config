@@ -274,7 +274,6 @@ withings:
   client_secret: !secret withings_client_secret
   profiles:
     - jansauer
-  base_url: https://jansauer.de
 
 # https://www.home-assistant.io/components/ios/
 # https://www.home-assistant.io/docs/ecosystem/ios/
