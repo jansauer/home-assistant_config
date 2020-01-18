@@ -328,6 +328,10 @@ notify:
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
 
+# https://www.home-assistant.io/integrations/sentry/
+sentry:
+  dsn: !secret sentry_dsn
+
 # https://www.home-assistant.io/components/logger/
 logger:
   default: warning
