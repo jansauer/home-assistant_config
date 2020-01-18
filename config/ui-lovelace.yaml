@@ -356,6 +356,26 @@ views:
                 name: Fat Free Mass
               - entity: sensor.withings_height_m_jansauer
                 name: Height
+          - type: entities
+            title: Echo Dot
+            show_header_toggle: false
+            entities:
+              - media_player.echo_dot
+              - sensor.echo_dot_next_alarm
+              - sensor.echo_dot_next_reminder
+              - sensor.echo_dot_next_timer
+              - switch.echo_dot_shuffle_switch
+              - switch.echo_dot_repeat_switch
+              - switch.echo_dot_do_not_disturb_switch
+          - type: entities
+            title: Echo App
+            show_header_toggle: false
+            entities:
+              - media_player.this_device
+              - sensor.this_device_next_reminder
+              - switch.this_device_shuffle_switch
+              - switch.this_device_repeat_switch
+              - switch.this_device_do_not_disturb_switch
           - type: glance
             title: Blink
             entities:

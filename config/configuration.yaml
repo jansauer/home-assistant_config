@@ -284,6 +284,12 @@ withings:
   profiles:
     - jansauer
 
+# https://github.com/custom-components/alexa_media_player
+alexa_media:
+  accounts:
+    - email: !secret amazon_user
+      password: !secret amazon_password
+      url: amazon.de
 
 # https://www.home-assistant.io/components/homekit/
 homekit:
@@ -332,6 +338,10 @@ notify:
     name: pushover
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
+  
+  # https://github.com/custom-components/alexa_media_player/wiki/Notification-Component
+  - platform: alexa_media
+    name: alexa_media
 
 # https://www.home-assistant.io/integrations/sentry/
 sentry:
