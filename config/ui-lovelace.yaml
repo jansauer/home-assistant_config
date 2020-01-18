@@ -49,6 +49,9 @@ views:
             entity: sun.sun
           - type: weather-forecast
             entity: weather.dark_sky
+          - type: entities
+            entities:
+              - switch.byss
           - break
           - type: horizontal-stack
             cards:

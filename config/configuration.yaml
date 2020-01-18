@@ -197,10 +197,14 @@ switch:
   # https://www.home-assistant.io/components/switch.wake_on_lan/
   - platform: wake_on_lan
     name: Byss
-    mac_address: "C8:60:00:84:F9:02"
+    mac: "C8:60:00:84:F9:02"
     host: 192.168.5.5
     turn_off:
       service: shell_command.turn_off_byss
+
+# https://www.home-assistant.io/integrations/shell_command/
+shell_command:
+  turn_off_byss: 'ssh -i /config/byss-hassio_ed25519 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null hassio@192.168.5.5 date'
 
 # https://www.home-assistant.io/components/apple_tv/
 apple_tv:
