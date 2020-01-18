@@ -1,3 +1,4 @@
+# https://www.home-assistant.io/lovelace/
 title: Home
 resources:
   # https://momentjs.com/
@@ -11,6 +12,9 @@ resources:
     type: module
   # https://github.com/thomasloven/lovelace-layout-card
   - url: /community_plugin/lovelace-layout-card/layout-card.js
+    type: module
+  # https://github.com/thomasloven/lovelace-fold-entity-row
+  - url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
     type: module
   # https://github.com/nervetattoo/simple-thermostat
   - url: /community_plugin/simple-thermostat/simple-thermostat.js
@@ -51,16 +55,17 @@ views:
             entity: weather.dark_sky
           - type: entities
             entities:
+              - input_boolean.mode_guest_mode
+          - type: entities
+            entities:
               - switch.byss
           - break
-          - type: horizontal-stack
-            cards:
-              - type: entities
-                title: Entryway
-                show_header_toggle: true
-                entities:
-                  - entity: switch.wall_switch_158d000161469d
-                    name: Ceiling
+          - type: entities
+            title: Entryway
+            show_header_toggle: false
+            entities:
+              - entity: switch.wall_switch_158d000161469d
+                name: Ceiling
           - type: custom:simple-thermostat
             entity: climate.netatmo_living_room
             name: Livingroom
@@ -70,7 +75,6 @@ views:
               - entity: climate.netatmo_living_room
                 attribute: preset_mode
                 name: Mode
-            style:
             style: |
               ha-card {
                 --st-font-size-xl: 30px;
@@ -82,8 +86,16 @@ views:
             cards:
               - type: entities
                 entities:
-                  - entity: light.livingroom_ceiling_lights
-                    name: Ceiling
+                  - type: custom:fold-entity-row
+                    entity: light.livingroom_ceiling_lights
+                    head:
+                      entity: light.livingroom_ceiling_lights
+                      name: Ceiling
+                    entities:
+                      - light.ikea_tradfri_bulb_gu10_ws_400lm_1
+                      - light.ikea_tradfri_bulb_gu10_ws_400lm_2
+                      - light.ikea_tradfri_bulb_gu10_ws_400lm_3
+                      - light.ikea_tradfri_bulb_gu10_ws_400lm_4
                   - entity: switch.osram_plug_1
                     name: Floor Lamp
                     icon: mdi:floor-lamp
@@ -111,22 +123,44 @@ views:
                       - sensor.airco2ntrol_temperature
                   - type: custom:mini-graph-card
                     name: Carbon Dioxide
+                    entities:
+                      - sensor.airco2ntrol_carbon_dioxide
                     hours_to_show: 6
                     points_per_hour: 4
                     hour24: true
-                    line_color: '#9C27B0'
-                    entities:
-                      - sensor.airco2ntrol_carbon_dioxide
+                    line_color: '#DEBAFC'
+                    # colors from https://material.io/design/color/#color-theme-creation
+          - type: custom:simple-thermostat
+            entity: climate.netatmo_bedroom
+            name: Bedroom
+            icon: false
+            control: false
+            sensors:
+              - entity: climate.netatmo_bedroom
+                attribute: preset_mode
+                name: Mode
+            style: |
+              ha-card {
+                --st-font-size-xl: 30px;
+                --st-font-size-m: 20px;
+                --st-font-size-sensors: 14px;
+                --st-spacing: 2px;
+              }
           - type: horizontal-stack
             cards:
               - type: entities
-                title: Bedroom
-                show_header_toggle: true
                 entities:
                   - entity: light.ikea_tradfri_bulb_e27_opal_1000lm_1
                     name: Ceiling
+                  # - entity: light.yavin_strip
+                  #   icon: mdi:led-strip-variant
+                  #   name: Bed
                   - entity: light.gateway_light_7811dcfaea5b
-                    name: Gateway
+                    name: Gateway         
+                  - type: divider
+                  - entity: scene.bedroom_off
+                    icon: mdi:circle-off-outline
+                    name: 'Off'
               - type: vertical-stack
                 cards:
                   - type: custom:mini-graph-card
@@ -218,65 +252,8 @@ views:
     cards:
       - type: custom:layout-card
         layout: vertical
-        max_columns: 3
+        max_columns: 4
         cards:
-          - type: glance
-            title: Groups
-            entities:
-              - group.all_devices
-              - group.all_lights
-              - group.all_switches
-              - group.all_plants
-              - group.all_remotes
-          - type: glance
-            title: System
-            entities:
-              - sensor.load_1m
-              - sensor.load_5m
-              - sensor.load_15m
-              - sensor.disk_free
-              - sensor.memory_free
-              - sensor.home_assistant_v2_db
-              - sensor.uptime
-              - sensor.time
-              - binary_sensor.updater
-          - type: glance
-            title: Devices
-            entities:
-              - person.jan
-              - device_tracker.iphonex
-              - device_tracker.watch
-              - device_tracker.ipadpro
-              - device_tracker.macbookpro
-              - device_tracker.byss
-              - device_tracker.netatmo
-              - device_tracker.xiaomi
-              - device_tracker.limitlessled
-              - device_tracker.blink
-          - type: horizontal-stack
-            cards:
-              - type: glance
-                title: iPhone X
-                entities:
-                  - entity: sensor.iphone_x_battery_level
-                    name: Level
-                  - entity: sensor.iphone_x_battery_state
-                    name: State
-              - type: glance
-                title: iPad
-                entities:
-                  - entity: sensor.ipad_pro_battery_level
-                    name: Level
-                  - entity: sensor.ipad_pro_battery_state
-                    name: State
-          - type: glance
-            title: Environment
-            entities:
-              - sun.sun
-              - sensor.moon
-              - entity: sensor.yr_symbol
-                name: YR
-              - binary_sensor.iss
           - type: glance
             title: AirCO2ntrol
             entities:
@@ -284,39 +261,76 @@ views:
                 name: Temperature
               - entity: sensor.airco2ntrol_carbon_dioxide
                 name: Carbon Dioxide
-          - break
-          - type: glance
+          - type: entities
             title: Trådfri (ZHA)
+            show_header_toggle: false
             entities:
+              # livingroom Ceiling Bulbs
               - light.ikea_tradfri_bulb_gu10_ws_400lm_1
               - light.ikea_tradfri_bulb_gu10_ws_400lm_2
               - light.ikea_tradfri_bulb_gu10_ws_400lm_3
               - light.ikea_tradfri_bulb_gu10_ws_400lm_4
+              # Bedroom Ceiling Light
               - light.ikea_tradfri_bulb_e27_opal_1000lm_1
-          - type: glance
+          - type: entities
             title: Osram (ZHA)
+            show_header_toggle: false
             entities:
               - switch.osram_plug_1
               - sensor.osram_plug_1
-          - type: glance
-            title: Xiaomi
+          - type: entities
+            title: Xiaomi (ZHA)
+            show_header_toggle: false
             entities:
-              - sensor.lumi_lumi_remote_b286acn01_2c87f302_1_1
-              - sensor.lumi_lumi_remote_b286acn01_2c87f302_1_18
-              - sensor.lumi_lumi_remote_b286acn01_2c87f302_2_18
-              - sensor.lumi_lumi_remote_b286acn01_2c87f302_3_18
-              - binary_sensor.motion_sensor_158d0002e2edae
-              - sensor.illumination_158d0002e2edae
-              - binary_sensor.door_window_sensor_158d00027b010e
+              # Entryway Motion Sensor
               - sensor.illumination_7811dcfaea5b
+              - type: divider
+              # Livingroom Door
+              - binary_sensor.lumi_lumi_sensor_magnet_0e017b02_on_off
+              - sensor.lumi_lumi_sensor_magnet_0e017b02_power
+              - type: divider
+              # Livingroom Switch
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_1
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_2
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_3
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_power
+              - type: divider
+              # Bedroom Window
+              - binary_sensor.lumi_lumi_sensor_magnet_eb017b02_1_6
+              - sensor.lumi_lumi_sensor_magnet_eb017b02_1_1
+          - type: entities
+            title: Xiaomi
+            show_header_toggle: false
+            entities:
+              - light.gateway_light_7811dcfaea5b
+              - switch.wall_switch_158d000161469d
+              # - binary_sensor.motion_sensor_158d0002e2edae
+              # - sensor.illumination_158d0002e2edae
+              # - binary_sensor.door_window_sensor_158d00027b010e
+              # - sensor.illumination_7811dcfaea5b
           - type: glance
             title: Sleepy (ESPHome)
             entities:
               - binary_sensor.sleepy_status
               - sensor.sleepy_uptime
-              - sensor.sleepy_temperature
-              - sensor.sleepy_humidity
+              - sensor.sleepy_esphome_version
               - sensor.sleepy_wifi_signal
+              - switch.sleepy_shutdown
+              # - sensor.sleepy_temperature
+              # - sensor.sleepy_humidity
+              - light.sleepy_strip
+          - type: glance
+            title: Windy (ESPHome)
+            entities:
+              - binary_sensor.windy_status
+              - sensor.windy_uptime
+              - sensor.windy_esphome_version
+              - sensor.windy_wifi_signal
+              - switch.windy_shutdown
+              - sensor.windy_temperature
+              - sensor.windy_humidity
+              - sensor.windy_pm_2_5
+              - sensor.windy_pm_10_0
           - type: glance
             title: Snow Flower
             entities:
@@ -396,24 +410,114 @@ views:
             type: picture-entity
           - type: alarm-panel
             entity: alarm_control_panel.blink_sync
+          - break
+          - type: glance
+            title: System
+            entities:
+              - sensor.load_1m
+              - sensor.load_5m
+              - sensor.load_15m
+              - sensor.disk_free
+              - sensor.memory_free
+              - sensor.home_assistant_v2_db
+              - sensor.uptime
+              - sensor.time
+              - binary_sensor.updater
+              - sensor.hacs
+          - type: entities
+            title: Alderaan
+            show_header_toggle: false
+            entities:
+              - sensor.alderaan_bytes_received
+              - sensor.alderaan_bytes_sent
+              - sensor.alderaan_kb_sec_received
+              - sensor.alderaan_kb_sec_sent
+              - sensor.alderaan_packets_received
+              - sensor.alderaan_packets_sent
+              - sensor.alderaan_packets_sec_received
+              - sensor.alderaan_packets_sec_sent
+          - type: glance
+            title: Devices
+            entities:
+              - device_tracker.iphonex
+              - device_tracker.watch
+              - device_tracker.ipadpro
+              - device_tracker.macbookpro
+              - device_tracker.byss
+              - device_tracker.netatmo
+              - device_tracker.xiaomi
+              - device_tracker.limitlessled
+              - device_tracker.blink
+              - device_tracker.echodot
+          - type: entities
+            title: iPhone X
+            show_header_toggle: false
+            entities:
+              - device_tracker.iphone_x
+              - sensor.iphone_x_geocoded_location
+              - sensor.iphone_x_activity
+              - sensor.iphone_x_average_active_pace
+              - sensor.iphone_x_distance
+              - sensor.iphone_x_steps
+              - sensor.iphone_x_floors_ascended
+              - sensor.iphone_x_floors_descended
+              - sensor.iphone_x_connection_type
+              - sensor.iphone_x_ssid
+              - sensor.iphone_x_bssid
+              - sensor.iphone_x_sim_1
+              - sensor.iphone_x_battery_state
+              - sensor.iphone_x_battery_level
+              - sensor.iphone_x_last_update_trigger
+          - type: entities
+            title: iPad Pro
+            show_header_toggle: false
+            entities:
+              - device_tracker.ipad_pro
+              - sensor.ipad_pro_geocoded_location
+              - sensor.ipad_pro_activity
+              - sensor.ipad_pro_connection_type
+              - sensor.ipad_pro_ssid
+              - sensor.ipad_pro_bssid
+              - sensor.ipad_pro_battery_state
+              - sensor.ipad_pro_battery_level
+              - sensor.ipad_pro_last_update_trigger
+          - break
+          - type: entities
+            title: People
+            entities:
+              - person.jansauer
           - type: entities
             title: Automations
             show_header_toggle: false
             entities:
+              - automation.leaving_home
+              - automation.returning_home
+              - type: divider
+              - automation.turn_on_entryway_light_when_there_is_movement
+              - automation.turn_off_entryway_lights_after_movement
+              - type: divider
+              - automation.livingroom_wall_switch_left_single
+              - automation.livingroom_wall_switch_right_single
+              - automation.livingroom_wall_switch_right_double
+              - type: divider
               - automation.set_theme_for_day_and_night
-              - automation.update_available_notifications
               - automation.plant_problem_notifications
+          - type: entities
+            title: Scripts
+            show_header_toggle: false
+            entities:
+              - script.return_home
+          - type: glance
+            title: Environment
+            entities:
+              - entity: sensor.yr_symbol
+                name: YR
+              - weather.home
+              - sun.sun
+              - sensor.moon
+              - binary_sensor.iss
 
-  - title: Test
-    path: test
-    icon: mdi:test-tube
-    cards:
-      - type: entities
-        title: Entryway Light Automation
-        show_header_toggle: false
-        entities:
-          - entity: automation.turn_on_entryway_light_when_there_is_movement
-            name: On Automation
-          - entity: automation.turn_off_entryway_lights_after_movement
-            name: Off Automation
-          - timer.entryway
+  # - title: Test
+  #   path: test
+  #   icon: mdi:test-tube
+  #   cards:

@@ -25,7 +25,7 @@ class DayTimeCard extends Polymer.Element {
           height: 90px;
           width: 90px;
           flex-shrink: 0;
-          background: url(/local/sun.jpg);
+          background: url(/local/daytime-card/sun.jpg);
           background-size: cover;
           animation: planetRotate 800s linear infinite;
           box-shadow:  0px 0px 10px 0px #cc9f4c, 0px 0px 1000px -2px #cc9f4c;
@@ -41,7 +41,7 @@ class DayTimeCard extends Polymer.Element {
         .moon {
           height: 90px;
           width: 90px;
-          background: url(/local/moon.png);
+          background: url(/local/daytime-card/moon.png);
           background-size: cover;
           box-shadow: 0px 0px 10px 0px var(--sun-color), 0px 0px 1000px -2px var(--sun-color);
           box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.2), inset -70px 0px 50px 0px black, -5px 0px 10px -4px var(--sun-color);

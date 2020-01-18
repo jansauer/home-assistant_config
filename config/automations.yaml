@@ -1,7 +1,40 @@
 # https://www.home-assistant.io/docs/automation/
 
-# Turn on entryway ligth based on motion
-# https://www.home-assistant.io/cookbook/turn_on_light_for_10_minutes_when_motion_detected/
+##
+## Presence Automations
+##
+
+- alias: Leaving Home
+  trigger:
+    platform: state
+    entity_id: person.jan
+    to: "away"
+  action:
+    - service: notify.pushover
+      data:
+        message: "Leaving"
+    # - service: climate.set_preset_mode
+    #   data:
+    #     entity_id: climate.netatmo_living_room
+    #     preset_mode: away
+    # - service: scene.turn_on
+    #   entity_id: scene.livingroom_off
+
+- alias: Returning Home
+  trigger:
+    platform: state
+    entity_id: person.jan
+    to: "home"
+  action:
+    - service: notify.pushover
+      data:
+        message: "Return 0:30"
+
+##
+## Turn on entryway ligth based on motion
+## https://www.home-assistant.io/cookbook/turn_on_light_for_10_minutes_when_motion_detected/
+##
+
 - alias: Turn on entryway light when there is movement
   trigger:
     platform: state
@@ -18,6 +51,7 @@
     - service: timer.start
       data:
         entity_id: timer.entryway
+
 - alias: Turn off entryway lights after movement
   trigger:
     platform: event
@@ -28,8 +62,48 @@
     service: homeassistant.turn_off
     entity_id: switch.wall_switch_158d000161469d
 
-# Wake-me up using bedroom lights
-# https://www.wouterbulten.nl/blog/tech/custom-wake-up-light-with-home-assistant/
+##
+## Livingroom Wall Switch
+##
+
+- alias: Livingroom wall switch left single
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      device_ieee: "00:15:8d:00:02:f3:87:2c"
+      command: left_single
+  action:
+    service: homeassistant.toggle
+    entity_id: light.livingroom_ceiling_lights
+
+- alias: Livingroom wall switch right single
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      device_ieee: "00:15:8d:00:02:f3:87:2c"
+      command: right_single
+  action:
+    service: homeassistant.toggle
+    entity_id: light.livingroom_accent_lights
+
+- alias: Livingroom wall switch right double
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      device_ieee: "00:15:8d:00:02:f3:87:2c"
+      command: right_double
+  action:
+    service: switch.toggle
+    entity_id: switch.osram_plug_1
+
+##
+## Wake-me up using bedroom lights
+## https://www.wouterbulten.nl/blog/tech/custom-wake-up-light-with-home-assistant/
+##
+
 - alias: 'Wake-me up using bedroom lights'
   trigger:
     platform: template
@@ -54,6 +128,10 @@
         transition: 1800  # seconds => 30min
         brightness: 255
 
+##
+## Theme Day/Night Switch
+##
+
 - alias: 'Set theme for day and night'
   trigger:
     - platform: homeassistant
@@ -73,16 +151,6 @@
           {% else %}
             dark
           {% endif %}
-
-- alias: 'Update Available Notifications'
-  trigger:
-    platform: state
-    entity_id: updater.updater
-  action:
-    service: notify.notify
-    data_template:
-      title: 'Update Available'
-      message: 'Home Assistant {{ states.updater.updater.state }}'
 
 - alias: 'Plant Problem Notifications'
   trigger:

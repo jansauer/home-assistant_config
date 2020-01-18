@@ -16,6 +16,9 @@ open http://hassio.local:8123/
 
 # flush my config
 $ scp -r config/* hassio:/config
+
+# pull backups
+$ scp -r hassio:/backup ./
 ```
 
 ## Addons

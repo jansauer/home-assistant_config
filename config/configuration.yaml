@@ -50,6 +50,8 @@ system_health:
 
 # https://www.home-assistant.io/integrations/discovery/
 discovery:
+  ignore:
+    - plex_mediaserver
 
 # https://www.home-assistant.io/integrations/mobile_app/
 mobile_app:
@@ -149,20 +151,20 @@ binary_sensor:
 input_boolean:
   wakeup_weekend:
     name: "Enable Wake-up on weekends"
-    initial: off
     icon: mdi:calendar-blank
+    initial: off
+  mode_guest_mode:
+    name: Guest Mode
+    icon: mdi:drama-masks
+    initial: off
 #   mode_do_not_disturb:
-#     icon: mdi:bell-off
-#     initial: false
 #     name: Do Not Disturb
-#   mode_guest_mode:
-#     icon: mdi:hotel
-#     initial: false
-#     name: Guest Mode
+#     icon: mdi:bell-off
+#     initial: off
 #   mode_vacation_mode:
-#     icon: mdi:beach
-#     initial: false
 #     name: Vacation Mode
+#     icon: mdi:beach
+#     initial: off
 
 # https://www.home-assistant.io/components/light/
 light:
@@ -356,8 +358,9 @@ logger:
   default: warning
   # default: debug
   logs:
-    custom_components.airco2ntrol: debug
-    homeassistant.components.sensor.miflora: debug
+    # custom_components.airco2ntrol: debug
+    # homeassistant.components.sensor.miflora: debug
+    homeassistant.components.sentry: debug
 
 zone: !include zones.yaml
 scene: !include scenes.yaml

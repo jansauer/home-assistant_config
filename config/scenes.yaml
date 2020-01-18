@@ -1,12 +1,3 @@
-- name: Livingroom Off
-  entities:
-    light.livingroom_ceiling_lights:
-      state: off
-    switch.osram_plug_1:
-      state: off
-    light.livingroom_accent_lights:
-      state: off
-
 - name: Livingroom Night Light
   entities:
     light.tv:
@@ -16,23 +7,24 @@
       state: on
       effect: night
 
-- name: Cold
+- name: Livingroom Off
   entities:
     light.livingroom_ceiling_lights:
-      state: on
-      color_temp: 250
-      transition: 2
+      state: off
+    switch.osram_plug_1:
+      state: off
+    light.livingroom_accent_lights:
+      state: off
 
-- name: Normal
-  entities:
-    light.livingroom_ceiling_lights:
-      state: on
-      color_temp: 350
-      transition: 2
+# - name: Bedroom Night Light
+#   entities:
+#     light.tv:
+#       state: on
+#       effect: night
 
-- name: Warm
+- name: Bedroom Off
   entities:
-    light.livingroom_ceiling_lights:
-      state: on
-      color_temp: 450
-      transition: 2
+    light.ikea_tradfri_bulb_e27_opal_1000lm_1:
+      state: off
+    light.gateway_light_7811dcfaea5b:
+      state: off

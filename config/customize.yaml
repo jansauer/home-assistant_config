@@ -1,15 +1,25 @@
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+
+# People
 person.jan:
   entity_picture: /local/jansauer.jpg
 
-# friendly light names
-sensor.home_assistant_v2_db:
-  friendly_name: Database size
-light.gateway_light_7811dcfaea5b:
-  friendly_name: Xiaomi Gateway Light
-  icon: mdi:album
+# Entryway Motion Sensor
+sensor.illumination_7811dcfaea5b:
+  friendly_name: Entryway Motion Sensor
+
+# Entryway Ceiling Light
 switch.wall_switch_158d000161469d:
   friendly_name: Entryway Ceiling Light
   icon: mdi:ceiling-light
+
+# Livingroom Door
+binary_sensor.lumi_lumi_sensor_magnet_0e017b02_on_off:
+  friendly_name: Livingroom Door
+sensor.lumi_lumi_sensor_magnet_0e017b02_power:
+  friendly_name: Livingroom Door Battery
+
+# Livingroom Ceiling Lights
 light.livingroom_ceiling_lights:
   friendly_name: Livingroom Ceiling Lights
   icon: mdi:ceiling-light
@@ -21,22 +31,48 @@ light.ikea_tradfri_bulb_gu10_ws_400lm_3:
   friendly_name: Livingroom Ceiling Bulb 3
 light.ikea_tradfri_bulb_gu10_ws_400lm_4:
   friendly_name: Livingroom Ceiling Bulb 4
+
+# Livingroom Accent Lights
 light.livingroom_accent_lights:
   icon: mdi:group-work
+
+# Livingroom Couch Plug
+switch.osram_plug_1:
+  friendly_name: Livingroom Couch Plug
+sensor.osram_plug_1:
+  friendly_name: Livingroom Couch Plug Power Consumption
+
+# Livingroom Switch
+sensor.lumi_lumi_remote_b286acn01_2c87f302_1:
+  friendly_name: Livingroom Switch Left Single
+sensor.lumi_lumi_remote_b286acn01_2c87f302_2:
+  friendly_name: Livingroom Switch Right Single
+sensor.lumi_lumi_remote_b286acn01_2c87f302_3:
+  friendly_name: Livingroom Switch Both Single
+sensor.lumi_lumi_remote_b286acn01_2c87f302_power:
+  friendly_name: Livingroom Switch Battery
+
+# Bedroom Ceiling Light
 light.ikea_tradfri_bulb_e27_opal_1000lm_1:
   friendly_name: Bedroom Ceiling Light
   icon: mdi:ceiling-light
 
-sensor.lumi_lumi_remote_b286acn01_2c87f302_1_1:
-  friendly_name: Livingroom Switch
-sensor.lumi_lumi_remote_b286acn01_2c87f302_1_18:
-  friendly_name: Livingroom Switch Left Single
-sensor.lumi_lumi_remote_b286acn01_2c87f302_2_18:
-  friendly_name: Livingroom Switch Right Single
-sensor.lumi_lumi_remote_b286acn01_2c87f302_3_18:
-  friendly_name: Livingroom Switch Both Single
+# Bedroom Window
+binary_sensor.lumi_lumi_sensor_magnet_eb017b02_1_6:
+  friendly_name: Bedroom Window
+sensor.lumi_lumi_sensor_magnet_eb017b02_1_1:
+  friendly_name: Bedroom Window Battery
 
-# toggle switches for limitlessled lights
+# Xiaomi Gateway Light
+light.gateway_light_7811dcfaea5b:
+  friendly_name: Xiaomi Gateway Light
+  icon: mdi:album
+
+# System
+sensor.home_assistant_v2_db:
+  friendly_name: Database size
+
+# Fix missig toggle switches for limitlessled lights
 # @See https://www.home-assistant.io/components/light.limitlessled/#initialization--synchronization
 light.tv:
   assumed_state: false
