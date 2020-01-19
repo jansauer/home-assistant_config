@@ -1,0 +1,66 @@
+esphome:
+  name: windy
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: Alderaan Legacy
+  password: !secret alderaan
+
+logger:
+  baud_rate: 0  # Disable logging via UART
+
+api:
+  password: !secret windy
+
+ota:
+  password: !secret windy
+
+## Interface for the temperature+humidity sensor
+## https://esphome.io/components/i2c.html
+i2c:
+  sda: GPIO23
+  scl: GPIO22
+
+## Interface for the particulate matter sensor
+## https://esphome.io/custom/uart.html
+uart:
+  rx_pin: GPIO3
+  tx_pin: GPIO1
+  baud_rate: 9600
+
+sensor:
+  - platform: uptime
+    name: Windy Uptime Sensor
+
+  - platform: wifi_signal
+    name: Windy WiFi Signal Sensor
+  
+  ## SHT31 temperature+humidity sensor
+  ## https://esphome.io/components/sensor/sht3xd.html
+  - platform: sht3xd
+    temperature:
+      name: Windy Temperature
+    humidity:
+      name: Windy Humidity
+
+  ## SDS011 particulate matter sensor
+  ## https://esphome.io/components/sensor/sds011.html
+  - platform: sds011
+    pm_2_5:
+      name: "Particulate Matter <2.5µm Concentration"
+    pm_10_0:
+      name: "Particulate Matter <10.0µm Concentration"
+    update_interval: 5min
+
+binary_sensor:
+  - platform: status
+    name: Windy Status
+
+text_sensor:
+  - platform: version
+    name: Windy ESPHome Version
+
+switch:
+  - platform: shutdown
+    name: Windy Shutdown
