@@ -63,18 +63,18 @@ views:
             entities:
               - light.gateway_light_7811dcfaea5b
               - switch.wall_switch_158d000161469d
-          - type: glance
-            title: Sleepy (ESPHome)
-            entities:
-              - binary_sensor.sleepy_status
-              - sensor.sleepy_uptime
-              - sensor.sleepy_esphome_version
-              - sensor.sleepy_wifi_signal
-              - switch.sleepy_shutdown
-              # - sensor.sleepy_temperature
-              # - sensor.sleepy_humidity
-              - binary_sensor.sleepy_motion_left
-              - light.sleepy_strip
+          # - type: glance
+          #   title: Sleepy (ESPHome)
+          #   entities:
+          #     - binary_sensor.sleepy_status
+          #     - sensor.sleepy_uptime
+          #     - sensor.sleepy_esphome_version
+          #     - sensor.sleepy_wifi_signal
+          #     - switch.sleepy_shutdown
+          #     # - sensor.sleepy_temperature
+          #     # - sensor.sleepy_humidity
+          #     - binary_sensor.sleepy_motion_left
+          #     - light.sleepy_strip
           - type: glance
             title: Windy (ESPHome)
             entities:
@@ -87,32 +87,32 @@ views:
               - sensor.windy_humidity
               - sensor.windy_pm_2_5
               - sensor.windy_pm_10_0
-          - type: glance
-            title: Snow Flower
-            entities:
-              - entity: sensor.snowflower_moisture
-                name: Moisture
-              - entity: sensor.snowflower_conductivity
-                name: Conductivity
-              - entity: sensor.snowflower_light_intensity
-                name: Light Intensity
-              - entity: sensor.snowflower_temperature
-                name: Temperature
-              - entity: sensor.snowflower_battery
-                name: Battery
-          - type: glance
-            title: Balcony Flowers
-            entities:
-              - entity: sensor.balcony_moisture
-                name: Moisture
-              - entity: sensor.balcony_conductivity
-                name: Conductivity
-              - entity: sensor.balcony_light_intensity
-                name: Light Intensity
-              - entity: sensor.balcony_temperature
-                name: Temperature
-              - entity: sensor.balcony_battery
-                name: Battery
+          # - type: glance
+          #   title: Snow Flower
+          #   entities:
+          #     - entity: sensor.snowflower_moisture
+          #       name: Moisture
+          #     - entity: sensor.snowflower_conductivity
+          #       name: Conductivity
+          #     - entity: sensor.snowflower_light_intensity
+          #       name: Light Intensity
+          #     - entity: sensor.snowflower_temperature
+          #       name: Temperature
+          #     - entity: sensor.snowflower_battery
+          #       name: Battery
+          # - type: glance
+          #   title: Balcony Flowers
+          #   entities:
+          #     - entity: sensor.balcony_moisture
+          #       name: Moisture
+          #     - entity: sensor.balcony_conductivity
+          #       name: Conductivity
+          #     - entity: sensor.balcony_light_intensity
+          #       name: Light Intensity
+          #     - entity: sensor.balcony_temperature
+          #       name: Temperature
+          #     - entity: sensor.balcony_battery
+          #       name: Battery
           - break
           - type: glance
             title: Withings
