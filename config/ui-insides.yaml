@@ -217,6 +217,7 @@ views:
               - sensor.iphone_x_steps
               - sensor.iphone_x_floors_ascended
               - sensor.iphone_x_floors_descended
+              - sensor.iphone_x_storage
               - sensor.iphone_x_connection_type
               - sensor.iphone_x_ssid
               - sensor.iphone_x_bssid
@@ -224,6 +225,20 @@ views:
               - sensor.iphone_x_battery_state
               - sensor.iphone_x_battery_level
               - sensor.iphone_x_last_update_trigger
+          - type: entities
+            title: iPad Pro
+            show_header_toggle: false
+            entities:
+              - device_tracker.ipad
+              - sensor.ipad_activity
+              - sensor.ipad_geocoded_location
+              - sensor.ipad_storage
+              - sensor.ipad_connection_type
+              - sensor.ipad_ssid
+              - sensor.ipad_bssid
+              - sensor.ipad_battery_state
+              - sensor.ipad_battery_level
+              - sensor.ipad_last_update_trigger
           - break
           - type: entities
             title: People
