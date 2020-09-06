@@ -32,6 +32,12 @@ frontend:
 # https://www.home-assistant.io/lovelace/
 lovelace:
   mode: yaml
+  dashboards:
+    lovelace-insides:
+      mode: yaml
+      title: Insides
+      icon: mdi:stethoscope
+      filename: ui-insides.yaml
 
 # https://www.home-assistant.io/components/recorder/
 recorder:

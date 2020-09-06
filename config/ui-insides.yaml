@@ -1,0 +1,261 @@
+title: My Awesome Home
+resources:
+  # https://github.com/thomasloven/lovelace-layout-card
+    url: /hacsfiles/lovelace-layout-card/layout-card.js
+    type: module
+views:
+  - title: Insides
+    path: insides
+    icon: mdi:stethoscope
+    panel: true
+    cards:
+      - type: custom:layout-card
+        layout: vertical
+        max_columns: 4
+        cards:
+          - type: glance
+            title: AirCO2ntrol
+            entities:
+              - entity: sensor.airco2ntrol_temperature
+                name: Temperature
+              - entity: sensor.airco2ntrol_carbon_dioxide
+                name: Carbon Dioxide
+          - type: entities
+            title: Trådfri (ZHA)
+            show_header_toggle: false
+            entities:
+              # livingroom Ceiling Bulbs
+              - light.ikea_tradfri_bulb_gu10_ws_400lm_1
+              - light.ikea_tradfri_bulb_gu10_ws_400lm_2
+              - light.ikea_tradfri_bulb_gu10_ws_400lm_3
+              - light.ikea_tradfri_bulb_gu10_ws_400lm_4
+              # Bedroom Ceiling Light
+              - light.ikea_tradfri_bulb_e27_opal_1000lm_1
+          - type: entities
+            title: Osram (ZHA)
+            show_header_toggle: false
+            entities:
+              - switch.osram_plug_1
+              - sensor.osram_plug_1
+          - type: entities
+            title: Xiaomi (ZHA)
+            show_header_toggle: false
+            entities:
+              # Entryway Motion Sensor
+              - sensor.illumination_7811dcfaea5b
+              - type: divider
+              # Livingroom Door
+              - binary_sensor.lumi_lumi_sensor_magnet_0e017b02_on_off
+              - sensor.lumi_lumi_sensor_magnet_0e017b02_power
+              - type: divider
+              # Livingroom Switch
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_1
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_2
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_3
+              - sensor.lumi_lumi_remote_b286acn01_2c87f302_power
+              - type: divider
+              # Bedroom Window
+              - binary_sensor.lumi_lumi_sensor_magnet_eb017b02_1_6
+              - sensor.lumi_lumi_sensor_magnet_eb017b02_1_1
+          - type: entities
+            title: Xiaomi
+            show_header_toggle: false
+            entities:
+              - light.gateway_light_7811dcfaea5b
+              - switch.wall_switch_158d000161469d
+          - type: glance
+            title: Sleepy (ESPHome)
+            entities:
+              - binary_sensor.sleepy_status
+              - sensor.sleepy_uptime
+              - sensor.sleepy_esphome_version
+              - sensor.sleepy_wifi_signal
+              - switch.sleepy_shutdown
+              # - sensor.sleepy_temperature
+              # - sensor.sleepy_humidity
+              - binary_sensor.sleepy_motion_left
+              - light.sleepy_strip
+          - type: glance
+            title: Windy (ESPHome)
+            entities:
+              - binary_sensor.windy_status
+              - sensor.windy_uptime
+              - sensor.windy_esphome_version
+              - sensor.windy_wifi_signal
+              - switch.windy_shutdown
+              - sensor.windy_temperature
+              - sensor.windy_humidity
+              - sensor.windy_pm_2_5
+              - sensor.windy_pm_10_0
+          - type: glance
+            title: Snow Flower
+            entities:
+              - entity: sensor.snowflower_moisture
+                name: Moisture
+              - entity: sensor.snowflower_conductivity
+                name: Conductivity
+              - entity: sensor.snowflower_light_intensity
+                name: Light Intensity
+              - entity: sensor.snowflower_temperature
+                name: Temperature
+              - entity: sensor.snowflower_battery
+                name: Battery
+          - type: glance
+            title: Balcony Flowers
+            entities:
+              - entity: sensor.balcony_moisture
+                name: Moisture
+              - entity: sensor.balcony_conductivity
+                name: Conductivity
+              - entity: sensor.balcony_light_intensity
+                name: Light Intensity
+              - entity: sensor.balcony_temperature
+                name: Temperature
+              - entity: sensor.balcony_battery
+                name: Battery
+          - break
+          - type: glance
+            title: Withings
+            entities:
+              - entity: sensor.withings_weight_kg_jansauer
+                name: Weight
+              - entity: sensor.withings_fat_ratio_pct_jansauer
+                name: Fat Ratio
+              - entity: sensor.withings_heart_pulse_bpm_jansauer
+                name: Heart Rate
+              - entity: sensor.withings_fat_mass_kg_jansauer
+                name: Fat Mass
+              - entity: sensor.withings_fat_free_mass_kg_jansauer
+                name: Fat Free Mass
+              - entity: sensor.withings_height_m_jansauer
+                name: Height
+          - type: entities
+            title: Echo Dot
+            show_header_toggle: false
+            entities:
+              - media_player.echo_dot
+              - sensor.echo_dot_next_alarm
+              - sensor.echo_dot_next_reminder
+              - sensor.echo_dot_next_timer
+              - switch.echo_dot_shuffle_switch
+              - switch.echo_dot_repeat_switch
+              - switch.echo_dot_do_not_disturb_switch
+          - type: entities
+            title: Echo App
+            show_header_toggle: false
+            entities:
+              - media_player.this_device
+              - sensor.this_device_next_reminder
+              - switch.this_device_shuffle_switch
+              - switch.this_device_repeat_switch
+              - switch.this_device_do_not_disturb_switch
+          - type: glance
+            title: Blink
+            entities:
+              - entity: binary_sensor.blink_home_motion_detected
+                name: Motion Detected
+              - entity: binary_sensor.blink_home_camera_armed
+                name: Camera Armed
+              - entity: sensor.blink_home_temperature
+                name: Temperature
+              - entity: sensor.blink_home_wifi_signal
+                name: Wifi Signal
+              - entity: sensor.blink_home_battery
+                name: Battery
+          - entity: camera.blink_home
+            type: picture-entity
+          - type: alarm-panel
+            entity: alarm_control_panel.blink_sync
+          - break
+          - type: glance
+            title: System
+            entities:
+              - sensor.load_1m
+              - sensor.load_5m
+              - sensor.load_15m
+              - sensor.disk_free
+              - sensor.memory_free
+              - sensor.home_assistant_v2_db
+              - sensor.uptime
+              - sensor.time
+              - binary_sensor.updater
+              - sensor.hacs
+          - type: entities
+            title: Alderaan
+            show_header_toggle: false
+            entities:
+              - sensor.alderaan_bytes_received
+              - sensor.alderaan_bytes_sent
+              - sensor.alderaan_kb_sec_received
+              - sensor.alderaan_kb_sec_sent
+              - sensor.alderaan_packets_received
+              - sensor.alderaan_packets_sent
+              - sensor.alderaan_packets_sec_received
+              - sensor.alderaan_packets_sec_sent
+          - type: glance
+            title: Devices
+            entities:
+              - device_tracker.iphonex
+              - device_tracker.watch
+              - device_tracker.ipadpro
+              - device_tracker.macbookpro
+              - device_tracker.byss
+              - device_tracker.netatmo
+              - device_tracker.xiaomi
+              - device_tracker.limitlessled
+              - device_tracker.blink
+              - device_tracker.echodot
+          - type: entities
+            title: iPhone X
+            show_header_toggle: false
+            entities:
+              - device_tracker.iphone_x
+              - sensor.iphone_x_geocoded_location
+              - sensor.iphone_x_activity
+              - sensor.iphone_x_average_active_pace
+              - sensor.iphone_x_distance
+              - sensor.iphone_x_steps
+              - sensor.iphone_x_floors_ascended
+              - sensor.iphone_x_floors_descended
+              - sensor.iphone_x_connection_type
+              - sensor.iphone_x_ssid
+              - sensor.iphone_x_bssid
+              - sensor.iphone_x_sim_1
+              - sensor.iphone_x_battery_state
+              - sensor.iphone_x_battery_level
+              - sensor.iphone_x_last_update_trigger
+          - break
+          - type: entities
+            title: People
+            entities:
+              - person.jansauer
+          - type: entities
+            title: Automations
+            show_header_toggle: false
+            entities:
+              - automation.leaving_home
+              - automation.returning_home
+              - type: divider
+              - automation.turn_on_entryway_light_when_there_is_movement
+              - automation.turn_off_entryway_lights_after_movement
+              - type: divider
+              - automation.livingroom_wall_switch_left_single
+              - automation.livingroom_wall_switch_right_single
+              - automation.livingroom_wall_switch_right_double
+              - type: divider
+              - automation.set_theme_for_day_and_night
+              - automation.plant_problem_notifications
+          - type: entities
+            title: Scripts
+            show_header_toggle: false
+            entities:
+              - script.return_home
+          - type: glance
+            title: Environment
+            entities:
+              - entity: sensor.yr_symbol
+                name: YR
+              - weather.home
+              - sun.sun
+              - sensor.moon
+              - binary_sensor.iss
