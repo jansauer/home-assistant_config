@@ -12,7 +12,6 @@ homeassistant:
 
 # https://www.home-assistant.io/components/http/
 http:
-  base_url: !secret http_url
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   ip_ban_enabled: true
