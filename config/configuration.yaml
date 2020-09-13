@@ -87,12 +87,6 @@ zha:
   usb_path: /dev/ttyUSB0
   database_path: /config/zigbee.db
 
-# https://www.home-assistant.io/components/xiaomi_aqara/
-xiaomi_aqara:
-  gateways:
-    - mac: 78:11:DC:FA:EA:5B
-      key: !secret xiaomi_gateway_kex
-
 # https://www.home-assistant.io/components/sensor/
 sensor:
   - platform: airco2ntrol
