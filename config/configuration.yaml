@@ -270,10 +270,8 @@ plant:
 
 # https://www.home-assistant.io/integrations/netatmo/
 netatmo:
-  api_key: !secret netatmo_client_id
-  secret_key: !secret netatmo_client_secret
-  username: !secret netatmo_username
-  password: !secret netatmo_password
+  client_id: !secret netatmo_client_id
+  client_secret: !secret netatmo_client_secret
 
 # https://www.home-assistant.io/components/withings/
 withings:
