@@ -26,7 +26,7 @@ config:
 
 # https://www.home-assistant.io/components/frontend/
 frontend:
-  themes: !include themes.yaml
+  themes: !include_dir_merge_named themes
 
 # https://www.home-assistant.io/lovelace/
 lovelace:
@@ -54,9 +54,9 @@ map:
 system_health:
 
 # https://www.home-assistant.io/integrations/discovery/
-discovery:
-  ignore:
-    - plex_mediaserver
+# discovery:
+#   ignore:
+#     - plex_mediaserver
 
 # https://www.home-assistant.io/integrations/mobile_app/
 mobile_app:
@@ -207,6 +207,16 @@ switch:
 shell_command:
   turn_off_byss: 'ssh -i /config/byss-hassio_ed25519 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null hassio@192.168.5.5 date'
 
+# hdmi_cec:
+#   devices:
+#     TV: 0.0.0.0
+#     AV Receiver: 1.0.0.0
+#     Apple TV: 1.1.0.0
+#     Home Assistant: 1.2.0.0
+#   platform: switch
+  # types:
+  #   hdmi_cec.TV: media_player
+
 # https://www.home-assistant.io/components/apple_tv/
 apple_tv:
   - host: 192.168.5.58
@@ -278,19 +288,11 @@ withings:
   client_id: !secret withings_client_id
   client_secret: !secret withings_client_secret
 
-# https://github.com/custom-components/alexa_media_player
-alexa_media:
-  accounts:
-    - email: !secret amazon_user
-      password: !secret amazon_password
-      url: amazon.de
-
 # https://www.home-assistant.io/components/homekit/
 homekit:
   filter:
     include_entities:
       # Entryway
-      - switch.wall_switch_158d000161469d
       # Livingroom
       # - light.ikea_tradfri_bulb_gu10_ws_400lm_1
       # - light.ikea_tradfri_bulb_gu10_ws_400lm_2
@@ -301,9 +303,9 @@ homekit:
       - light.tv
       - sensor.airco2ntrol_carbon_dioxide
       - sensor.airco2ntrol_temperature
+      - scene.livingroom_night_light
       # Bedroom
       - light.ikea_tradfri_bulb_e27_opal_1000lm_1
-      - light.gateway_light_7811dcfaea5b
       # - sensor.sleepy_temperature
       # - sensor.sleepy_humidity
 
@@ -336,10 +338,6 @@ notify:
   # https://github.com/custom-components/alexa_media_player/wiki/Notification-Component
   - platform: alexa_media
     name: alexa_media
-
-# https://www.home-assistant.io/integrations/sentry/
-sentry:
-  dsn: !secret sentry_dsn
 
 # https://www.home-assistant.io/components/logger/
 logger:

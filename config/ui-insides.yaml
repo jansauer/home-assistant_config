@@ -1,8 +1,13 @@
-title: My Awesome Home
+title: Insides
 resources:
-  # https://github.com/thomasloven/lovelace-layout-card
-    url: /hacsfiles/lovelace-layout-card/layout-card.js
+  # https://github.com/maykar/custom-header
+  - url: /hacsfiles/custom-header/custom-header.js
     type: module
+  # https://github.com/thomasloven/lovelace-layout-card
+  - url: /hacsfiles/lovelace-layout-card/layout-card.js
+    type: module
+custom_header:
+  compact_mode: true
 views:
   - title: Insides
     path: insides
@@ -11,15 +16,43 @@ views:
     cards:
       - type: custom:layout-card
         layout: vertical
-        max_columns: 4
         cards:
           - type: glance
-            title: AirCO2ntrol
+            title: System
             entities:
-              - entity: sensor.airco2ntrol_temperature
-                name: Temperature
-              - entity: sensor.airco2ntrol_carbon_dioxide
-                name: Carbon Dioxide
+              - sensor.load_1m
+              - sensor.load_5m
+              - sensor.load_15m
+              - sensor.disk_free
+              - sensor.memory_free
+              - sensor.home_assistant_v2_db
+              - sensor.uptime
+              - sensor.time
+              - binary_sensor.updater
+              - sensor.hacs
+          - type: glance
+            title: Environment
+            entities:
+              - entity: sensor.yr_symbol
+                name: YR
+              - weather.home
+              - sun.sun
+              - sensor.moon
+              - binary_sensor.iss
+          - type: entities
+            title: People
+            entities:
+              - person.jansauer
+          - type: map
+            entities:
+              - device_tracker.iphonex
+              - device_tracker.watch
+              - device_tracker.ipadpro
+            aspect_ratio: 16:9
+            default_zoom: 15
+            # dark_mode: true
+            hours_to_show: 48
+          - break
           - type: entities
             title: Trådfri (ZHA)
             show_header_toggle: false
@@ -63,92 +96,40 @@ views:
             entities:
               - light.gateway_light_7811dcfaea5b
               - switch.wall_switch_158d000161469d
-          # - type: glance
-          #   title: Sleepy (ESPHome)
-          #   entities:
-          #     - binary_sensor.sleepy_status
-          #     - sensor.sleepy_uptime
-          #     - sensor.sleepy_esphome_version
-          #     - sensor.sleepy_wifi_signal
-          #     - switch.sleepy_shutdown
-          #     # - sensor.sleepy_temperature
-          #     # - sensor.sleepy_humidity
-          #     - binary_sensor.sleepy_motion_left
-          #     - light.sleepy_strip
-          - type: glance
-            title: Windy (ESPHome)
+          - type: entities
+            title: LimitlessLED
+            show_header_toggle: false
             entities:
-              - binary_sensor.windy_status
-              - sensor.windy_uptime
-              - sensor.windy_esphome_version
-              - sensor.windy_wifi_signal
-              - switch.windy_shutdown
-              - sensor.windy_temperature
-              - sensor.windy_humidity
-              - sensor.windy_pm_2_5
-              - sensor.windy_pm_10_0
-          # - type: glance
-          #   title: Snow Flower
-          #   entities:
-          #     - entity: sensor.snowflower_moisture
-          #       name: Moisture
-          #     - entity: sensor.snowflower_conductivity
-          #       name: Conductivity
-          #     - entity: sensor.snowflower_light_intensity
-          #       name: Light Intensity
-          #     - entity: sensor.snowflower_temperature
-          #       name: Temperature
-          #     - entity: sensor.snowflower_battery
-          #       name: Battery
-          # - type: glance
-          #   title: Balcony Flowers
-          #   entities:
-          #     - entity: sensor.balcony_moisture
-          #       name: Moisture
-          #     - entity: sensor.balcony_conductivity
-          #       name: Conductivity
-          #     - entity: sensor.balcony_light_intensity
-          #       name: Light Intensity
-          #     - entity: sensor.balcony_temperature
-          #       name: Temperature
-          #     - entity: sensor.balcony_battery
-          #       name: Battery
+              - light.tv
+              - light.shelf
           - break
+          - type: glance
+            title: AirCO2ntrol
+            entities:
+              - entity: sensor.airco2ntrol_temperature
+                name: Temperature
+              - entity: sensor.airco2ntrol_carbon_dioxide
+                name: Carbon Dioxide
           - type: glance
             title: Withings
             entities:
-              - entity: sensor.withings_weight_kg_jansauer
+              - entity: sensor.withings_weight_kg
                 name: Weight
-              - entity: sensor.withings_fat_ratio_pct_jansauer
-                name: Fat Ratio
-              - entity: sensor.withings_heart_pulse_bpm_jansauer
-                name: Heart Rate
-              - entity: sensor.withings_fat_mass_kg_jansauer
-                name: Fat Mass
-              - entity: sensor.withings_fat_free_mass_kg_jansauer
+              - entity: sensor.withings_fat_free_mass_kg
                 name: Fat Free Mass
-              - entity: sensor.withings_height_m_jansauer
-                name: Height
-          - type: entities
-            title: Echo Dot
-            show_header_toggle: false
-            entities:
-              - media_player.echo_dot
-              - sensor.echo_dot_next_alarm
-              - sensor.echo_dot_next_reminder
-              - sensor.echo_dot_next_timer
-              - switch.echo_dot_shuffle_switch
-              - switch.echo_dot_repeat_switch
-              - switch.echo_dot_do_not_disturb_switch
-          - type: entities
-            title: Echo App
-            show_header_toggle: false
-            entities:
-              - media_player.this_device
-              - sensor.this_device_next_reminder
-              - switch.this_device_shuffle_switch
-              - switch.this_device_repeat_switch
-              - switch.this_device_do_not_disturb_switch
+              - entity: sensor.withings_fat_mass_kg
+                name: Fat Mass
+              - entity: sensor.withings_fat_ratio_pct
+                name: Fat Ratio
+              - entity: sensor.withings_heart_pulse_bpm
+                name: Heart Rate
+          - type: weather-forecast
+            entity: weather.dark_sky
+          - break
+          - type: thermostat
+            entity: climate.netatmo_living_room
+          - type: thermostat
+            entity: climate.netatmo_bedroom
           - type: glance
             title: Blink
             entities:
@@ -160,40 +141,42 @@ views:
                 name: Temperature
               - entity: sensor.blink_home_wifi_signal
                 name: Wifi Signal
-              - entity: sensor.blink_home_battery
+              - entity: binary_sensor.blink_home_battery
                 name: Battery
           - entity: camera.blink_home
             type: picture-entity
           - type: alarm-panel
-            entity: alarm_control_panel.blink_sync
-          - break
+            entity: alarm_control_panel.blink_blink
+
+  - title: Media
+    path: media
+    icon: mdi:cast
+    panel: true
+    cards:
+      - type: custom:layout-card
+        layout: vertical
+        cards:
+          - type: media-control
+            entity: media_player.spotify
+          - type: media-control
+            entity: media_player.living_room_chromecast
+          - type: media-control
+            entity: media_player.plex_plex_for_apple_tv_living_room
+          - type: media-control
+            entity: media_player.plex_plex_cast_chromecast
+          - type: media-control
+            entity: media_player.plex_plex_web_chrome_osx
+
+  - title: Devices
+    path: devices
+    icon: mdi:router-wireless
+    panel: true
+    cards:
+      - type: custom:layout-card
+        layout: vertical
+        cards:
           - type: glance
-            title: System
-            entities:
-              - sensor.load_1m
-              - sensor.load_5m
-              - sensor.load_15m
-              - sensor.disk_free
-              - sensor.memory_free
-              - sensor.home_assistant_v2_db
-              - sensor.uptime
-              - sensor.time
-              - binary_sensor.updater
-              - sensor.hacs
-          - type: entities
-            title: Alderaan
-            show_header_toggle: false
-            entities:
-              - sensor.alderaan_bytes_received
-              - sensor.alderaan_bytes_sent
-              - sensor.alderaan_kb_sec_received
-              - sensor.alderaan_kb_sec_sent
-              - sensor.alderaan_packets_received
-              - sensor.alderaan_packets_sent
-              - sensor.alderaan_packets_sec_received
-              - sensor.alderaan_packets_sec_sent
-          - type: glance
-            title: Devices
+            title: Device
             entities:
               - device_tracker.iphonex
               - device_tracker.watch
@@ -206,44 +189,126 @@ views:
               - device_tracker.blink
               - device_tracker.echodot
           - type: entities
+            title: Alderaan
+            show_header_toggle: false
+            entities:
+              - entity: sensor.alderaan_bytes_received
+                name: Bytes received
+              - entity: sensor.alderaan_bytes_sent
+                name: Bytes sent
+              - entity: sensor.alderaan_kib_sec_received
+                name: KiB/s received
+              - entity: sensor.alderaan_kib_sec_sent
+                name: KiB/s send
+              - entity: sensor.alderaan_packets_received
+                name: Packets received
+              - entity: sensor.alderaan_packets_sent
+                name: Packets sent
+              - entity: sensor.alderaan_packets_sec_received
+                name: Packets/s received
+              - entity: sensor.alderaan_packets_sec_sent
+                name: Packets/s sent
+          - break
+          - type: glance
+            title: Sleepy (ESPHome)
+            entities:
+              - binary_sensor.sleepy_status
+              - sensor.sleepy_uptime
+              - sensor.sleepy_esphome_version
+              - sensor.sleepy_wifi_signal
+              # - sensor.sleepy_temperature
+              # - sensor.sleepy_humidity
+              - binary_sensor.sleepy_motion_left
+              - light.sleepy_strip
+          - type: glance
+            title: Windy (ESPHome)
+            entities:
+              - binary_sensor.windy_status
+              - sensor.windy_uptime
+              - sensor.windy_esphome_version
+              - sensor.windy_wifi_signal
+              - switch.windy_shutdown
+              - sensor.windy_temperature
+              - sensor.windy_humidity
+              - sensor.windy_pm_2_5
+              - sensor.windy_pm_10_0
+          - break
+          - type: entities
             title: iPhone X
             show_header_toggle: false
             entities:
               - device_tracker.iphone_x
-              - sensor.iphone_x_geocoded_location
-              - sensor.iphone_x_activity
-              - sensor.iphone_x_average_active_pace
-              - sensor.iphone_x_distance
-              - sensor.iphone_x_steps
-              - sensor.iphone_x_floors_ascended
-              - sensor.iphone_x_floors_descended
-              - sensor.iphone_x_storage
-              - sensor.iphone_x_connection_type
-              - sensor.iphone_x_ssid
-              - sensor.iphone_x_bssid
-              - sensor.iphone_x_sim_1
-              - sensor.iphone_x_battery_state
-              - sensor.iphone_x_battery_level
-              - sensor.iphone_x_last_update_trigger
+              - entity: sensor.iphone_x_geocoded_location
+                name: Geocoded Location
+              - entity: sensor.iphone_x_activity
+                name: Activity
+              - entity: sensor.iphone_x_average_active_pace
+                name: Average Active Pace
+              - entity: sensor.iphone_x_distance
+                name: Distance
+              - entity: sensor.iphone_x_steps
+                name: Steps
+              - entity: sensor.iphone_x_floors_ascended
+                name: Floors Ascended
+              - entity: sensor.iphone_x_floors_descended
+                name: Floors Descended
+              - entity: sensor.iphone_x_storage
+                name: Storage
+              - entity: sensor.iphone_x_ssid
+                name: SSID
+              - entity: sensor.iphone_x_bssid
+                name: BSSID
+              - entity: sensor.iphone_x_sim_1
+                name: SIM 1
+              - entity: sensor.iphone_x_battery_state
+                name: Battery State
+              - entity: sensor.iphone_x_battery_level
+                name: Battery Level
+              - entity: sensor.iphone_x_connection_type
+                name: Connection Type
+              - entity: sensor.iphone_x_last_update_trigger
+                name: Last Update Trigger
           - type: entities
             title: iPad Pro
             show_header_toggle: false
             entities:
               - device_tracker.ipad
-              - sensor.ipad_activity
-              - sensor.ipad_geocoded_location
-              - sensor.ipad_storage
-              - sensor.ipad_connection_type
-              - sensor.ipad_ssid
-              - sensor.ipad_bssid
-              - sensor.ipad_battery_state
-              - sensor.ipad_battery_level
-              - sensor.ipad_last_update_trigger
-          - break
-          - type: entities
-            title: People
-            entities:
-              - person.jansauer
+              - entity: sensor.ipad_geocoded_location
+                name: Geocoded Location
+              - entity: sensor.ipad_activity
+                name: Activity
+              - entity: sensor.ipad_storage
+                name: Storage
+              - entity: sensor.ipad_ssid
+                name: SSID
+              - entity: sensor.ipad_bssid
+                name: BSSID
+              - entity: sensor.ipad_battery_state
+                name: Battery State
+              - entity: sensor.ipad_battery_level
+                name: Battery Level
+              - entity: sensor.ipad_connection_type
+                name: Connection Type
+              - entity: sensor.ipad_last_update_trigger
+                name: Last Update Trigger
+
+  # - title: Environment
+  #   path: environment
+  #   icon: mdi:weather-rainy
+  #   panel: true
+  #   cards:
+  #     - type: custom:layout-card
+  #       layout: vertical
+  #       cards:
+
+  - title: Automation
+    path: automation
+    icon: mdi:robot
+    panel: true
+    cards:
+      - type: custom:layout-card
+        layout: vertical
+        cards:
           - type: entities
             title: Automations
             show_header_toggle: false
@@ -260,17 +325,70 @@ views:
               - type: divider
               - automation.set_theme_for_day_and_night
               - automation.plant_problem_notifications
+          - break
           - type: entities
             title: Scripts
             show_header_toggle: false
             entities:
               - script.return_home
-          - type: glance
-            title: Environment
+          - type: entities
+            title: Scripts
+            show_header_toggle: false
             entities:
-              - entity: sensor.yr_symbol
-                name: YR
-              - weather.home
-              - sun.sun
-              - sensor.moon
-              - binary_sensor.iss
+              - scene.livingroom_work
+              - scene.livingroom_night_light
+              - scene.livingroom_off
+              - scene.bedroom_off
+          - type: entities
+            title: Inputs
+            show_header_toggle: false
+            entities:
+              - input_boolean.mode_guest_mode
+          - break
+          - type: entities
+            title: Wake-up Lights
+            show_header_toggle: false
+            entities:
+              - input_datetime.wakeup_time
+              - entity: automation.wake_me_up_using_bedroom_lights
+                name: "Wake-up lights"
+                icon: mdi:theme-light-dark
+              - input_boolean.wakeup_weekend
+
+  - title: Test
+    path: test
+    icon: mdi:test-tube
+    panel: true
+    cards:
+      - type: custom:layout-card
+        layout: vertical
+        cards:
+          - type: glance
+            title: Snow Flower
+            entities:
+              - entity: sensor.snowflower_moisture
+                name: Moisture
+              - entity: sensor.snowflower_conductivity
+                name: Conductivity
+              - entity: sensor.snowflower_light_intensity
+                name: Light Intensity
+              - entity: sensor.snowflower_temperature
+                name: Temperature
+              - entity: sensor.snowflower_battery
+                name: Battery
+          - break
+          - type: glance
+            title: Balcony Flowers
+            entities:
+              - entity: sensor.balcony_moisture
+                name: Moisture
+              - entity: sensor.balcony_conductivity
+                name: Conductivity
+              - entity: sensor.balcony_light_intensity
+                name: Light Intensity
+              - entity: sensor.balcony_temperature
+                name: Temperature
+              - entity: sensor.balcony_battery
+                name: Battery
+          - type: plant-status
+            entity: plant.balcony

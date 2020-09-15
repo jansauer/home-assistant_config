@@ -7,6 +7,15 @@
       state: on
       effect: night
 
+- name: Livingroom Work
+  entities:
+    switch.osram_plug_1:
+      state: on
+    light.tv:
+      state: on
+    light.shelf:
+      state: on
+
 - name: Livingroom Off
   entities:
     light.livingroom_ceiling_lights:
