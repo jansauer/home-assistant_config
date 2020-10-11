@@ -13,9 +13,6 @@ resources:
   # https://github.com/thomasloven/lovelace-layout-card
   - url: /hacsfiles/lovelace-layout-card/layout-card.js
     type: module
-  # https://github.com/thomasloven/lovelace-fold-entity-row
-  - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
-    type: module
   # https://github.com/nervetattoo/simple-thermostat
   - url: /hacsfiles/simple-thermostat/simple-thermostat.js
     type: module
@@ -111,20 +108,8 @@ views:
               - type: entities
                 show_header_toggle: false
                 entities:
-                  - type: custom:fold-entity-row
-                    entity: light.livingroom_ceiling_lights
-                    head:
-                      entity: light.livingroom_ceiling_lights
-                      name: Ceiling
-                    entities:
-                      - entity: light.ikea_tradfri_bulb_gu10_ws_400lm_1
-                        name: Bulb 1
-                      - entity: light.ikea_tradfri_bulb_gu10_ws_400lm_2
-                        name: Bulb 2
-                      - entity: light.ikea_tradfri_bulb_gu10_ws_400lm_3
-                        name: Bulb 3
-                      - entity: light.ikea_tradfri_bulb_gu10_ws_400lm_4
-                        name: Bulb 4
+                  - entity: light.livingroom_ceiling_lights
+                    name: Ceiling
                   - entity: switch.osram_plug_1
                     name: Floor Lamp
                     icon: mdi:floor-lamp
@@ -183,9 +168,7 @@ views:
                     name: Ceiling
                   # - entity: light.yavin_strip
                   #   icon: mdi:led-strip-variant
-                  #   name: Bed
-                  - entity: light.gateway_light_7811dcfaea5b
-                    name: Gateway         
+                  #   name: Bed     
                   - type: divider
                   - entity: scene.bedroom_off
                     icon: mdi:circle-off-outline

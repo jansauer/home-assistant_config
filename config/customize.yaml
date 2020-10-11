@@ -34,7 +34,7 @@ light.ikea_tradfri_bulb_gu10_ws_400lm_4:
 
 # Livingroom Accent Lights
 light.livingroom_accent_lights:
-  icon: mdi:group-work
+  icon: mdi:lamp
 
 # Livingroom Couch Plug
 switch.osram_plug_1:
@@ -63,20 +63,19 @@ binary_sensor.lumi_lumi_sensor_magnet_eb017b02_1_6:
 sensor.lumi_lumi_sensor_magnet_eb017b02_1_1:
   friendly_name: Bedroom Window Battery
 
-# Xiaomi Gateway Light
-light.gateway_light_7811dcfaea5b:
-  friendly_name: Xiaomi Gateway Light
-  icon: mdi:album
-
 # System
 sensor.home_assistant_v2_db:
   friendly_name: Database size
 
 # Fix missig toggle switches for limitlessled lights
-# @See https://www.home-assistant.io/components/light.limitlessled/#initialization--synchronization
+# @See https://www.home-assistant.io/integrations/limitlessled#initialization--synchronization
 light.tv:
   assumed_state: false
   icon: mdi:lamp
 light.shelf:
   assumed_state: false
   icon: mdi:lamp
+
+switch.byss:
+  icon: mdi:nas
+

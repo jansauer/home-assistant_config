@@ -10,21 +10,21 @@ homeassistant:
     - /config
   customize: !include customize.yaml
 
-# https://www.home-assistant.io/components/http/
+# https://www.home-assistant.io/integrations/http/
 http:
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
-# https://www.home-assistant.io/components/updater/
+# https://www.home-assistant.io/integrations/updater/
 updater:
   include_used_components: true
 
-# https://www.home-assistant.io/components/config/
+# https://www.home-assistant.io/integrations/config/
 config:
 
-# https://www.home-assistant.io/components/frontend/
+# https://www.home-assistant.io/integrations/frontend/
 frontend:
   themes: !include_dir_merge_named themes
 
@@ -38,33 +38,29 @@ lovelace:
       icon: mdi:stethoscope
       filename: ui-insides.yaml
 
-# https://www.home-assistant.io/components/recorder/
+# https://www.home-assistant.io/integrations/recorder/
 recorder:
 
-# https://www.home-assistant.io/components/history/
+# https://www.home-assistant.io/integrations/history/
 history:
 
-# https://www.home-assistant.io/components/logbook/
-# logbook:
+# https://www.home-assistant.io/integrations/logbook/
+logbook:
 
-# https://www.home-assistant.io/components/map/
+# https://www.home-assistant.io/integrations/map/
 map:
 
-# https://www.home-assistant.io/components/system_health/
+# https://www.home-assistant.io/integrations/system_health/
 system_health:
-
-# https://www.home-assistant.io/integrations/discovery/
-# discovery:
-#   ignore:
-#     - plex_mediaserver
 
 # https://www.home-assistant.io/integrations/mobile_app/
 mobile_app:
 
-# https://www.home-assistant.io/components/ios/
+# https://www.home-assistant.io/integrations/ios/
+# https://companion.home-assistant.io/
 ios:
 
-# https://www.home-assistant.io/components/person/
+# https://www.home-assistant.io/integrations/person/
 person:
   - name: Jan Sauer
     id: jansauer
@@ -72,9 +68,9 @@ person:
     device_trackers:
       - device_tracker.iphone_x
 
-# https://www.home-assistant.io/components/device_tracker/
+# https://www.home-assistant.io/integrations/device_tracker/
 device_tracker:
-  # https://www.home-assistant.io/components/device_tracker.fritz/
+  # https://www.home-assistant.io/integrations/fritz
   - platform: fritz
     host: 192.168.5.1
     username: !secret fritz_username
@@ -82,16 +78,16 @@ device_tracker:
     new_device_defaults:
       track_new_devices: false
 
-# https://www.home-assistant.io/components/zha/
+# https://www.home-assistant.io/integrations/zha/
 zha:
   usb_path: /dev/ttyUSB0
   database_path: /config/zigbee.db
 
-# https://www.home-assistant.io/components/sensor/
+# https://www.home-assistant.io/integrations/sensor
 sensor:
   - platform: airco2ntrol
 
-  # https://www.home-assistant.io/components/sensor.miflora/
+  # https://www.home-assistant.io/integrations/miflora
   - platform: miflora
     name: Snowflower
     mac: "C4:7C:8D:65:AF:DD"
@@ -99,7 +95,7 @@ sensor:
     name: Balcony
     mac: "C4:7C:8D:65:B0:5A"
 
-  # https://www.home-assistant.io/components/sensor.systemmonitor/
+  # https://www.home-assistant.io/integrations/systemmonitor
   - platform: systemmonitor
     resources:
       - type: disk_free
@@ -109,26 +105,24 @@ sensor:
       - type: load_5m
       - type: load_15m
 
-  # https://www.home-assistant.io/components/uptime/
+  # https://www.home-assistant.io/integrations/uptime
   - platform: uptime
 
-  # https://www.home-assistant.io/components/filesize/
+  # https://www.home-assistant.io/integrations/filesize
   - platform: filesize
     file_paths:
       - /config/home-assistant_v2.db
 
-  # https://www.home-assistant.io/components/sensor.moon/
+  # https://www.home-assistant.io/integrations/moon
   - platform: moon
 
-  # https://www.home-assistant.io/components/sensor.yr/
-  - platform: yr
 
-  # https://www.home-assistant.io/components/time_date/
+  # https://www.home-assistant.io/integrations/time_date
   - platform: time_date
     display_options:
       - 'time'
 
-# https://www.home-assistant.io/components/input_datetime/
+# https://www.home-assistant.io/integrations/input_datetime
 input_datetime:
   wakeup_time:
     name: "Start lights at"
@@ -136,17 +130,12 @@ input_datetime:
     has_date: false
     initial: "06:30"
 
-# https://www.home-assistant.io/components/timer/
-timer:
-  entryway:
-    duration: '00:00:10'
-
-# https://www.home-assistant.io/components/binary_sensor.trend/
+# https://www.home-assistant.io/integrations/binary_sensor/
 binary_sensor:
-  # https://www.home-assistant.io/components/binary_sensor.iss/
+  # https://www.home-assistant.io/integrations/iss
   - platform: iss
 
-# https://www.home-assistant.io/components/input_boolean/
+# https://www.home-assistant.io/integrations/input_boolean
 input_boolean:
   wakeup_weekend:
     name: "Enable Wake-up on weekends"
@@ -165,9 +154,9 @@ input_boolean:
 #     icon: mdi:beach
 #     initial: off
 
-# https://www.home-assistant.io/components/light/
+# https://www.home-assistant.io/integrations/light
 light:
-  # https://www.home-assistant.io/components/light.limitlessled/
+  # https://www.home-assistant.io/integrations/limitlessled
   - platform: limitlessled
     bridges:
       - host: 192.168.5.56
@@ -193,9 +182,9 @@ light:
       - light.shelf
       - light.tv
 
-# https://www.home-assistant.io/components/switch/
+# https://www.home-assistant.io/integrations/switch
 switch:
-  # https://www.home-assistant.io/components/switch.wake_on_lan/
+  # https://www.home-assistant.io/integrations/wake_on_lan
   - platform: wake_on_lan
     name: Byss
     mac: "C8:60:00:84:F9:02"
@@ -217,7 +206,7 @@ shell_command:
   # types:
   #   hdmi_cec.TV: media_player
 
-# https://www.home-assistant.io/components/apple_tv/
+# https://www.home-assistant.io/integrations/apple_tv
 apple_tv:
   - host: 192.168.5.58
     name: Living Room
@@ -230,20 +219,20 @@ spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
-# https://www.home-assistant.io/components/hdmi_cec/
 # hdmi_cec:
+# https://www.home-assistant.io/integrations/hdmi_cec
 
-# https://www.home-assistant.io/components/sun/
+# https://www.home-assistant.io/integrations/sun
 sun:
 
-# https://www.home-assistant.io/components/weather/
+# https://www.home-assistant.io/integrations/weather
 weather:
-  # https://www.home-assistant.io/components/weather.darksky/
+  # https://www.home-assistant.io/integrations/weather.darksky
   # https://darksky.net/dev/docs#response-format
   - platform: darksky
     api_key: !secret darksky_api_key 
 
-# https://www.home-assistant.io/components/plant/
+# https://www.home-assistant.io/integrations/plant
 plant:
   Snowflower:
     sensors:
@@ -283,21 +272,18 @@ netatmo:
   client_id: !secret netatmo_client_id
   client_secret: !secret netatmo_client_secret
 
-# https://www.home-assistant.io/components/withings/
+# https://www.home-assistant.io/integrations/withings
 withings:
   client_id: !secret withings_client_id
   client_secret: !secret withings_client_secret
 
-# https://www.home-assistant.io/components/homekit/
+# https://www.home-assistant.io/integrations/homekit
 homekit:
   filter:
     include_entities:
       # Entryway
       # Livingroom
-      # - light.ikea_tradfri_bulb_gu10_ws_400lm_1
-      # - light.ikea_tradfri_bulb_gu10_ws_400lm_2
-      # - light.ikea_tradfri_bulb_gu10_ws_400lm_4
-      # - light.ikea_tradfri_bulb_gu10_ws_400lm_3
+      - light.livingroom_ceiling_lights
       - switch.osram_plug_1
       - light.shelf
       - light.tv
@@ -309,7 +295,7 @@ homekit:
       # - sensor.sleepy_temperature
       # - sensor.sleepy_humidity
 
-# https://home-assistant.io/components/emulated_hue/
+# https://www.home-assistant.io/integrations/emulated_hue
 emulated_hue:
   host_ip: 192.168.5.2
   listen_port: 80
@@ -326,20 +312,16 @@ emulated_hue:
     light.shelf:
       hidden: false
 
-# https://www.home-assistant.io/components/notify/
-# https://www.home-assistant.io/components/#notifications
+# https://www.home-assistant.io/integrations/notify
+# https://companion.home-assistant.io/docs/notifications/notifications-basic
 notify:
-  # https://www.home-assistant.io/components/notify.pushover/
+  # https://www.home-assistant.io/integrations/pushover
   - platform: pushover
     name: pushover
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
-  
-  # https://github.com/custom-components/alexa_media_player/wiki/Notification-Component
-  - platform: alexa_media
-    name: alexa_media
 
-# https://www.home-assistant.io/components/logger/
+# https://www.home-assistant.io/integrations/logger
 logger:
   default: warning
   # default: debug
