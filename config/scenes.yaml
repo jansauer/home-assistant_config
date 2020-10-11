@@ -13,8 +13,12 @@
       state: on
     light.tv:
       state: on
+      brightness: 255
+      effect: white
     light.shelf:
       state: on
+      brightness: 255
+      effect: white
 
 - name: Livingroom Off
   entities:
