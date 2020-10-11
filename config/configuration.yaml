@@ -89,10 +89,10 @@ sensor:
 
   # https://www.home-assistant.io/integrations/miflora
   - platform: miflora
-    name: Snowflower
+    name: Ficus
     mac: "C4:7C:8D:65:AF:DD"
   - platform: miflora
-    name: Balcony
+    name: Basil
     mac: "C4:7C:8D:65:B0:5A"
 
   # https://www.home-assistant.io/integrations/systemmonitor
@@ -234,13 +234,13 @@ weather:
 
 # https://www.home-assistant.io/integrations/plant
 plant:
-  Snowflower:
+  Ficus:
     sensors:
-      moisture: sensor.snowflower_moisture
-      conductivity: sensor.snowflower_conductivity
-      brightness: sensor.snowflower_light_intensity
-      temperature: sensor.snowflower_temperature
-      battery: sensor.snowflower_battery
+      moisture: sensor.ficus_moisture
+      conductivity: sensor.ficus_conductivity
+      brightness: sensor.ficus_light_intensity
+      temperature: sensor.ficus_temperature
+      battery: sensor.ficus_battery
     min_moisture: 15
     max_moisture: 65
     min_battery: 10
@@ -250,22 +250,22 @@ plant:
     max_temperature: 32
     # min_brightness: 1000
     max_brightness: 22500
-  Balcony:
+  Basil:
     sensors:
-      moisture: sensor.balcony_moisture
-      conductivity: sensor.balcony_conductivity
-      brightness: sensor.balcony_light_intensity
-      temperature: sensor.balcony_temperature
-      battery: sensor.balcony_battery
-    min_moisture: 15
+      moisture: sensor.basil_moisture
+      conductivity: sensor.basil_conductivity
+      brightness: sensor.basil_light_intensity
+      temperature: sensor.basil_temperature
+      battery: sensor.basil_battery
+    min_moisture: 20
     max_moisture: 60
     min_battery: 10
     min_conductivity: 350
     max_conductivity: 2000
     min_temperature: 8
-    max_temperature: 35
-    min_brightness: 3000
-    max_brightness: 35000
+    max_temperature: 32
+    min_brightness: 2500
+    max_brightness: 60000
 
 # https://www.home-assistant.io/integrations/netatmo/
 netatmo:

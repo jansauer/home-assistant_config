@@ -167,6 +167,45 @@ views:
           - type: media-control
             entity: media_player.plex_plex_web_chrome_osx
 
+
+  - title: Plants
+    path: plants
+    icon: mdi:sprout
+    panel: true
+    cards:
+      - type: custom:layout-card
+        layout: vertical
+        cards:
+          - type: glance
+            title: Fiscus
+            entities:
+              - entity: sensor.ficus_moisture
+                name: Moisture
+              - entity: sensor.ficus_conductivity
+                name: Conductivity
+              - entity: sensor.ficus_light_intensity
+                name: Light Intensity
+              - entity: sensor.ficus_temperature
+                name: Temperature
+              - entity: sensor.ficus_battery
+                name: Battery
+          - type: plant-status
+            entity: plant.ficus
+          - type: glance
+            title: Basil
+            entities:
+              - entity: sensor.basil_moisture
+                name: Moisture
+              - entity: sensor.basil_conductivity
+                name: Conductivity
+              - entity: sensor.basil_light_intensity
+                name: Light Intensity
+              - entity: sensor.basil_temperature
+                name: Temperature
+              - entity: sensor.basil_battery
+                name: Battery
+          - type: plant-status
+            entity: plant.basil
   - title: Devices
     path: devices
     icon: mdi:router-wireless
