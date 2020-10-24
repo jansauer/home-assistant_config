@@ -1,4 +1,4 @@
-# https://www.home-assistant.io/docs/configuration/basic/
+# https://www.home-assistant.io/docs/configuration/basic
 homeassistant:
   name: Home
   latitude: !secret home_latitude
@@ -10,25 +10,25 @@ homeassistant:
     - /config
   customize: !include customize.yaml
 
-# https://www.home-assistant.io/integrations/http/
+# https://www.home-assistant.io/integrations/http
 http:
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
-# https://www.home-assistant.io/integrations/updater/
+# https://www.home-assistant.io/integrations/updater
 updater:
   include_used_components: true
 
-# https://www.home-assistant.io/integrations/config/
+# https://www.home-assistant.io/integrations/config
 config:
 
-# https://www.home-assistant.io/integrations/frontend/
+# https://www.home-assistant.io/integrations/frontend
 frontend:
   themes: !include_dir_merge_named themes
 
-# https://www.home-assistant.io/lovelace/
+# https://www.home-assistant.io/lovelace
 lovelace:
   mode: yaml
   dashboards:
@@ -38,29 +38,29 @@ lovelace:
       icon: mdi:stethoscope
       filename: ui-insides.yaml
 
-# https://www.home-assistant.io/integrations/recorder/
+# https://www.home-assistant.io/integrations/recorder
 recorder:
 
-# https://www.home-assistant.io/integrations/history/
+# https://www.home-assistant.io/integrations/history
 history:
 
-# https://www.home-assistant.io/integrations/logbook/
+# https://www.home-assistant.io/integrations/logbook
 logbook:
 
-# https://www.home-assistant.io/integrations/map/
+# https://www.home-assistant.io/integrations/map
 map:
 
-# https://www.home-assistant.io/integrations/system_health/
+# https://www.home-assistant.io/integrations/system_health
 system_health:
 
-# https://www.home-assistant.io/integrations/mobile_app/
+# https://www.home-assistant.io/integrations/mobile_app
 mobile_app:
 
-# https://www.home-assistant.io/integrations/ios/
-# https://companion.home-assistant.io/
+# https://www.home-assistant.io/integrations/ios
+# https://companion.home-assistant.io
 ios:
 
-# https://www.home-assistant.io/integrations/person/
+# https://www.home-assistant.io/integrations/person
 person:
   - name: Jan Sauer
     id: jansauer
@@ -68,7 +68,7 @@ person:
     device_trackers:
       - device_tracker.iphone_x
 
-# https://www.home-assistant.io/integrations/device_tracker/
+# https://www.home-assistant.io/integrations/device_tracker
 device_tracker:
   # https://www.home-assistant.io/integrations/fritz
   - platform: fritz
@@ -78,7 +78,7 @@ device_tracker:
     new_device_defaults:
       track_new_devices: false
 
-# https://www.home-assistant.io/integrations/zha/
+# https://www.home-assistant.io/integrations/zha
 zha:
   usb_path: /dev/ttyUSB0
   database_path: /config/zigbee.db
@@ -130,7 +130,7 @@ input_datetime:
     has_date: false
     initial: "06:30"
 
-# https://www.home-assistant.io/integrations/binary_sensor/
+# https://www.home-assistant.io/integrations/binary_sensor
 binary_sensor:
   # https://www.home-assistant.io/integrations/iss
   - platform: iss
@@ -168,7 +168,7 @@ light:
           - number: 2
             name: TV
 
-  # https://www.home-assistant.io/integrations/light.group/
+  # https://www.home-assistant.io/integrations/light.group
   - platform: group
     name: Livingroom Ceiling Lights
     entities:
@@ -192,7 +192,7 @@ switch:
     turn_off:
       service: shell_command.turn_off_byss
 
-# https://www.home-assistant.io/integrations/shell_command/
+# https://www.home-assistant.io/integrations/shell_command
 shell_command:
   turn_off_byss: 'ssh -i /config/byss-hassio_ed25519 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null hassio@192.168.5.5 date'
 
@@ -267,7 +267,7 @@ plant:
     min_brightness: 2500
     max_brightness: 60000
 
-# https://www.home-assistant.io/integrations/netatmo/
+# https://www.home-assistant.io/integrations/netatmo
 netatmo:
   client_id: !secret netatmo_client_id
   client_secret: !secret netatmo_client_secret
