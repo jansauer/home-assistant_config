@@ -124,6 +124,9 @@ sensor:
   # https://www.home-assistant.io/integrations/moon
   - platform: moon
 
+  # https://www.home-assistant.io/integrations/dwd_weather_warnings
+  - platform: dwd_weather_warnings
+    region_name: 803241001
 
   # https://www.home-assistant.io/integrations/time_date
   - platform: time_date
