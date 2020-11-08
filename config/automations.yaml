@@ -20,16 +20,6 @@
     # - service: scene.turn_on
     #   entity_id: scene.livingroom_off
 
-- alias: Leaving Home from Router
-  trigger:
-    platform: state
-    entity_id: device_tracker.iphonex
-    from: "home"
-  action:
-    - service: notify.pushover
-      data:
-        message: "Leaving from Router"
-
 - alias: Returning Home
   trigger:
     platform: state
@@ -39,17 +29,6 @@
     - service: notify.pushover
       data:
         message: "Returning"
-
-- alias: Returning Home from Router
-  trigger:
-    platform: state
-    entity_id: device_tracker.iphonex
-    to: "home"
-  action:
-    - service: notify.pushover
-      data:
-        message: "Returning from Router"
-
 
 ##
 ## Wake-me up using bedroom lights
