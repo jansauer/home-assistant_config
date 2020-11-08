@@ -149,6 +149,55 @@
         brightness: 255
 
 ##
+## Notifications
+##
+
+- alias: 'Plant Problem Notifications'
+  trigger:
+    - platform: state
+      entity_id:
+        - plant.ficus
+        - plant.basil
+      to: problem
+  action:
+    - service: notify.mobile_app_iphone_x
+      data:
+        message: >
+          {%- set problem = trigger.entity_id.attributes.problem.split(' ') %}
+          Plant {{ trigger.entity_id.friendly_name }} has {{ problem[1] }} {{ problem[0] }}!
+        data:
+          url: /lovelace/plants
+          push:
+            thread-id: "plant-group"
+
+- alias: 'Plant Problem Remainder Notifications'
+  trigger:
+    platform: time
+    at:
+      - "07:30:00"
+      - "09:30:00"
+      - "17:30:00"
+      - "19:30:00"
+  condition:
+    condition: state
+    entity_id: group.plants
+    state: problem
+  action:
+    service: notify.mobile_app_iphone_x
+    data:
+      message: >
+        {%- for entity_id in states.group.plants.attributes.entity_id %}
+          {%- if (states[entity_id].state == 'problem') %}
+            {%- set problem = states[entity_id].attributes.problem.split(' ') %}
+            {{- states[entity_id].attributes.friendly_name }} has {{ problem[1] }} {{ problem[0] }}!
+          {%- endif %}
+        {% endfor %}
+      data:
+        url: /lovelace/plants
+        push:
+          thread-id: "plant-group"
+
+##
 ## Theme Day/Night Switch
 ##
 
@@ -171,14 +220,3 @@
           {% else %}
             dark
           {% endif %}
-
-- alias: 'Plant Problem Notifications'
-  trigger:
-    - platform: state
-      entity_id: plant.snowflower
-      to: problem
-  action:
-    service: notify.notify
-    data_template:
-      title: 'Plant !!! has a problem'
-      message: 'Home Assistant {{ trigger.to_state }}'
