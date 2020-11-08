@@ -80,8 +80,13 @@ device_tracker:
 
 # https://www.home-assistant.io/integrations/zha
 zha:
-  usb_path: /dev/ttyUSB0
   database_path: /config/zigbee.db
+  zigpy_config:
+    ota:
+      ikea_provider: true
+
+# https://github.com/zha-ng/zha-map
+zha_map:
 
 # https://www.home-assistant.io/integrations/sensor
 sensor:
