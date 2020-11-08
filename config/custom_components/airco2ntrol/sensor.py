@@ -114,7 +114,7 @@ class AirCO2ntrolCarbonDioxideSensor(Entity):
     @property
     def icon(self):
         """Return the icon of device based on its type."""
-        return 'mdi:periodic-table-co2'
+        return 'mdi:molecule-co2'
 
     def update(self):
         """Get the latest data and updates the state."""
