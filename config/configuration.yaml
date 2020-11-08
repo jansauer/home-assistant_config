@@ -31,6 +31,37 @@ frontend:
 # https://www.home-assistant.io/lovelace
 lovelace:
   mode: yaml
+  resources:
+    # https://momentjs.com/
+    - url: /local/moment.js?v=2.24.0
+      type: js
+    # https://github.com/thomasloven/lovelace-card-mod
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+    # https://github.com/thomasloven/lovelace-layout-card
+    - url: /hacsfiles/lovelace-layout-card/layout-card.js
+      type: module
+    # https://github.com/nervetattoo/simple-thermostat
+    - url: /hacsfiles/simple-thermostat/simple-thermostat.js
+      type: module
+    # https://github.com/kalkih/mini-graph-card
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    # https://github.com/maxwroc/battery-state-card
+    - url: /hacsfiles/battery-state-card/battery-state-card.js
+      type: module
+    - url: /local/floorplan/floorplan-card.js?v=1.1.14
+      type: module
+    - url: /local/clock-card.js?v=0.0.8
+      type: js
+    - url: /local/daytime-card/daytime-card.js?v=0.0.217
+      type: js
+    - url: /local/battery-state-card.js
+      type: module
+    - url: /local/zha-network-visualization-card/zha-network-visualization-card.js
+      type: module
+    - url: "http://127.0.0.1:5000/flower-card.js"
+      type: module
   dashboards:
     lovelace-insides:
       mode: yaml

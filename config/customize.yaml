@@ -7,6 +7,8 @@ plant.basil:
   entity_picture: /local/plants/basil.jpg
 plant.ficus:
   entity_picture: /local/plants/ficus.jpg
+plant.callisia_repens:
+  entity_picture: /local/plants/callisia_repens.jpg
 
 # Set attributes for entities that do not have a unique ID
 # No clue why this is the case but this prevents configuration via the UI

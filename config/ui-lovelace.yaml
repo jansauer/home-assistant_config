@@ -1,30 +1,5 @@
 # https://www.home-assistant.io/lovelace/
 title: Home
-resources:
-  # https://momentjs.com/
-  - url: /local/moment.js?v=2.24.0
-    type: js
-  # https://github.com/maykar/custom-header
-  - url: /hacsfiles/custom-header/custom-header.js
-    type: module
-  # https://github.com/thomasloven/lovelace-card-mod
-  - url: /hacsfiles/lovelace-card-mod/card-mod.js
-    type: module
-  # https://github.com/thomasloven/lovelace-layout-card
-  - url: /hacsfiles/lovelace-layout-card/layout-card.js
-    type: module
-  # https://github.com/nervetattoo/simple-thermostat
-  - url: /hacsfiles/simple-thermostat/simple-thermostat.js
-    type: module
-  # https://github.com/kalkih/mini-graph-card
-  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
-    type: module
-  - url: /local/floorplan/floorplan-card.js?v=1.1.14
-    type: module
-  - url: /local/clock-card.js?v=0.0.8
-    type: js
-  - url: /local/daytime-card/daytime-card.js?v=0.0.217
-    type: js
 custom_header:
   compact_mode: true
   conditional_styles:
@@ -81,12 +56,10 @@ views:
             entities:
               - switch.byss
           - break
-          - type: entities
-            title: Entryway
-            show_header_toggle: false
-            entities:
-              - entity: switch.wall_switch_158d000161469d
-                name: Ceiling
+          # - type: entities
+          #   title: Entryway
+          #   show_header_toggle: false
+          #   entities:
           - type: custom:simple-thermostat
             entity: climate.netatmo_living_room
             name: Livingroom
@@ -115,15 +88,33 @@ views:
                     icon: mdi:floor-lamp
                   - entity: light.livingroom_accent_lights
                     name: Accent
-                  - light.tv
-                  - light.shelf
                   - type: divider
+                  - entity: scene.livingroom_work
+                    icon: mdi:briefcase-outline
+                    name: Work
                   - entity: scene.livingroom_night_light
                     icon: mdi:weather-night
                     name: Night Light
                   - entity: scene.livingroom_off
                     icon: mdi:circle-off-outline
                     name: 'Off'
+                footer:
+                  type: buttons
+                  entities:
+                    - entity: scene.livingroom_off
+                      icon: mdi:circle-off-outline
+                      tap_action:
+                        action: call-service
+                        service: scene.turn_on
+                        service_data:
+                          entity_id: scene.livingroom_off
+                    - entity: scene.livingroom_night_light
+                      icon: mdi:weather-night
+                      tap_action:
+                        action: call-service
+                        service: scene.turn_on
+                        service_data:
+                          entity_id: scene.livingroom_night_light
               - type: vertical-stack
                 cards:
                   - type: custom:mini-graph-card
@@ -258,6 +249,7 @@ views:
                   state: 'on'
                 - class: 'door-closed'
                   state: 'off'
+
   - title: Plants
     path: plants
     icon: mdi:leaf
@@ -272,7 +264,9 @@ views:
           - type: weather-forecast
             entity: weather.dark_sky
           - break
-          - type: plant-status
-            entity: plant.snowflower
-          - type: plant-status
-            entity: plant.balcony
+          - type: custom:flower-card
+            entity: plant.ficus
+          - type: custom:flower-card
+            entity: plant.basil
+          - type: custom:flower-card
+            entity: plant.callisia_repens

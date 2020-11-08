@@ -10,3 +10,6 @@ secrets.yaml
 
 # Python cache
 __pycache__
+
+# Components Overwrites
+config/custom_components/plant
