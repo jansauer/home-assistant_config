@@ -88,6 +88,18 @@ zha:
 # https://github.com/zha-ng/zha-map
 zha_map:
 
+# https://github.com/StyraHem/ShellyForHASS
+shelly:
+  discovery: false
+  username: !secret shelly_username
+  password: !secret shelly_password
+  devices:
+    - id: "40F520015F98" # Living Room
+    - id: "483FDA4CE546" # Bedroom
+  sensors:
+    - switch
+    - current_consumption
+
 # https://www.home-assistant.io/integrations/sensor
 sensor:
   - platform: airco2ntrol
