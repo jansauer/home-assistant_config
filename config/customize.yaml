@@ -33,3 +33,11 @@ light.shelf:
   assumed_state: false
   icon: mdi:lamp
 
+# Location tracking in Home Assistant zones
+# https://companion.home-assistant.io/docs/core/location#ibeacons
+zone.home:
+  track_ios: true
+  beacon:
+    uuid: c214819c-0440-408a-87c7-1b16df0050c1
+    major: 10167
+    minor: 61921
