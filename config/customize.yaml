@@ -1,8 +1,12 @@
 # https://www.home-assistant.io/docs/configuration/customizing-devices/
 
-# People
+# Add Entity Pictures
 person.jan:
   entity_picture: /local/jansauer.jpg
+plant.basil:
+  entity_picture: /local/plants/basil.jpg
+plant.ficus:
+  entity_picture: /local/plants/ficus.jpg
 
 # Entryway Motion Sensor
 sensor.illumination_7811dcfaea5b:

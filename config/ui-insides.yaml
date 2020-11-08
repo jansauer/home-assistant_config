@@ -206,6 +206,22 @@ views:
                 name: Battery
           - type: plant-status
             entity: plant.basil
+          - break
+          - type: glance
+            title: Callisia Repens
+            entities:
+              - entity: sensor.callisia_repens_moisture
+                name: Moisture
+              - entity: sensor.callisia_repens_conductivity
+                name: Conductivity
+              - entity: sensor.callisia_repens_light_intensity
+                name: Light Intensity
+              - entity: sensor.callisia_repens_temperature
+                name: Temperature
+              - entity: sensor.callisia_repens_battery
+                name: Battery
+          - type: plant-status
+            entity: plant.callisia_repens
   - title: Devices
     path: devices
     icon: mdi:router-wireless
