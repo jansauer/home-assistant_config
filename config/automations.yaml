@@ -152,6 +152,23 @@
 ## Notifications
 ##
 
+- alias: 'Open Window Notifications'
+  trigger:
+    platform: state
+    # entity_id: binary_sensor.lumi_lumi_sensor_magnet_eb017b02
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_0e017b02
+    to: 'Open'
+    for:
+      minutes: /5
+  action:
+    service: notify.mobile_app_iphone_x
+    data:
+      message: >
+        {{ trigger.entity_id.friendly_name }} is still open!
+      data:
+        push:
+          thread-id: "open-window-group"
+
 - alias: 'Plant Problem Notifications'
   trigger:
     - platform: state
