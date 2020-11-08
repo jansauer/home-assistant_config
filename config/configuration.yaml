@@ -207,16 +207,6 @@ switch:
 shell_command:
   turn_off_byss: 'ssh -i /config/byss-hassio_ed25519 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null hassio@192.168.5.5 date'
 
-# hdmi_cec:
-#   devices:
-#     TV: 0.0.0.0
-#     AV Receiver: 1.0.0.0
-#     Apple TV: 1.1.0.0
-#     Home Assistant: 1.2.0.0
-#   platform: switch
-  # types:
-  #   hdmi_cec.TV: media_player
-
 # https://www.home-assistant.io/integrations/apple_tv
 apple_tv:
   - host: 192.168.5.58
@@ -230,8 +220,16 @@ spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
-# hdmi_cec:
 # https://www.home-assistant.io/integrations/hdmi_cec
+# hdmi_cec:
+#   devices:
+#     TV: 0.0.0.0
+#     AV Receiver: 1.0.0.0
+#     Apple TV: 1.1.0.0
+#     Home Assistant: 1.2.0.0
+#   platform: switch
+  # types:
+  #   hdmi_cec.TV: media_player
 
 # https://www.home-assistant.io/integrations/sun
 sun:
