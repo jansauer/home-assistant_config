@@ -140,11 +140,17 @@ sensor:
     name: Ficus
     mac: "C4:7C:8D:65:AF:DD"
   - platform: miflora
-    name: Basil
-    mac: "C4:7C:8D:65:B0:5A"
+    name: Sansevieria Cylindrica Boncel
+    mac: "C4:7C:8D:6B:A3:89"
   - platform: miflora
     name: Callisia Repens
     mac: "C4:7C:8D:6B:A3:80"
+  - platform: miflora
+    name: Basil
+    mac: "C4:7C:8D:6B:A3:26"
+  - platform: miflora
+    name: Pteris
+    mac: "C4:7C:8D:65:B0:5A"
 
   # https://www.home-assistant.io/integrations/systemmonitor
   - platform: systemmonitor
@@ -286,38 +292,22 @@ weather:
 
 # https://www.home-assistant.io/integrations/plant
 plant:
-  Ficus:
+  Sansevieria Cylindrica Boncel:
     sensors:
-      moisture: sensor.ficus_moisture
-      conductivity: sensor.ficus_conductivity
-      brightness: sensor.ficus_light_intensity
-      temperature: sensor.ficus_temperature
-      battery: sensor.ficus_battery
-    min_moisture: 15
-    max_moisture: 65
-    min_battery: 10
-    min_conductivity: 350
-    max_conductivity: 2000
-    min_temperature: 15
-    max_temperature: 32
-    # min_brightness: 1000
-    max_brightness: 22500
-  Basil:
-    sensors:
-      moisture: sensor.basil_moisture
-      conductivity: sensor.basil_conductivity
-      brightness: sensor.basil_light_intensity
-      temperature: sensor.basil_temperature
-      battery: sensor.basil_battery
-    min_moisture: 20
-    max_moisture: 60
-    min_battery: 10
-    min_conductivity: 350
-    max_conductivity: 2000
-    min_temperature: 8
-    max_temperature: 32
-    min_brightness: 2500
+      moisture: sensor.sansevieria_cylindrica_boncel_moisture
+      conductivity: sensor.sansevieria_cylindrica_boncel_conductivity
+      brightness: sensor.sansevieria_cylindrica_boncel_light_intensity
+      temperature: sensor.sansevieria_cylindrica_boncel_temperature
+      battery: sensor.sansevieria_cylindrica_boncel_battery
+    min_moisture: 7
+    max_moisture: 50
+    min_conductivity: 300
+    max_conductivity: 1000
+    min_brightness: 1500
     max_brightness: 60000
+    min_temperature: 10
+    max_temperature: 32
+    min_battery: 10
   Callisia Repens:
     sensors:
       moisture: sensor.callisia_repens_moisture
@@ -327,14 +317,61 @@ plant:
       battery: sensor.callisia_repens_battery
     min_moisture: 20
     max_moisture: 65
-    min_battery: 10
     min_conductivity: 50
     max_conductivity: 2000
-    min_temperature: 12
-    max_temperature: 35
     min_brightness: 500
     max_brightness: 40000
-
+    min_temperature: 12
+    max_temperature: 35
+    min_battery: 10
+  Ficus:
+    sensors:
+      moisture: sensor.ficus_moisture
+      conductivity: sensor.ficus_conductivity
+      brightness: sensor.ficus_light_intensity
+      temperature: sensor.ficus_temperature
+      battery: sensor.ficus_battery
+    min_moisture: 15
+    max_moisture: 65
+    min_conductivity: 350
+    max_conductivity: 2000
+    # min_brightness: 1000
+    max_brightness: 22500
+    min_temperature: 15
+    max_temperature: 32
+    min_battery: 10
+  Pteris:
+    sensors:
+      moisture: sensor.pteris_moisture
+      conductivity: sensor.pteris_conductivity
+      brightness: sensor.pteris_light_intensity
+      temperature: sensor.pteris_temperature
+      battery: sensor.pteris_battery
+    min_moisture: 15
+    max_moisture: 60
+    min_conductivity: 350
+    max_conductivity: 1500
+    min_brightness: 500
+    max_brightness: 15000
+    min_temperature: 10
+    max_temperature: 32
+    min_battery: 10
+  Basil:
+    sensors:
+      moisture: sensor.basil_moisture
+      conductivity: sensor.basil_conductivity
+      brightness: sensor.basil_light_intensity
+      temperature: sensor.basil_temperature
+      battery: sensor.basil_battery
+    min_moisture: 20
+    max_moisture: 60
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 2500
+    max_brightness: 60000
+    min_temperature: 8
+    max_temperature: 32
+    min_battery: 10
 
 # https://www.home-assistant.io/integrations/netatmo
 netatmo:

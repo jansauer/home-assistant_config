@@ -267,6 +267,8 @@ views:
           - type: custom:flower-card
             entity: plant.ficus
           - type: custom:flower-card
-            entity: plant.basil
+            entity: plant.sansevieria_cylindrica_boncel
           - type: custom:flower-card
             entity: plant.callisia_repens
+          - type: custom:flower-card
+            entity: plant.basil

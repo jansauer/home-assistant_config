@@ -231,52 +231,84 @@ views:
         layout: vertical
         cards:
           - type: glance
-            title: Fiscus
+            title: Sansevieria Cylindrica Boncel
             entities:
-              - entity: sensor.ficus_moisture
+              - entity: sensor.sansevieria_cylindrica_boncel_moisture
                 name: Moisture
-              - entity: sensor.ficus_conductivity
-                name: Conductivity
-              - entity: sensor.ficus_light_intensity
-                name: Light Intensity
-              - entity: sensor.ficus_temperature
+              - entity: sensor.sansevieria_cylindrica_boncel_temperature
                 name: Temperature
-              - entity: sensor.ficus_battery
+              - entity: sensor.sansevieria_cylindrica_boncel_light_intensity
+                name: Light Intensity
+              - entity: sensor.sansevieria_cylindrica_boncel_conductivity
+                name: Conductivity
+              - entity: sensor.sansevieria_cylindrica_boncel_battery
                 name: Battery
           - type: plant-status
-            entity: plant.ficus
-          - break
-          - type: glance
-            title: Basil
-            entities:
-              - entity: sensor.basil_moisture
-                name: Moisture
-              - entity: sensor.basil_conductivity
-                name: Conductivity
-              - entity: sensor.basil_light_intensity
-                name: Light Intensity
-              - entity: sensor.basil_temperature
-                name: Temperature
-              - entity: sensor.basil_battery
-                name: Battery
-          - type: plant-status
-            entity: plant.basil
+            entity: plant.sansevieria_cylindrica_boncel
           - break
           - type: glance
             title: Callisia Repens
             entities:
               - entity: sensor.callisia_repens_moisture
                 name: Moisture
-              - entity: sensor.callisia_repens_conductivity
-                name: Conductivity
-              - entity: sensor.callisia_repens_light_intensity
-                name: Light Intensity
               - entity: sensor.callisia_repens_temperature
                 name: Temperature
+              - entity: sensor.callisia_repens_light_intensity
+                name: Light Intensity
+              - entity: sensor.callisia_repens_conductivity
+                name: Conductivity
               - entity: sensor.callisia_repens_battery
                 name: Battery
           - type: plant-status
             entity: plant.callisia_repens
+          - break
+          - type: glance
+            title: Fiscus
+            entities:
+              - entity: sensor.ficus_moisture
+                name: Moisture
+              - entity: sensor.ficus_temperature
+                name: Temperature
+              - entity: sensor.ficus_light_intensity
+                name: Light Intensity
+              - entity: sensor.ficus_conductivity
+                name: Conductivity
+              - entity: sensor.ficus_battery
+                name: Battery
+          - type: plant-status
+            entity: plant.ficus
+          - break
+          - type: glance
+            title: Pteris
+            entities:
+              - entity: sensor.pteris_moisture
+                name: Moisture
+              - entity: sensor.pteris_temperature
+                name: Temperature
+              - entity: sensor.pteris_light_intensity
+                name: Light Intensity
+              - entity: sensor.pteris_conductivity
+                name: Conductivity
+              - entity: sensor.pteris_battery
+                name: Battery
+          - type: plant-status
+            entity: plant.pteris
+          - break
+          - type: glance
+            title: Basil
+            entities:
+              - entity: sensor.basil_moisture
+                name: Moisture
+              - entity: sensor.basil_temperature
+                name: Temperature
+              - entity: sensor.basil_light_intensity
+                name: Light Intensity
+              - entity: sensor.basil_conductivity
+                name: Conductivity
+              - entity: sensor.basil_battery
+                name: Battery
+          - type: plant-status
+            entity: plant.basil
 
   - title: Environment
     path: environment

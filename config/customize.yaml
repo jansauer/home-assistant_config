@@ -3,12 +3,16 @@
 # Add Entity Pictures
 person.jan:
   entity_picture: /local/jansauer.jpg
-plant.basil:
-  entity_picture: /local/plants/basil.jpg
-plant.ficus:
-  entity_picture: /local/plants/ficus.jpg
+plant.sansevieria_cylindrica_boncel:
+  entity_picture: /local/plants/sansevieria_cylindrica_boncel.jpg
 plant.callisia_repens:
   entity_picture: /local/plants/callisia_repens.jpg
+plant.ficus:
+  entity_picture: /local/plants/ficus.jpg
+plant.pteris:
+  entity_picture: /local/plants/pteris.jpg
+plant.basil:
+  entity_picture: /local/plants/basil.jpg
 
 # Set attributes for entities that do not have a unique ID
 # No clue why this is the case but this prevents configuration via the UI
