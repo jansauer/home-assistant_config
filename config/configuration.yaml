@@ -261,14 +261,6 @@ switch:
 shell_command:
   turn_off_byss: 'ssh -i /config/byss-hassio_ed25519 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null hassio@192.168.5.5 date'
 
-# https://www.home-assistant.io/integrations/apple_tv
-apple_tv:
-  - host: 192.168.5.58
-    name: Living Room
-    login_id: !secret appletv_loginid
-    credentials: !secret appletv_credentials
-    start_off: true
-
 # https://www.home-assistant.io/integrations/spotify
 spotify:
   client_id: !secret spotify_client_id
