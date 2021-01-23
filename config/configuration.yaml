@@ -228,6 +228,11 @@ light:
           - number: 2
             name: TV
 
+  # https://www.home-assistant.io/integrations/light.switch
+  - platform: switch
+    name: Livingroom Floor Lamp
+    entity_id: switch.osram_plug_1
+
   # https://www.home-assistant.io/integrations/light.group
   - platform: group
     name: Livingroom Ceiling Lights

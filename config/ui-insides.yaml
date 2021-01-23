@@ -150,6 +150,7 @@ views:
             entities:
               - switch.osram_plug_1
               - sensor.osram_plug_1
+              - light.livingroom_floor_lamp
           - type: entities
             title: Xiaomi (ZHA)
             show_header_toggle: false
