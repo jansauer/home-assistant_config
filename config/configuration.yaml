@@ -6,12 +6,15 @@ homeassistant:
   elevation: 55
   unit_system: metric
   time_zone: Europe/Berlin
+  external_url: !secret url
+  internal_url: !secret url
   whitelist_external_dirs:
     - /config
   customize: !include customize.yaml
 
 # https://www.home-assistant.io/integrations/http
 http:
+  server_port: 443
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   ip_ban_enabled: true
