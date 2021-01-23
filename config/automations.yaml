@@ -118,6 +118,107 @@
     entity_id: light.ikea_tradfri_bulb_e27_opal_1000lm_1
 
 ##
+## Remotes
+##
+
+- id: 'living_room-ikea_remote'
+  alias: IKEA Remote
+  description: ''
+  mode: restart
+  trigger:
+    - platform: event
+      event_type: zha_event
+  condition:
+    - condition: template
+      value_template: '{{ trigger.event.data.device_ieee == "00:0b:57:ff:fe:dc:30:32" }}'
+  action:
+    - choose:
+      # Short-Press on the power button.
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.command == "toggle" }}'
+        sequence:
+          - service: light.toggle
+            data_template:
+              entity_id: light.livingroom_ceiling_lights
+      # Short-Press on the dim-up button.
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+        sequence:
+          - service: light.turn_on
+            data_template:
+              entity_id: light.livingroom_ceiling_lights
+              brightness_step_pct: 20
+              transition: 0.5
+      # Short-Press on the dim-down button.
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.command == "step" }}'
+        sequence:
+          - service: light.turn_on
+            data_template:
+              entity_id: light.livingroom_ceiling_lights
+              brightness_step_pct: -20
+              transition: 0.5
+      # Long-Press on the dim-up button.
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+        sequence:
+          - repeat:
+              while: []
+              sequence:
+                - service: light.turn_on
+                  data_template:
+                    entity_id: light.livingroom_ceiling_lights
+                    brightness_step_pct: 10
+                    transition: 0.5
+                - delay:
+                    milliseconds: 500
+      # Long-Press on the dim-down button.
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.command == "move" }}'
+        sequence:
+          - repeat:
+              while: []
+              sequence:
+                - service: light.turn_on
+                  data_template:
+                    entity_id: light.livingroom_ceiling_lights
+                    brightness_step_pct: -10
+                    transition: 0.5
+                - delay:
+                    milliseconds: 500
+      # Short-Press on the color-up button
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.command == "press" }}'
+        - condition: template
+          value_template: '{{ trigger.event.data.args == [256,13,0] }}'
+        sequence:
+          - service: light.turn_on
+            data_template:
+              entity_id: light.living_room_ceiling_lights_zha_group_0x0002
+              color_temp: '{{ [state_attr("light.living_room_ceiling_lights_zha_group_0x0002", "color_temp") + 41, 454]|min }}'
+              transition: 0.5
+      # Short-Press on the color-down button
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.command == "press" }}'
+        - condition: template
+          value_template: '{{ trigger.event.data.args == [257,13,0] }}'
+        sequence:
+          - service: light.turn_on
+            data_template:
+              entity_id: light.living_room_ceiling_lights_zha_group_0x0002
+              color_temp: '{{ [state_attr("light.living_room_ceiling_lights_zha_group_0x0002", "color_temp") - 41, 204]|max }}'
+              transition: 0.5
+      # Any other event will cancel the repeat loops.
+      default: []
+
+##
 ## Wake-me up using bedroom lights
 ## https://www.wouterbulten.nl/blog/tech/custom-wake-up-light-with-home-assistant/
 ##
