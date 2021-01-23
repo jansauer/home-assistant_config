@@ -37,6 +37,9 @@ views:
               - sensor.time
               - binary_sensor.updater
               - sensor.hacs
+          - type: entities
+            entities:
+              - binary_sensor.rpi_power_status
           - break
           - type: entities
             title: People
