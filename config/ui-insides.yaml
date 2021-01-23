@@ -214,16 +214,6 @@ views:
             entity: climate.netatmo_living_room
           - type: thermostat
             entity: climate.netatmo_bedroom
-          - break
-          - type: history-graph
-            title: Living Room
-            hours_to_show: 24
-            entities:
-              - sensor.netatmo_living_room
-              - sensor.airco2ntrol_temperature
-              - sensor.blink_home_temperature
-              - sensor.basil_temperature
-              - sensor.ficus_temperature
 
   - title: Plants
     path: plants
