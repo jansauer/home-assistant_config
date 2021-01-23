@@ -472,6 +472,9 @@ views:
               - automation.leaving_home
               - automation.returning_home
               - type: divider
+              - automation.wall_switch_living_room_left_single_click
+              - automation.wall_switch_living_room_right_single_click
+              - type: divider
               - automation.wall_switch_bedroom_left_single_click
               - type: divider
               - automation.open_window_notifications

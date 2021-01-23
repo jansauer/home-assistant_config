@@ -31,6 +31,93 @@
         message: "Returning"
 
 ##
+## Wall Switchs
+##
+
+- alias: 'Wall switch living room left single click'
+  trigger:
+    platform: event
+    event_type: shellyforhass.click
+    event_data:
+      entity_id: binary_sensor.shelly_shsw_25_40f520015f98_1_switch
+      click_type: single #long, double, triple
+  action:
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: light.livingroom_ceiling_lights
+          state: 'off'
+        sequence:
+          - service: light.turn_on
+            data_template:
+              entity_id: light.livingroom_ceiling_lights
+              # brightness_step_pct: 50
+              transition: 0.5
+          - service: light.turn_on
+            data_template:
+              entity_id: light.livingroom_accent_lights
+      - conditions:
+        - condition: state
+          entity_id: light.livingroom_ceiling_lights
+          state: 'on'
+        sequence:
+          - service: light.turn_off
+            data_template:
+              entity_id: light.livingroom_ceiling_lights
+          - condition: state
+            entity_id: light.livingroom_floor_lamp
+            state: 'off'
+          - service: light.turn_off
+            data_template:
+              entity_id: light.livingroom_accent_lights
+
+- alias: 'Wall switch living room right single click'
+  trigger:
+    platform: event
+    event_type: shellyforhass.click
+    event_data:
+      entity_id: binary_sensor.shelly_shsw_25_40f520015f98_2_switch
+      click_type: single #long, double, triple
+  action:
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: light.livingroom_floor_lamp
+          state: 'off'
+        sequence:
+          - service: light.turn_on
+            data_template:
+              entity_id: light.livingroom_floor_lamp
+          - service: light.turn_on
+            data_template:
+              entity_id: light.livingroom_accent_lights
+      - conditions:
+        - condition: state
+          entity_id: light.livingroom_floor_lamp
+          state: 'on'
+        sequence:
+          - service: light.turn_off
+            data_template:
+              entity_id: light.livingroom_floor_lamp
+          - condition: state
+            entity_id: light.livingroom_ceiling_lights
+            state: 'off'
+          - service: light.turn_off
+            data_template:
+              entity_id: light.livingroom_accent_lights
+
+- alias: 'Wall switch bedroom left single click'
+  trigger:
+    platform: event
+    event_type: shellyforhass.click
+    event_data:
+      entity_id: binary_sensor.shelly_shsw_25_483fda4ce546_1_switch
+      click_type: single #long, double, triple
+  action:
+    service: light.toggle
+    entity_id: light.ikea_tradfri_bulb_e27_opal_1000lm_1
+
+##
 ## Wake-me up using bedroom lights
 ## https://www.wouterbulten.nl/blog/tech/custom-wake-up-light-with-home-assistant/
 ##
