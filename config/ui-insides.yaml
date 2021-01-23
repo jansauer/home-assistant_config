@@ -321,12 +321,6 @@ views:
       - type: custom:layout-card
         layout: vertical
         cards:
-          - type: glance
-            title: Celestial
-            entities:
-              - sun.sun
-              - sensor.moon
-              - binary_sensor.iss
           - type: weather-forecast
             entity: weather.dark_sky
           - type: weather-forecast
@@ -339,6 +333,12 @@ views:
               - entity: sensor.dwd_weather_warnings_advance_warning_level
                 name: Advance Warning Level
           - break
+          - type: glance
+            title: Celestial
+            entities:
+              - sun.sun
+              - sensor.moon
+              - binary_sensor.iss
 
   - title: Devices
     path: devices
