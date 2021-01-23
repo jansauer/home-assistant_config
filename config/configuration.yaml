@@ -424,6 +424,29 @@ notify:
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
 
+# https://www.home-assistant.io/integrations/influxdb
+influxdb:
+  host: a0d7b954-influxdb
+  # host: 192.168.5.2
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: rqJg9AaWGDbQuGA
+  max_retries: 3
+  include:
+    domains:
+      - climate
+      - plant
+    entity_globs:
+      - sensor.withings_*
+    entities:
+      - sensor.airco2ntrol_temperature
+      - sensor.airco2ntrol_carbon_dioxide
+      - sensor.windy_temperature
+      - sensor.windy_humidity
+      - sensor.windy_pm_2_5
+      - sensor.windy_pm_10_0
+
 # https://www.home-assistant.io/integrations/logger
 logger:
   default: warning
