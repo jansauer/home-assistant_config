@@ -454,7 +454,7 @@ influxdb:
 logger:
   default: warning
   # default: debug
-  logs:
+  # logs:
     # homeassistant.components.alexa: debug
     # homeassistant.components.miflora: debug
     # custom_components.airco2ntrol: debug
