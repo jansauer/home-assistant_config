@@ -61,8 +61,6 @@ lovelace:
       type: js
     - url: /local/battery-state-card.js
       type: module
-    - url: /local/zha-network-visualization-card/zha-network-visualization-card.js
-      type: module
     - url: "http://127.0.0.1:5000/flower-card.js"
       type: module
   dashboards:
@@ -118,9 +116,6 @@ zha:
   zigpy_config:
     ota:
       ikea_provider: true
-
-# https://github.com/zha-ng/zha-map
-zha_map:
 
 # https://github.com/StyraHem/ShellyForHASS
 shelly:

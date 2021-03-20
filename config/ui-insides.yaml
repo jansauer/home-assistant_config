@@ -527,13 +527,6 @@ views:
               # - sensor.lumi_lumi_sensor_magnet_0e017b02_power
               # - sensor.lumi_lumi_sensor_magnet_eb017b02_power
 
-  - title: ZHA Network
-    path: zha
-    icon: mdi:lan
-    panel: true
-    cards:
-      - type: custom:zha-network-visualization-card
-
   # - title: Test
   #   path: test
   #   icon: mdi:test-tube
