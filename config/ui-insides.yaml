@@ -193,6 +193,17 @@ views:
               - entity: sensor.windy_pm_2_5
                 name: PM 2.5
           - type: glance
+            title: GyverLamp (ESPHome)
+            entities:
+              - entity: binary_sensor.gyverlamp_status
+                name: Status
+              - entity: sensor.gyverlamp_uptime
+                name: Uptime
+              - entity: sensor.gyverlamp_wifi_signal
+                name: Wifi
+              - entity: light.gyverlamp_matrix
+                name: Matrix
+          - type: glance
             title: Sleepy (ESPHome)
             entities:
               - entity: binary_sensor.sleepy_status
