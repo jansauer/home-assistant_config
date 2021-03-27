@@ -88,6 +88,9 @@ views:
                     icon: mdi:floor-lamp
                   - entity: light.livingroom_accent_lights
                     name: Accent
+                  - entity: light.ikea_of_sweden_tradfri_bulb_e14_cws_opal_600lm_d90f45fe_1
+                    name: Star of Bethlehem
+                    icon: mdi:star
                   - type: divider
                   - entity: scene.livingroom_work
                     icon: mdi:briefcase-outline
