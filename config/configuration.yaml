@@ -20,12 +20,8 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
-# https://www.home-assistant.io/integrations/updater
-updater:
-  include_used_components: true
-
-# https://www.home-assistant.io/integrations/config
-config:
+# https://www.home-assistant.io/integrations/default_config
+default_config:
 
 # https://www.home-assistant.io/integrations/frontend
 frontend:
@@ -35,34 +31,27 @@ frontend:
 lovelace:
   mode: yaml
   resources:
-    # https://momentjs.com/
-    - url: /local/moment.js?v=2.24.0
-      type: js
-    # https://github.com/thomasloven/lovelace-card-mod
-    - url: /hacsfiles/lovelace-card-mod/card-mod.js
-      type: module
     # https://github.com/thomasloven/lovelace-layout-card
     - url: /hacsfiles/lovelace-layout-card/layout-card.js
-      type: module
-    # https://github.com/nervetattoo/simple-thermostat
-    - url: /hacsfiles/simple-thermostat/simple-thermostat.js
-      type: module
-    # https://github.com/kalkih/mini-graph-card
-    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
       type: module
     # https://github.com/maxwroc/battery-state-card
     - url: /hacsfiles/battery-state-card/battery-state-card.js
       type: module
-    - url: /local/floorplan/floorplan-card.js?v=1.1.14
+    # https://github.com/kalkih/mini-graph-card
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
       type: module
-    - url: /local/clock-card.js?v=0.0.8
-      type: js
-    - url: /local/daytime-card/daytime-card.js?v=0.0.217
-      type: js
-    - url: /local/battery-state-card.js
+    # https://github.com/nervetattoo/simple-thermostat
+    - url: /hacsfiles/simple-thermostat/simple-thermostat.js
       type: module
-    - url: "http://127.0.0.1:5000/flower-card.js"
+    # https://github.com/jansauer/lovelace-flower-card
+    # - url: "http://127.0.0.1:5000/flower-card.js"
+    - url: /hacsfiles/lovelace-flower-card/flower-card.js
       type: module
+#     - url: /local/floorplan/floorplan-card.js?v=1.1.14
+#       type: module
+#     # https://github.com/thomasloven/lovelace-card-mod
+#     - url: /hacsfiles/lovelace-card-mod/card-mod.js
+#       type: module
   dashboards:
     lovelace-insides:
       mode: yaml
@@ -72,21 +61,6 @@ lovelace:
 
 # https://www.home-assistant.io/integrations/recorder
 recorder:
-
-# https://www.home-assistant.io/integrations/history
-history:
-
-# https://www.home-assistant.io/integrations/logbook
-logbook:
-
-# https://www.home-assistant.io/integrations/map
-map:
-
-# https://www.home-assistant.io/integrations/system_health
-system_health:
-
-# https://www.home-assistant.io/integrations/mobile_app
-mobile_app:
 
 # https://www.home-assistant.io/integrations/ios
 # https://companion.home-assistant.io
