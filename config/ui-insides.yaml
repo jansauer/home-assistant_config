@@ -120,14 +120,6 @@ views:
             title: Shelly
             show_header_toggle: false
             entities:
-              - switch.shelly_shsw_25_483fda4ce546_1
-              - sensor.shelly_shsw_25_483fda4ce546_1_current_consumption
-              - binary_sensor.shelly_shsw_25_483fda4ce546_1_switch
-              - switch.shelly_shsw_25_483fda4ce546_2
-              - sensor.shelly_shsw_25_483fda4ce546_2_current_consumption
-              - binary_sensor.shelly_shsw_25_483fda4ce546_2_switch
-              - entity: switch.shelly_shsw_25_483fda4ce546_firmware_update
-              - type: divider
               - switch.shelly_shsw_25_40f520015f98_1
               - sensor.shelly_shsw_25_40f520015f98_1_current_consumption
               - binary_sensor.shelly_shsw_25_40f520015f98_1_switch
@@ -135,6 +127,14 @@ views:
               - sensor.shelly_shsw_25_40f520015f98_2_current_consumption
               - binary_sensor.shelly_shsw_25_40f520015f98_2_switch
               - switch.shelly_shsw_25_40f520015f98_firmware_update
+              - type: divider
+              - switch.shelly_shsw_25_483fda4ce546_1
+              - sensor.shelly_shsw_25_483fda4ce546_1_current_consumption
+              - binary_sensor.shelly_shsw_25_483fda4ce546_1_switch
+              - switch.shelly_shsw_25_483fda4ce546_2
+              - sensor.shelly_shsw_25_483fda4ce546_2_current_consumption
+              - binary_sensor.shelly_shsw_25_483fda4ce546_2_switch
+              - entity: switch.shelly_shsw_25_483fda4ce546_firmware_update
           - break
           - type: entities
             title: Trådfri (ZHA)
