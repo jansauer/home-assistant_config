@@ -67,30 +67,33 @@ views:
               - entity: sensor.withings_heart_pulse_bpm
                 name: Heart Rate
           - break
-          - type: markdown
-            content: >
-              ## Spotify
+          - type: entities
+            title: Spotify
+            show_header_toggle: false
+            entities: []
           - type: media-control
             entity: media_player.spotify_1174358001
-          - type: markdown
-            content: >
-              ## Apple TV
+          - type: entities
+            title: Apple TV
+            show_header_toggle: false
+            entities: []
           - type: media-control
             entity: media_player.living_room
-          - type: markdown
-            content: >
-              ## Chromecast
+          - type: entities
+            title: Chromecast
+            show_header_toggle: false
+            entities: []
           - type: media-control
             entity: media_player.living_room_chromecast
-          - type: markdown
-            content: >
-              ## Plex
+          - type: entities
+            title: Plex
+            show_header_toggle: false
+            entities:
+              - sensor.plex_byss
           - type: media-control
             entity: media_player.plex_plex_for_apple_tv_living_room
           - type: media-control
-            entity: media_player.plex_plex_cast_chromecast
-          - type: media-control
-            entity: media_player.plex_plex_web_chrome_osx
+            entity: media_player.plex_plex_web_chrome
 
   - title: InputOutput
     path: input-output
