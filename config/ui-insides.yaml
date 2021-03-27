@@ -419,36 +419,14 @@ views:
               - entity: sensor.ipad_last_update_trigger
                 name: Last Update Trigger
 
-  - title: Security
-    path: security
-    icon: mdi:cctv
-    panel: true
-    cards:
-      - type: custom:layout-card
-        layout: vertical
-        cards:
-          - type: glance
-            title: Blink
-            entities:
-              - entity: binary_sensor.blink_home_motion_detected
-                name: Motion Detected
-              - entity: binary_sensor.blink_home_camera_armed
-                name: Camera Armed
-              - entity: sensor.blink_home_temperature
-                name: Temperature
-              - entity: sensor.blink_home_wifi_signal
-                name: Wifi Signal
-              - entity: binary_sensor.blink_home_battery
-                name: Battery
-          - entity: camera.blink_home
-            type: picture-entity
-          - type: alarm-panel
-            entity: alarm_control_panel.blink_blink
-          - type: entities
-            title: Script
-            show_header_toggle: false
-            entities:
-              - script.blink_trigger_camera
+  # - title: Security
+  #   path: security
+  #   icon: mdi:cctv
+  #   panel: true
+  #   cards:
+  #     - type: custom:layout-card
+  #       layout: vertical
+  #       cards:
 
   - title: Automation
     path: automation
@@ -484,11 +462,10 @@ views:
               - scene.livingroom_night_light
               - scene.livingroom_off
               - scene.bedroom_off
-          - type: entities
-            title: Script
-            show_header_toggle: false
-            entities:
-              - script.blink_trigger_camera
+          # - type: entities
+          #   title: Script
+          #   show_header_toggle: false
+          #   entities:
           - type: entities
             title: Inputs
             show_header_toggle: false
