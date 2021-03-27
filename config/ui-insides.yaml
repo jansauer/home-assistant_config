@@ -158,6 +158,13 @@ views:
               - sensor.osram_plug_1
               - light.livingroom_floor_lamp
           - type: entities
+            title: Osram (ZHA)
+            show_header_toggle: false
+            entities:
+              - switch.ts0121_bd81d9fe_on_off
+              - sensor.ts0121_bd81d9fe_electrical_measurement
+              - sensor.ts0121_bd81d9fe_smartenergy_metering
+          - type: entities
             title: Xiaomi (ZHA)
             show_header_toggle: false
             entities:

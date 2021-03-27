@@ -83,9 +83,8 @@ views:
                 entities:
                   - entity: light.livingroom_ceiling_lights
                     name: Ceiling
-                  - entity: switch.osram_plug_1
+                  - entity: light.livingroom_floor_lamp
                     name: Floor Lamp
-                    icon: mdi:floor-lamp
                   - entity: light.livingroom_accent_lights
                     name: Accent
                   - entity: light.ikea_of_sweden_tradfri_bulb_e14_cws_opal_600lm_d90f45fe_1
