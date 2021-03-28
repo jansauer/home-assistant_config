@@ -37,6 +37,9 @@ lovelace:
     # https://github.com/maxwroc/battery-state-card
     - url: /hacsfiles/battery-state-card/battery-state-card.js
       type: module
+    # https://github.com/ExperienceLovelace/ha-floorplan
+    - url: /hacsfiles/ha-floorplan/floorplan.js
+      type: module
     # https://github.com/kalkih/mini-graph-card
     - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
       type: module
@@ -47,8 +50,6 @@ lovelace:
     # - url: "http://127.0.0.1:5000/flower-card.js"
     - url: /hacsfiles/lovelace-flower-card/flower-card.js
       type: module
-#     - url: /local/floorplan/floorplan-card.js?v=1.1.14
-#       type: module
 #     # https://github.com/thomasloven/lovelace-card-mod
 #     - url: /hacsfiles/lovelace-card-mod/card-mod.js
 #       type: module
