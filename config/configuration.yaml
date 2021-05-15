@@ -75,16 +75,6 @@ person:
     device_trackers:
       - device_tracker.iphone_x
 
-# https://www.home-assistant.io/integrations/device_tracker
-device_tracker:
-  # https://www.home-assistant.io/integrations/fritz
-  - platform: fritz
-    host: 192.168.5.1
-    username: !secret fritz_username
-    password: !secret fritz_password
-    new_device_defaults:
-      track_new_devices: false
-
 # https://www.home-assistant.io/integrations/zha
 zha:
   database_path: /config/zigbee.db

@@ -328,18 +328,28 @@ views:
     icon: mdi:devices
     type: custom:vertical-layout
     cards:
-      - type: glance
-        title: Device
+      - type: entities
+        title: Devices
+        show_header_toggle: false
         entities:
-          - device_tracker.iphonex
-          - device_tracker.watch
-          - device_tracker.ipadpro
-          - device_tracker.macbookpro
-          - device_tracker.byss
-          - device_tracker.netatmo
-          - device_tracker.limitlessled
-          - device_tracker.blink
-          - device_tracker.echodot
+          - device_tracker.alderaan
+          - device_tracker.byss_2
+          - device_tracker.chromecast
+          - device_tracker.echo_dot
+          - device_tracker.gyverlamp
+          - device_tracker.hassio
+          - device_tracker.ipad_pro
+          - device_tracker.iphone
+          - device_tracker.iphone_x_3
+          - device_tracker.jans_applewatch
+          - device_tracker.limitlessledi_gateway
+          - device_tracker.living_room
+          - device_tracker.macbook_pro
+          - device_tracker.netatmo_relay
+          - device_tracker.scansnapix500
+          - device_tracker.shellyswitch25_40f520015f98
+          - device_tracker.shellyswitch25_483fda4ce546
+          - device_tracker.windy
       - type: entities
         title: NAS
         show_header_toggle: false
