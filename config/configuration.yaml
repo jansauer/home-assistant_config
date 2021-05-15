@@ -8,7 +8,7 @@ homeassistant:
   time_zone: Europe/Berlin
   external_url: !secret url
   internal_url: !secret url
-  whitelist_external_dirs:
+  allowlist_external_dirs:
     - /config
   customize: !include customize.yaml
 
