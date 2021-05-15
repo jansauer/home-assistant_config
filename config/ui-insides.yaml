@@ -119,27 +119,30 @@ views:
         show_header_toggle: false
         entities:
           # livingroom Ceiling Bulbs
-          - light.ikea_tradfri_bulb_gu10_ws_400lm_1
-          - light.ikea_tradfri_bulb_gu10_ws_400lm_2
-          - light.ikea_tradfri_bulb_gu10_ws_400lm_3
-          - light.ikea_tradfri_bulb_gu10_ws_400lm_4
+          - light.tradfri_bulb_gu10_ws_400lm_e511bcfe
+          - light.tradfri_bulb_gu10_ws_400lm_b40dbcfe
+          - light.tradfri_bulb_gu10_ws_400lm_7ca9bbfe
+          - light.tradfri_bulb_gu10_ws_400lm_a9feb1fe
+          - type: divider
           # Bedroom Ceiling Light
-          - light.ikea_tradfri_bulb_e27_opal_1000lm_1
+          - light.tradfri_bulb_e27_opal_1000lm_744e24fe
+          - type: divider
+          # Decoration
+          - light.tradfri_bulb_e14_cws_opal_600lm_d90f45fe
+          - type: divider
           # Switch
-          - sensor.ikea_of_sweden_tradfri_on_off_switch_739c78fe_power
-          - sensor.ikea_of_sweden_tradfri_remote_control_3230dcfe_power
+          - sensor.tradfri_on_off_switch_2040fdfe_power
       - type: entities
         title: Osram (ZHA)
         show_header_toggle: false
         entities:
-          - switch.osram_plug_1
-          - sensor.osram_plug_1
+          - switch.osram_plug_a748010a
           - light.livingroom_floor_lamp
       - type: entities
-        title: Osram (ZHA)
+        title: Tuya (ZHA)
         show_header_toggle: false
         entities:
-          - switch.ts0121_bd81d9fe_on_off
+          - switch.ts0121_bd81d9fe
           - sensor.ts0121_bd81d9fe_electrical_measurement
           - sensor.ts0121_bd81d9fe_smartenergy_metering
       - type: entities
@@ -147,18 +150,18 @@ views:
         show_header_toggle: false
         entities:
           # Entryway Motion Sensor
-          - binary_sensor.lumi_lumi_sensor_motion_aq2_aeede202_occupancy
-          - binary_sensor.lumi_lumi_sensor_motion_aq2_aeede202_ias_zone
-          - sensor.lumi_lumi_sensor_motion_aq2_aeede202_illuminance
-          - sensor.lumi_lumi_sensor_motion_aq2_aeede202_power
+          - binary_sensor.lumi_sensor_motion_aq2_aeede202_occupancy
+          - binary_sensor.lumi_sensor_motion_aq2_aeede202_ias_zone
+          - sensor.lumi_sensor_motion_aq2_aeede202_illuminance
+          - sensor.lumi_sensor_motion_aq2_aeede202_power
           - type: divider
           # Livingroom Door
-          - binary_sensor.lumi_lumi_sensor_magnet_0e017b02
-          - sensor.lumi_lumi_sensor_magnet_0e017b02_power
+          - binary_sensor.lumi_sensor_magnet_0e017b02
+          - sensor.lumi_sensor_magnet_0e017b02_power
           - type: divider
           # Bedroom Window
-          - binary_sensor.lumi_lumi_sensor_magnet_eb017b02
-          - sensor.lumi_lumi_sensor_magnet_eb017b02_power
+          - binary_sensor.lumi_sensor_magnet_eb017b02
+          - sensor.lumi_sensor_magnet_eb017b02_power
       - type: custom:layout-break
       - type: glance
         title: Windy (ESPHome)

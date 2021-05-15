@@ -76,11 +76,11 @@ person:
       - device_tracker.iphone_x
 
 # https://www.home-assistant.io/integrations/zha
-zha:
-  database_path: /config/zigbee.db
-  zigpy_config:
-    ota:
-      ikea_provider: true
+# zha:
+#   database_path: /config/zigbee.db
+#   zigpy_config:
+#     ota:
+#       ikea_provider: true
 
 # https://github.com/StyraHem/ShellyForHASS
 shelly:
