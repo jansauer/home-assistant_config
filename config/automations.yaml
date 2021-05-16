@@ -4,31 +4,25 @@
 ## Presence Automations
 ##
 
-- alias: Leaving Home
+- alias: 'Leaving Home'
   trigger:
     platform: state
-    entity_id: person.jan
-    from: "home"
+    entity_id: person.jansauer
+    from: 'Home'
   action:
     - service: notify.pushover
       data:
-        message: "Leaving"
-    # - service: climate.set_preset_mode
-    #   data:
-    #     entity_id: climate.netatmo_living_room
-    #     preset_mode: away
-    # - service: scene.turn_on
-    #   entity_id: scene.livingroom_off
+        message: 'Leaving'
 
 - alias: Returning Home
   trigger:
     platform: state
-    entity_id: person.jan
-    to: "home"
+    entity_id: person.jansauer
+    to: 'Home'
   action:
     - service: notify.pushover
       data:
-        message: "Returning"
+        message: 'Returning'
 
 ##
 ## Wall Switchs
