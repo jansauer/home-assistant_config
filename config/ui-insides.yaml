@@ -81,13 +81,6 @@ views:
     icon: mdi:dip-switch
     type: custom:vertical-layout
     cards:
-      - type: glance
-        title: AirCO2ntrol
-        entities:
-          - entity: sensor.airco2ntrol_temperature
-            name: Temperature
-          - entity: sensor.airco2ntrol_carbon_dioxide
-            name: Carbon Dioxide
       - type: entities
         title: LimitlessLED
         show_header_toggle: false
@@ -212,6 +205,13 @@ views:
     icon: mdi:home-thermometer-outline
     type: custom:vertical-layout
     cards:
+      - type: glance
+        title: AirCO2ntrol
+        entities:
+          - entity: sensor.airco2ntrol_temperature
+            name: Temperature
+          - entity: sensor.airco2ntrol_carbon_dioxide
+            name: Carbon Dioxide
       - type: thermostat
         entity: climate.netatmo_living_room
       - type: thermostat
