@@ -8,7 +8,6 @@ Author:   Jan Sauer
 """
 import fcntl
 import logging
-import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import (DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS)
