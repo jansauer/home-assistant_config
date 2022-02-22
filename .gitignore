@@ -1,11 +1,4 @@
-# HA Backups
-backup/
-
-# HA Credentials
-.spotify-token-cache
-.tradfri_psk.conf
-known_devices.yaml
-plex.conf
+# Credentials
 secrets.yaml
 
 # Python cache

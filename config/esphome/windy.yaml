@@ -4,7 +4,7 @@ esphome:
   board: nodemcu-32s
 
 wifi:
-  ssid: Alderaan Legacy
+  ssid: "Alderaan Legacy"
   password: !secret alderaan
 
 logger:
@@ -32,35 +32,34 @@ uart:
 sensor:
   - platform: uptime
     name: Windy Uptime Sensor
-
+    id: windy_uptime
+    
   - platform: wifi_signal
     name: Windy WiFi Signal Sensor
+    id: windy_wifi_signal
   
   ## SHT31 temperature+humidity sensor
   ## https://esphome.io/components/sensor/sht3xd.html
   - platform: sht3xd
     temperature:
       name: Windy Temperature
+      id: windy_temperature
     humidity:
       name: Windy Humidity
+      id: windy_humidity
 
   ## SDS011 particulate matter sensor
   ## https://esphome.io/components/sensor/sds011.html
   - platform: sds011
     pm_2_5:
       name: "Particulate Matter <2.5µm Concentration"
+      id: windy_particulate_matter_2_5
     pm_10_0:
       name: "Particulate Matter <10.0µm Concentration"
+      id: windy_particulate_matter_10_0
     update_interval: 5min
 
 binary_sensor:
   - platform: status
+    id: windy_status
     name: Windy Status
-
-text_sensor:
-  - platform: version
-    name: Windy ESPHome Version
-
-switch:
-  - platform: shutdown
-    name: Windy Shutdown

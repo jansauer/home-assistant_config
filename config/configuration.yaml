@@ -1,119 +1,21 @@
-# https://www.home-assistant.io/docs/configuration/basic
-homeassistant:
-  name: Home
-  latitude: !secret home_latitude
-  longitude: !secret home_longitude
-  elevation: 55
-  unit_system: metric
-  time_zone: Europe/Berlin
-  external_url: !secret url
-  internal_url: !secret url
-  allowlist_external_dirs:
-    - /config
-  customize: !include customize.yaml
+# https://www.home-assistant.io/integrations/default_config
+default_config:
 
 # https://www.home-assistant.io/integrations/http
 http:
   server_port: 443
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
-
-# https://www.home-assistant.io/integrations/default_config
-default_config:
-
-# https://www.home-assistant.io/integrations/frontend
-frontend:
-  themes: !include_dir_merge_named themes
-
-# https://www.home-assistant.io/lovelace
-lovelace:
-  mode: yaml
-  resources:
-    # https://github.com/thomasloven/lovelace-layout-card
-    - url: /hacsfiles/lovelace-layout-card/layout-card.js
-      type: module
-    # https://github.com/maxwroc/battery-state-card
-    - url: /hacsfiles/battery-state-card/battery-state-card.js
-      type: module
-    # https://github.com/ExperienceLovelace/ha-floorplan
-    - url: /hacsfiles/ha-floorplan/floorplan.js
-      type: module
-    # https://github.com/kalkih/mini-graph-card
-    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
-      type: module
-    # https://github.com/nervetattoo/simple-thermostat
-    - url: /hacsfiles/simple-thermostat/simple-thermostat.js
-      type: module
-    # https://github.com/jansauer/lovelace-flower-card
-    # - url: "http://127.0.0.1:5000/flower-card.js"
-    - url: /hacsfiles/lovelace-flower-card/flower-card.js
-      type: module
-#     # https://github.com/thomasloven/lovelace-card-mod
-#     - url: /hacsfiles/lovelace-card-mod/card-mod.js
-#       type: module
-  dashboards:
-    lovelace-insides:
-      mode: yaml
-      title: Insides
-      icon: mdi:stethoscope
-      filename: ui-insides.yaml
-
-# https://www.home-assistant.io/integrations/recorder
-recorder:
-
-# https://www.home-assistant.io/integrations/ios
-# https://companion.home-assistant.io
-ios:
-
-# https://www.home-assistant.io/integrations/person
-person:
-  - name: Jan Sauer
-    id: jansauer
-    user_id: e4a346c4e7c74089b57e0e664a87c166
-    device_trackers:
-      - device_tracker.iphone_x
-
-# https://www.home-assistant.io/integrations/zha
-# zha:
-#   database_path: /config/zigbee.db
-#   zigpy_config:
-#     ota:
-#       ikea_provider: true
-
-# https://github.com/StyraHem/ShellyForHASS
-shelly:
-  discovery: false
-  username: !secret shelly_username
-  password: !secret shelly_password
-  devices:
-    - id: "40F520015F98" # Living Room
-    - id: "483FDA4CE546" # Bedroom
-  sensors:
-    - switch
-    - current_consumption
 
 # https://www.home-assistant.io/integrations/sensor
 sensor:
-  - platform: airco2ntrol
-
   # https://www.home-assistant.io/integrations/miflora
   - platform: miflora
     name: Ficus
     mac: "C4:7C:8D:65:AF:DD"
   - platform: miflora
-    name: Sansevieria Cylindrica Boncel
-    mac: "C4:7C:8D:6B:A3:89"
-  - platform: miflora
-    name: Callisia Repens
+    name: Poinsettia
     mac: "C4:7C:8D:6B:A3:80"
-  - platform: miflora
-    name: Basil
-    mac: "C4:7C:8D:6B:A3:26"
-  - platform: miflora
-    name: Pteris
-    mac: "C4:7C:8D:65:B0:5A"
 
   # https://www.home-assistant.io/integrations/systemmonitor
   - platform: systemmonitor
@@ -128,22 +30,96 @@ sensor:
   # https://www.home-assistant.io/integrations/uptime
   - platform: uptime
 
-  # https://www.home-assistant.io/integrations/filesize
-  - platform: filesize
-    file_paths:
-      - /config/home-assistant_v2.db
-
-  # https://www.home-assistant.io/integrations/moon
-  - platform: moon
-
   # https://www.home-assistant.io/integrations/dwd_weather_warnings
   - platform: dwd_weather_warnings
     region_name: 803241001
+
+  # https://www.home-assistant.io/integrations/moon
+  - platform: moon
 
   # https://www.home-assistant.io/integrations/time_date
   - platform: time_date
     display_options:
       - 'time'
+
+  # https://www.home-assistant.io/integrations/sensor.rest
+  # https://github.com/Arksine/moonraker/blob/master/docs/example-home-assistant.yaml
+  - platform: rest
+    name: Sidewinder X1
+    resource: "http://192.168.5.64:7125/printer/objects/query?heater_bed&extruder&print_stats&toolhead&display_status&virtual_sdcard"
+    json_attributes_path: "$.result.status"
+    json_attributes:
+      - heater_bed
+      - extruder
+      - print_stats
+      - toolhead
+      - display_status
+      - virtual_sdcard
+    value_template: >-
+      {{ 'OK' if ('result' in value_json) else None }}
+
+  # https://www.home-assistant.io/integrations/template
+  - platform: template
+    sensors:
+      sidewinder_x1_state:
+        friendly_name: 'Sidewinder X1 State'
+        icon_template: mdi:printer-3d
+        value_template: >-
+          {{ states.sensor.sidewinder_x1.attributes['print_stats']['state'] if is_state('sensor.sidewinder_x1', 'OK') else None }}
+      sidewinder_x1_current_print:
+        friendly_name: 'Sidewinder X1 Current Print'
+        value_template: >-
+          {{ states.sensor.sidewinder_x1.attributes['print_stats']['filename'] if is_state('sensor.sidewinder_x1', 'OK') else None }}
+      sidewinder_x1_current_progress:
+        friendly_name: 'Sidewinder X1 Print Progress'
+        unit_of_measurement: '%'
+        icon_template: mdi:file-percent
+        value_template: >-
+          {{ (states.sensor.sidewinder_x1.attributes['display_status']['progress'] * 100) | round(1) if is_state('sensor.sidewinder_x1', 'OK') else None }}
+      sidewinder_x1_time_elapsed:
+        friendly_name: 'Sidewinder X1 Print Time Elapsed'
+        icon_template: mdi:clock-start
+        value_template: >-
+          {{ states.sensor.sidewinder_x1.attributes['print_stats']['print_duration'] | timestamp_custom("%H:%M:%S", 0) if is_state('sensor.sidewinder_x1', 'OK') else None }}
+      sidewinder_x1_time_remaining:
+        friendly_name: 'Sidewinder X1 Print Time Remaining'
+        icon_template: mdi:clock-end
+        value_template: >-
+          {{ (((states.sensor.sidewinder_x1.attributes['print_stats']['print_duration'] / states.sensor.sidewinder_x1.attributes['display_status']['progress'] - states.sensor.voron_v0_sensor.attributes['print_stats']['print_duration']) if states.sensor.voron_v0_sensor.attributes['display_status']['progress'] > 0 else 0) | timestamp_custom('%H:%M:%S', 0)) if is_state('sensor.sidewinder_x1', 'OK') else None }}
+      sidewinder_x1_eta:
+        friendly_name: 'Sidewinder X1 Print ETA'
+        icon_template: mdi:clock-outline
+        value_template: >-
+          {{ (as_timestamp(now()) + 2 * 60 * 60 + ((states.sensor.sidewinder_x1.attributes['print_stats']['print_duration'] / states.sensor.voron_v0_sensor.attributes['display_status']['progress'] - states.sensor.voron_v0_sensor.attributes['print_stats']['print_duration']) if states.sensor.sidewinder_x1.attributes['display_status']['progress'] > 0 else 0)) | timestamp_custom("%H:%M:%S", 0) if is_state('sensor.sidewinder_x1', 'OK') else None }}
+      sidewinder_x1_hotend_target:
+        friendly_name: 'Sidewinder X1 Hotend Target Temperature'
+        device_class: temperature
+        unit_of_measurement: '°C'
+        value_template: >-
+          {{ states.sensor.sidewinder_x1.attributes['extruder']['target'] | float | round(1) if is_state('sensor.sidewinder_x1', 'OK') else None }}
+      sidewinder_x1_hotend_actual:
+        friendly_name: 'Sidewinder X1 Hotend Actual Temperature'
+        device_class: temperature
+        unit_of_measurement: '°C'
+        value_template: >-
+          {{ states.sensor.sidewinder_x1.attributes['extruder']['temperature'] | float | round(1) if is_state('sensor.sidewinder_x1', 'OK') else None }}
+      sidewinder_x1_bed_target:
+        friendly_name: 'Sidewinder X1 Bed Target Temperature'
+        device_class: temperature
+        unit_of_measurement: '°C'
+        value_template: >-
+          {{ states.sensor.sidewinder_x1.attributes['heater_bed']['target'] | float | round(1) if is_state('sensor.sidewinder_x1', 'OK') else None }}
+      sidewinder_x1_bed_actual:
+        friendly_name: 'Sidewinder X1 Bed Actual Temperature'
+        device_class: temperature
+        unit_of_measurement: '°C'
+        value_template: >-
+          {{ states.sensor.sidewinder_x1.attributes['heater_bed']['temperature'] | float | round(1) if is_state('sensor.sidewinder_x1', 'OK') else None }}
+
+# https://www.home-assistant.io/integrations/binary_sensor
+binary_sensor:
+  # https://www.home-assistant.io/integrations/iss
+  - platform: iss
 
 # https://www.home-assistant.io/integrations/input_datetime
 input_datetime:
@@ -152,11 +128,6 @@ input_datetime:
     has_time: true
     has_date: false
     initial: "06:30"
-
-# https://www.home-assistant.io/integrations/binary_sensor
-binary_sensor:
-  # https://www.home-assistant.io/integrations/iss
-  - platform: iss
 
 # https://www.home-assistant.io/integrations/input_boolean
 input_boolean:
@@ -168,14 +139,10 @@ input_boolean:
     name: Guest Mode
     icon: mdi:drama-masks
     initial: off
-#   mode_do_not_disturb:
-#     name: Do Not Disturb
-#     icon: mdi:bell-off
-#     initial: off
-#   mode_vacation_mode:
-#     name: Vacation Mode
-#     icon: mdi:beach
-#     initial: off
+  mode_vacation_mode:
+    name: Vacation Mode
+    icon: mdi:beach
+    initial: off
 
 # https://www.home-assistant.io/integrations/light
 light:
@@ -194,16 +161,16 @@ light:
   # https://www.home-assistant.io/integrations/light.switch
   - platform: switch
     name: Livingroom Floor Lamp
-    entity_id: switch.osram_plug_1
+    entity_id: switch.osram_plug_01_a748010a_on_off
 
   # https://www.home-assistant.io/integrations/light.group
   - platform: group
     name: Livingroom Ceiling Lights
     entities:
-      - light.ikea_tradfri_bulb_gu10_ws_400lm_1
-      - light.ikea_tradfri_bulb_gu10_ws_400lm_2
-      - light.ikea_tradfri_bulb_gu10_ws_400lm_4
-      - light.ikea_tradfri_bulb_gu10_ws_400lm_3
+      - light.ikea_tradfri_bulb_e511bcfe_level_light_color_on_off
+      - light.ikea_tradfri_bulb_b40dbcfe_level_light_color_on_off
+      - light.ikea_tradfri_bulb_7ca9bbfe_level_light_color_on_off
+      - light.ikea_tradfri_bulb_a9feb1fe_level_light_color_on_off
   - platform: group
     name: Livingroom Accent Lights
     entities:
@@ -212,6 +179,17 @@ light:
 
 # https://www.home-assistant.io/integrations/switch
 switch:
+  # https://www.home-assistant.io/integrations/switch.rest/
+  - platform: rest
+    name: sidewinder_x1_power
+    resource: "http://192.168.5.64:7125/machine/device_power/device?device=Power"
+    body_on: '{"action": "on"}'
+    body_off: '{"action": "off"}'
+    headers:
+      Content-Type: 'application/json'
+    is_on_template: >-
+      {{ 'result' in value_json and (value_json.result.values() | list | first == "on") }}
+
   # https://www.home-assistant.io/integrations/wake_on_lan
   - platform: wake_on_lan
     name: Byss
@@ -224,66 +202,16 @@ switch:
 shell_command:
   turn_off_byss: 'ssh -i /config/byss-hassio_ed25519 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null hassio@192.168.5.5 date'
 
-# https://www.home-assistant.io/integrations/spotify
-spotify:
-  client_id: !secret spotify_client_id
-  client_secret: !secret spotify_client_secret
-
-# https://www.home-assistant.io/integrations/hdmi_cec
-# hdmi_cec:
-#   devices:
-#     TV: 0.0.0.0
-#     AV Receiver: 1.0.0.0
-#     Apple TV: 1.1.0.0
-#     Home Assistant: 1.2.0.0
-#   platform: switch
-  # types:
-  #   hdmi_cec.TV: media_player
-
-# https://www.home-assistant.io/integrations/sun
-sun:
-
-# https://www.home-assistant.io/integrations/weather
-weather:
-  # https://www.home-assistant.io/integrations/weather.darksky
-  # https://darksky.net/dev/docs#response-format
-  - platform: darksky
-    api_key: !secret darksky_api_key 
+# https://www.home-assistant.io/integrations/camera
+camera:
+  # https://www.home-assistant.io/integrations/mjpeg
+  - platform: mjpeg
+    name: Sidewinder X1
+    mjpeg_url: http://192.168.5.64/webcam/?action=stream
+    still_image_url: http://192.168.5.64/webcam/?action=snapshot
 
 # https://www.home-assistant.io/integrations/plant
 plant:
-  Sansevieria Cylindrica Boncel:
-    sensors:
-      moisture: sensor.sansevieria_cylindrica_boncel_moisture
-      conductivity: sensor.sansevieria_cylindrica_boncel_conductivity
-      brightness: sensor.sansevieria_cylindrica_boncel_light_intensity
-      temperature: sensor.sansevieria_cylindrica_boncel_temperature
-      battery: sensor.sansevieria_cylindrica_boncel_battery
-    min_moisture: 7
-    max_moisture: 50
-    min_conductivity: 300
-    max_conductivity: 1000
-    min_brightness: 1500
-    max_brightness: 60000
-    min_temperature: 10
-    max_temperature: 32
-    min_battery: 10
-  Callisia Repens:
-    sensors:
-      moisture: sensor.callisia_repens_moisture
-      conductivity: sensor.callisia_repens_conductivity
-      brightness: sensor.callisia_repens_light_intensity
-      temperature: sensor.callisia_repens_temperature
-      battery: sensor.callisia_repens_battery
-    min_moisture: 20
-    max_moisture: 65
-    min_conductivity: 50
-    max_conductivity: 2000
-    min_brightness: 500
-    max_brightness: 40000
-    min_temperature: 12
-    max_temperature: 35
-    min_battery: 10
   Ficus:
     sensors:
       moisture: sensor.ficus_moisture
@@ -300,83 +228,53 @@ plant:
     min_temperature: 15
     max_temperature: 32
     min_battery: 10
-  Pteris:
+  Poinsettia:
     sensors:
-      moisture: sensor.pteris_moisture
-      conductivity: sensor.pteris_conductivity
-      brightness: sensor.pteris_light_intensity
-      temperature: sensor.pteris_temperature
-      battery: sensor.pteris_battery
+      moisture: sensor.poinsettia_moisture
+      conductivity: sensor.poinsettia_conductivity
+      brightness: sensor.poinsettia_light_intensity
+      temperature: sensor.poinsettia_temperature
+      battery: sensor.poinsettia_battery
     min_moisture: 15
-    max_moisture: 60
-    min_conductivity: 350
-    max_conductivity: 1500
-    min_brightness: 500
-    max_brightness: 15000
-    min_temperature: 10
-    max_temperature: 32
-    min_battery: 10
-  Basil:
-    sensors:
-      moisture: sensor.basil_moisture
-      conductivity: sensor.basil_conductivity
-      brightness: sensor.basil_light_intensity
-      temperature: sensor.basil_temperature
-      battery: sensor.basil_battery
-    min_moisture: 20
-    max_moisture: 60
+    max_moisture: 65
     min_conductivity: 350
     max_conductivity: 2000
-    min_brightness: 2500
-    max_brightness: 60000
+    min_brightness: 4000
+    max_brightness: 30000
     min_temperature: 8
-    max_temperature: 32
+    max_temperature: 35
     min_battery: 10
 
-# https://www.home-assistant.io/integrations/netatmo
-netatmo:
-  client_id: !secret netatmo_client_id
-  client_secret: !secret netatmo_client_secret
+# https://www.home-assistant.io/integrations/group
+group:
+  plants:
+    name: Plants
+    entities:
+      - plant.ficus
+      - plant.basil
+  batteries:
+    name: Batteries
+    entities:
+      - sensor.thermostat_battery_percent
+      - sensor.living_room_valve_battery_percent
+      - sensor.bedroom_valve_battery_percent
+      - sensor.tze200_c88teujp_ts0601_f262c3fe_power
+      - sensor.lumi_sensor_motion_aq2_aeede202_power
+      - sensor.lumi_sensor_magnet_0e017b02_power
+      - sensor.lumi_sensor_magnet_eb017b02_power
+      - sensor.lumi_sensor_magnet_ae874d05_power
+      - sensor.ficus_battery
 
-# https://www.home-assistant.io/integrations/withings
-withings:
-  client_id: !secret withings_client_id
-  client_secret: !secret withings_client_secret
+# https://www.home-assistant.io/integrations/weather
+weather:
+  # https://www.home-assistant.io/integrations/weather.darksky
+  # https://darksky.net/dev/docs#response-format
+  - platform: darksky
+    api_key: !secret darksky_api_key
 
-# https://www.home-assistant.io/integrations/homekit
-homekit:
-  filter:
-    include_entities:
-      # Entryway
-      # Livingroom
-      - light.livingroom_ceiling_lights
-      - switch.osram_plug_1
-      - light.shelf
-      - light.tv
-      - sensor.airco2ntrol_carbon_dioxide
-      - sensor.airco2ntrol_temperature
-      - scene.livingroom_night_light
-      # Bedroom
-      - light.ikea_tradfri_bulb_e27_opal_1000lm_1
-      # - sensor.sleepy_temperature
-      # - sensor.sleepy_humidity
-
-# https://www.home-assistant.io/integrations/emulated_hue
-emulated_hue:
-  host_ip: 192.168.5.2
-  listen_port: 80
-  expose_by_default: false
-  entities:
-    light.livingroom_ceiling_lights:
-      name: Ceiling Lights
-      hidden: false
-    switch.osram_plug_1:
-      name: Floor Lamp
-      hidden: false
-    light.tv:
-      hidden: false
-    light.shelf:
-      hidden: false
+# https://www.home-assistant.io/integrations/ios
+# https://companion.home-assistant.io
+ios:
 
 # https://www.home-assistant.io/integrations/notify
 # https://companion.home-assistant.io/docs/notifications/notifications-basic
@@ -387,39 +285,32 @@ notify:
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
 
-# https://www.home-assistant.io/integrations/influxdb
-influxdb:
-  host: a0d7b954-influxdb
-  # host: 192.168.5.2
-  port: 8086
-  database: homeassistant
-  username: homeassistant
-  password: rqJg9AaWGDbQuGA
-  max_retries: 3
-  include:
-    domains:
-      - climate
-      - plant
-    entity_globs:
-      - sensor.withings_*
-    entities:
-      - sensor.airco2ntrol_temperature
-      - sensor.airco2ntrol_carbon_dioxide
-      - sensor.windy_temperature
-      - sensor.windy_humidity
-      - sensor.windy_pm_2_5
-      - sensor.windy_pm_10_0
+# https://www.home-assistant.io/integrations/tts
+tts:
+  # https://www.home-assistant.io/integrations/google_translate
+  - platform: google_translate
+
+
+# https://www.home-assistant.io/integrations/homekit
+homekit:
+  filter:
+    include_entities:
+      # Entryway
+      # Livingroom
+      - light.zha_group_0x0002
+      - light.livingroom_floor_lamp
+      - light.shelf
+      - light.tv
+      # Bedroom
+      - light.ikea_tradfri_bulb_744e24fe_level_on_off
 
 # https://www.home-assistant.io/integrations/logger
 logger:
   default: warning
-  # default: debug
   # logs:
-    # homeassistant.components.alexa: debug
-    # homeassistant.components.miflora: debug
+    # homeassistant.components.shelly: debug
     # custom_components.airco2ntrol: debug
 
-zone: !include zones.yaml
+automation: !include automations.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
-automation: !include automations.yaml

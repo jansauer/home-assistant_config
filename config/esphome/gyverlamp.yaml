@@ -1,0 +1,341 @@
+esphome:
+  name: gyverlamp
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: Alderaan Legacy
+  password: !secret alderaan
+
+logger:
+
+api:
+  password: !secret sleepy
+
+ota:
+  password: !secret sleepy
+
+# https://esphome.io/components/esp32_ble_beacon.html?highlight=ibeacon
+#esp32_ble_beacon:
+#  type: iBeacon
+#  uuid: 'c214819c-0440-408a-87c7-1b16df0050c1'
+#  major: 10167
+#  minor: 61921
+
+sensor:
+  - platform: uptime
+    name: GyverLamp Uptime
+
+  - platform: wifi_signal
+    name: GyverLamp WiFi Signal
+
+binary_sensor:
+  - platform: status
+    name: GyverLamp Status
+
+#wled:
+e131:
+
+light:
+  - platform: fastled_clockless
+    name: GyverLamp Matrix
+    id: matrix
+    chipset: WS2812B
+    pin: GPIO12
+    # num_leds: 60
+    num_leds: 256
+    rgb_order: GRB
+    restore_mode: ALWAYS_OFF
+    effects:
+#      - wled:
+#          port: 21324
+      - e131:
+          universe: 1
+          channels: RGB
+      - addressable_scan:
+      - addressable_fireworks:
+      - addressable_lambda:
+          name: "My Custom Effect"
+          update_interval: 16ms
+          lambda: |-
+            static uint32_t last_run;
+            
+            const uint16_t width = 16;
+            const uint16_t height = 16;
+            const uint16_t update_interval = 200;
+            
+            uint16_t getPixelNumber(int8_t x, int8_t y) {
+              if (x % 2 == 0) {
+                return (x * width + y);
+              } else {
+                return (x * width + width - y - 1);
+              }
+            }
+            
+            if (initial_run) {
+              last_run = 0;
+              it.all() = ESPColor::BLACK;
+              return;
+            }
+            
+            const uint32_t now = millis();
+            if (now - last_run < update_interval) {
+              return;
+            }
+            
+            // Shift down
+            for (int x = 0; i < width; i++) {
+              for (int y = 0; i < height - 1; i++) {
+                it[getPixelNumber(x, y)] = it[getPixelNumber(x, y + 1)].get().darken(10);
+              }
+            }
+            
+            for (int x = 0; i < width; i++) {
+              if (random(10) == 0) {
+                it[getPixelNumber(x, height - 1)] = ESPColor::WHITE;
+              }
+            }
+            
+            last_run = now;
+      - automation:
+          name: Vetical Scan
+          sequence:
+            - light.addressable_set:
+                id: matrix
+                range_from: 0
+                range_to: 256
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 0
+                range_to: 15
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 0
+                range_to: 15
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 16
+                range_to: 31
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 16
+                range_to: 31
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 32
+                range_to: 47
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 32
+                range_to: 47
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 48
+                range_to: 63
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 48
+                range_to: 63
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 64
+                range_to: 79
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 64
+                range_to: 79
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 80
+                range_to: 95
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 80
+                range_to: 95
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 96
+                range_to: 111
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 96
+                range_to: 111
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 112
+                range_to: 127
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 112
+                range_to: 127
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 128
+                range_to: 143
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 128
+                range_to: 143
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 144
+                range_to: 159
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 144
+                range_to: 159
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 160
+                range_to: 175
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 160
+                range_to: 175
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 176
+                range_to: 191
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 176
+                range_to: 191
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 192
+                range_to: 207
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 192
+                range_to: 207
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 208
+                range_to: 223
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 208
+                range_to: 223
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 224
+                range_to: 239
+                red: 0%
+                green: 0%
+                blue: 100%
+            - delay: 100ms
+            - light.addressable_set:
+                id: matrix
+                range_from: 224
+                range_to: 239
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: matrix
+                range_from: 240
+                range_to: 255
+                red: 0%
+                green: 0%
+                blue: 100%

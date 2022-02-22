@@ -1,3 +1,5 @@
+# https://www.home-assistant.io/docs/scene/
+
 - name: Livingroom Night Light
   entities:
     light.tv:
@@ -29,15 +31,10 @@
     light.livingroom_accent_lights:
       state: off
 
-# - name: Bedroom Night Light
-#   entities:
-#     light.tv:
-#       state: on
-#       effect: night
-
 - name: Bedroom Off
   entities:
     light.ikea_tradfri_bulb_e27_opal_1000lm_1:
       state: off
     light.gateway_light_7811dcfaea5b:
       state: off
+
